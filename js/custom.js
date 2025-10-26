@@ -1,0 +1,72 @@
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu');
+
+hamburger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+
+
+// Fading background for sections
+
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach(entry => {
+            const el = entry.target;
+            if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
+                el.classList.add('visible-bg');
+            } else {
+                el.classList.remove('visible-bg');
+            }
+        });
+    },
+    {
+        threshold: 0.5,
+    }
+);
+
+sections.forEach(el => observer.observe(el));
+
+
+// Modal functionality
+
+document.querySelectorAll('.popup, .locked').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const modal = document.querySelector(targetId);
+        const content = modal.querySelector('.modal-content');
+
+        // Set transform origin based on click
+        const x = e.clientX / window.innerWidth * 100;
+        const y = e.clientY / window.innerHeight * 100;
+        content.style.transformOrigin = `${x}% ${y}%`;
+
+        // Show modal
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        // Animate in
+        requestAnimationFrame(() => {
+            content.classList.remove('animate-in');
+            void content.offsetWidth;
+            content.classList.add('animate-in');
+        });
+    });
+});
+
+document.querySelectorAll('.modal .close').forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    const content = modal.querySelector('.modal-content');
+
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    // Reset animation class
+    content.classList.remove('animate-in');
+  });
+});
