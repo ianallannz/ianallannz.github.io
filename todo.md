@@ -3,3 +3,4 @@
 - The rest of the tooltips
 - bigger hit area on hamburger button (more padding)
 - desktop section layout
+- " for persistent and emergent opportunities" somewhere
