@@ -118,14 +118,14 @@ header ul.profile {
 header ul.profile li {
     list-style: none;
     text-shadow:
-        2px 0 0 #FFFFFF,
-        -2px 0 0 #FFFFFF,
-        0 2px 0 #FFFFFF,
-        0 -2px 0 #FFFFFF,
-        1.4px 1.4px 0 #FFFFFF,
-        -1.4px 1.4px 0 #FFFFFF,
-        1.4px -1.4px 0 #FFFFFF,
-        -1.4px -1.4px 0 #FFFFFF;
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
 }
 
 header ul.profile li.name {
@@ -141,26 +141,26 @@ header .cta {
 header .cta h1 {
     font-size: 1rem;
     text-shadow:
-        2px 0 0 #FFFFFF,
-        -2px 0 0 #FFFFFF,
-        0 2px 0 #FFFFFF,
-        0 -2px 0 #FFFFFF,
-        1.4px 1.4px 0 #FFFFFF,
-        -1.4px 1.4px 0 #FFFFFF,
-        1.4px -1.4px 0 #FFFFFF,
-        -1.4px -1.4px 0 #FFFFFF;
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
 }
 
 header .cta p.copy {
     text-shadow:
-        2px 0 0 #FFFFFF,
-        -2px 0 0 #FFFFFF,
-        0 2px 0 #FFFFFF,
-        0 -2px 0 #FFFFFF,
-        1.4px 1.4px 0 #FFFFFF,
-        -1.4px 1.4px 0 #FFFFFF,
-        1.4px -1.4px 0 #FFFFFF,
-        -1.4px -1.4px 0 #FFFFFF;
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
 }
 
 
@@ -180,14 +180,14 @@ header .cta p a.button-inline {
 
 header .cta p.button .button-tag {
     text-shadow:
-        2px 0 0 #FFFFFF,
-        -2px 0 0 #FFFFFF,
-        0 2px 0 #FFFFFF,
-        0 -2px 0 #FFFFFF,
-        1.4px 1.4px 0 #FFFFFF,
-        -1.4px 1.4px 0 #FFFFFF,
-        1.4px -1.4px 0 #FFFFFF,
-        -1.4px -1.4px 0 #FFFFFF;
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
 }
 
 

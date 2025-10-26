@@ -2,4 +2,4 @@
 - My line face in there
 - Why use me copy
 - The rest of the tooltips
-- Git push sorted
+- When I scroll to the top, #services is removed from URL
