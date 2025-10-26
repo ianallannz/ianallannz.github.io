@@ -1,5 +1,5 @@
 - Activities > Thinking will come from posts
-- My line face in there
 - Why use me copy
 - The rest of the tooltips
-- When I scroll to the top, #services is removed from URL
+- bigger hit area on hamburger button (more padding)
+- desktop section layout
