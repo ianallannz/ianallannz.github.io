@@ -1,6 +1,5 @@
 - Activities > Thinking will come from posts
-- Why use me copy
 - The rest of the tooltips
-- bigger hit area on hamburger button (more padding)
-- desktop section layout
 - " for persistent and emergent opportunities" somewhere
+- creative and critical voice
+- more info tooltips, different to link tooltips
