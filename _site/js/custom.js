@@ -1,3 +1,21 @@
+// Remove hash from URL when scrolled to top
+
+let hashClearTimeout;
+const resetThreshold = 200; // pixels from top
+
+window.addEventListener('scroll', () => {
+  clearTimeout(hashClearTimeout);
+
+  hashClearTimeout = setTimeout(() => {
+    if (window.scrollY < resetThreshold && window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, 150); // delay in ms
+});
+
+
+// Hamburger menu toggle
+
 const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('.menu');
 
