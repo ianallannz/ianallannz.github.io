@@ -214,23 +214,52 @@ main section {
     transition: background-color 1.5s ease;
 }
 
+main section.first {
+    padding-top: 8rem;
+}
+
 main section.visible-bg {
     background-color: #f4f4f4;
 }
 
+main section .me-lines {
+    width: 5.5rem;
+    display: inline-block;
+    position: absolute;
+    margin-left: -0.3rem;
+    margin-top: -5rem;
+    z-index: 1;
+}
+
+
 main section h1 {
+    z-index: 2;
+    position: absolute;
     font-size: 1rem;
-    padding-bottom: 1rem
+    padding-bottom: 1rem;
+    text-shadow:
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
 }
 
 main section h2 {
     font-size: 1rem;
     padding-left: 2rem;
-    padding-bottom: 1rem
+    padding-bottom: 1rem;
 }
 
 main section p {
     padding-bottom: 1rem;
+}
+
+main section p.l1 {
+    padding-top: 2rem;
 }
 
 main section p.l2 {
