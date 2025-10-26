@@ -346,11 +346,10 @@ a.locked::after {
     padding: 1rem;
     padding-top: 3rem;
     width: calc(100vw - 2rem);
-    height: calc(100vh - 2rem);
+    height: calc(100svh - 2rem);
     background: #FFFFFF;
     color: #000000;
     border-radius: 0rem;
-    /* border: 1px solid #666666; */
     border-bottom: 1px solid #DDDDDD;
     border-right: 1px solid #DDDDDD;
     transform: scale(0.3);
