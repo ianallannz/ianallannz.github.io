@@ -2,8 +2,8 @@
 - The rest of the tooltips
 - " for persistent and emergent opportunities" somewhere
 
-- more info tooltips, different to link tooltips
-  - good and bad experiences
-  - held in high regard
-
+- make partials
+  - footer
+  - nav
+  - profile
 - contact modal content from another file

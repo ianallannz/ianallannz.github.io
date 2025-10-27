@@ -677,7 +677,7 @@ footer ul li a {
 
     span.infotip::before {
         max-width: 40vw;
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     footer {
