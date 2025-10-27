@@ -142,32 +142,33 @@ header .cta {
 header .cta h1 {
     font-size: 1rem;
     text-shadow:
-        2px 0 0 #F4F4F4,
-        -2px 0 0 #F4F4F4,
-        0 2px 0 #F4F4F4,
-        0 -2px 0 #F4F4F4,
-        1.4px 1.4px 0 #F4F4F4,
-        -1.4px 1.4px 0 #F4F4F4,
-        1.4px -1.4px 0 #F4F4F4,
-        -1.4px -1.4px 0 #F4F4F4;
+        2px 0 0 #FFFFFF,
+        -2px 0 0 #FFFFFF,
+        0 2px 0 #FFFFFF,
+        0 -2px 0 #FFFFFF,
+        1.4px 1.4px 0 #FFFFFF,
+        -1.4px 1.4px 0 #FFFFFF,
+        1.4px -1.4px 0 #FFFFFF,
+        -1.4px -1.4px 0 #FFFFFF;
 }
 
 header .cta p.copy {
     text-shadow:
-        2px 0 0 #F4F4F4,
-        -2px 0 0 #F4F4F4,
-        0 2px 0 #F4F4F4,
-        0 -2px 0 #F4F4F4,
-        1.4px 1.4px 0 #F4F4F4,
-        -1.4px 1.4px 0 #F4F4F4,
-        1.4px -1.4px 0 #F4F4F4,
-        -1.4px -1.4px 0 #F4F4F4;
+        2px 0 0 #FFFFFF,
+        -2px 0 0 #FFFFFF,
+        0 2px 0 #FFFFFF,
+        0 -2px 0 #FFFFFF,
+        1.4px 1.4px 0 #FFFFFF,
+        -1.4px 1.4px 0 #FFFFFF,
+        1.4px -1.4px 0 #FFFFFF,
+        -1.4px -1.4px 0 #FFFFFF;
 }
 
 
 header .cta p.button {
     margin-top: 1.2rem;
     font-family: "Space Mono", monospace;
+    font-size: 0.9rem;
 }
 
 header .cta p a.button-inline {
@@ -267,18 +268,19 @@ main section p.l2 {
 }
 
 main section ul {
-  padding-left: 3.3rem;
+    padding-left: 3.3rem;
 }
 
-main section ul li{
-  list-style: none;
-  padding-left: 0.4rem;
+main section ul li {
+    list-style: none;
+    padding-left: 0.4rem;
+    margin-bottom: 0.4rem;
 }
 
 main section ul li::marker {
-  content: "› ";
-  font-size: 1.2rem;
-  line-height: 0.8;
+    content: "› ";
+    font-size: 1.2rem;
+    line-height: 0.8;
 }
 
 main section p a {
@@ -321,6 +323,42 @@ a.locked::after {
     display: inline-block;
     background-color: #DFFF00;
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+}
+
+.infotip {
+    position: relative;
+    border-bottom: 1px dotted #999999;
+    cursor: help;
+}
+
+/* Tooltip box */
+span.infotip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    /* above the link */
+    left: -3.5rem;
+    background: #FFFFFF;
+    color: #000000;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding: 0.4rem 0.6rem;
+    font-weight: normal;
+    text-transform: none;
+    width: max-content;
+    max-width: 80vw;
+    border-radius: 0rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-25%, -0.5em);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+span.infotip:hover::before,
+span.infotip:focus::before {
+    opacity: 1;
+    transform: translateY(-0.8em);
 }
 
 .modal {
@@ -635,6 +673,11 @@ footer ul li a {
     a.tooltip:hover::before {
         opacity: 1;
         transform: translateY(-0.8em);
+    }
+
+    span.infotip::before {
+        max-width: 40vw;
+        font-size: 1rem;
     }
 
     footer {
