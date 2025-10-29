@@ -3,7 +3,6 @@
 - " for persistent and emergent opportunities" somewhere
 
 - make partials
-  - footer
-  - nav
-  - profile
-- contact modal content from another file
+  - modals
+
+- modal internal width ~50% on desktop

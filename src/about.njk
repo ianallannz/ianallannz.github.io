@@ -1,24 +1,30 @@
 ---
 layout: base.njk
-title: Ian Allan, Venture designer and ethical technologist
+title: "About: Ian Allan, Venture designer and ethical technologist"
 ---
 <header>
     {% include "navbar.njk" %}
-    {% include "profile.njk" %}
-    <div class="cta">
-        <h1># Call-to-action</h1>
-        <p class="copy">Use all my skills and insights to turn your ideas into valuable hi- and low-tech products and
-            ventures.</p>
-        <p class="button"><a class="button-inline" href="#services">[Start here ↓]</a><span class="button-tag">
-                (#services)</span></p>
+    <div class="page-name">
+        <h1># About</h1>
     </div>
-    <div class="hero">
-        <img class="me-image" src="images/me-poppy.png" alt="Me all poppy">
+    {% include "profile.njk" %}
+    <div class="about-wrapper">
+        <div class="cta">
+            <h1>## Quote</h1>
+            <p class="quote">“I would encourage you to stir up this sleepy town.”
+    </p>
+            <p class="quote-author">&mdash; Man on the street</p>
+            <p class="button"><a class="button-inline-outline" href="#the-blurb">[Why me? ↓]</a><span class="button-tag">
+                    (#the-blurb)</span></p>
+        </div>
+        <div class="hero">
+            <img class="me-image" src="/images/me-cactus.png" alt="Me in cactus uniform">
+        </div>
     </div>
 </header>
 <main>
     <section id="services" class="first">
-        <img class="me-lines" src="images/me-lines-trans.png">
+        <img class="me-lines" src="/images/me-lines-trans.png">
         <h1># Services</h1>
         <p class="l1"><span class="highlight">Use me when you need:</span></p>
         <h2>## Venture design</h2>

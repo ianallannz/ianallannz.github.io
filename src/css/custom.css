@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV@-15,300,1,1&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -45,6 +45,7 @@ nav .menu {
     z-index: 1;
     max-height: 0;
     opacity: 0;
+    background-color: #f4f4f4;
     transform: translateY(-10px);
     overflow: hidden;
     transition: max-height 0.2s ease, opacity 0.4s ease, transform 0.1s ease;
@@ -109,11 +110,25 @@ nav .menu.open li:nth-child(5) {
     transition-delay: 0.25s;
 }
 
+header .page-name {
+    position: absolute;
+    top: 9.8rem;
+    margin-right: -0.5rem;
+    right: 0rem;
+}
+
+header .page-name h1 {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transform: rotate(90deg);
+}
+
 header ul.profile {
     font-size: 1.2rem;
     margin-top: 4rem;
     margin-left: 1.8rem;
-
+    display: inline-block;
 }
 
 header ul.profile li {
@@ -131,6 +146,19 @@ header ul.profile li {
 
 header ul.profile li.name {
     font-weight: 700;
+}
+
+header .about-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+header .about-wrapper .cta {
+    order: 2;
+}
+
+header .about-wrapper .hero {
+    order: 1;
 }
 
 header .cta {
@@ -164,6 +192,44 @@ header .cta p.copy {
         -1.4px -1.4px 0 #FFFFFF;
 }
 
+header .cta p.quote {
+    max-width: 30rem;
+    font-size: 1.2rem;
+    font-family: 'Recursive', sans-serif;
+    font-weight: 300;
+    font-variation-settings:
+        'CASL' 1,
+        /* Full Casual */
+        'MONO' 0,
+        /* Sans mode */
+        'slnt' -15,
+        /* More slant for stronger italic feel */
+        'CRSV' 1;
+    /* Max cursive flair */
+    text-shadow:
+        2px 0 0 #FFFFFF,
+        -2px 0 0 #FFFFFF,
+        0 2px 0 #FFFFFF,
+        0 -2px 0 #FFFFFF,
+        1.4px 1.4px 0 #FFFFFF,
+        -1.4px 1.4px 0 #FFFFFF,
+        1.4px -1.4px 0 #FFFFFF,
+        -1.4px -1.4px 0 #FFFFFF;
+}
+
+header .cta p.quote-author {
+    padding-left: 0.8rem;
+    color: #666666;
+    text-shadow:
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
+}
 
 header .cta p.button {
     margin-top: 1.2rem;
@@ -177,6 +243,16 @@ header .cta p a.button-inline {
     color: #FFFFFF;
     background-color: #1100FF;
     padding: 0.4rem 0.6rem 0.5rem 0.6rem;
+    border-radius: 0px;
+}
+
+header .cta p a.button-inline-outline {
+    display: inline-block;
+    text-decoration: none;
+    color: #1100FF;
+    background-color: #FFFFFF;
+    padding: 0.4rem 0.6rem 0.5rem 0.6rem;
+    border: 2px solid #1100FF;
     border-radius: 0px;
 }
 
@@ -204,9 +280,24 @@ header .hero {
     background-position-y: 14rem;
 }
 
+header .about-wrapper .hero {
+    margin-top: -0.5rem;
+    margin-left: 2rem;
+    padding-left: 0rem;
+    width: calc(100% - 2rem);
+    background-image: url('../images/gorge.jpg');
+    background-repeat: no-repeat;
+    background-position-y: 13rem;
+}
+
 header .hero .me-image {
     width: 100%;
     height: auto;
+}
+
+header .about-wrapper .hero .me-image {
+    width: 110%;
+    transform: translateX(-4.5rem) rotate(-15deg);
 }
 
 
@@ -566,14 +657,32 @@ footer ul li a {
 
     }
 
+    header .about-wrapper .cta {
+        order: 1;
+    }
+
+    header .about-wrapper .hero {
+        order: 2;
+    }
+
     header .cta {
         margin-top: -7.5rem;
         margin-left: 41rem;
         max-width: 40rem;
     }
 
+    header .cta p.quote {
+        max-width: 30rem;
+        font-size: 1.5rem;
+    }
+
+    header .cta p.quote-author {
+        font-size: 1rem
+    }
+
+
     header .hero {
-        display: inline-block;
+        /* display: inline-block; */
         margin-top: -8rem;
         text-align: left;
         margin-left: 14rem;
