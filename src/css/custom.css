@@ -240,6 +240,10 @@ header .cta p.button {
     font-size: 0.9rem;
 }
 
+header .about-wrapper .cta p.button {
+    display: none;
+}
+
 header .cta p a.button-inline {
     display: inline-block;
     text-decoration: none;
@@ -309,7 +313,7 @@ header .about-wrapper .hero .me-image {
 
 
 main section {
-    padding: 6rem 1rem 6rem 1.8rem;
+    padding: 4rem 1rem 4rem 1.8rem;
     background-color: transparent;
     transition: background-color 1.5s ease;
 }
@@ -318,22 +322,36 @@ main section.first {
     padding-top: 8rem;
 }
 
+main section.first {
+    padding-top: 8rem;
+}
+
+main section.three-up {
+    display: flex;
+    flex-direction: column;
+}
+
+main section.three-up .pro-blurb {
+    order: 1;
+}
+
+main section.three-up .bio {
+    order: 2;
+
+}
+
+main section.three-up .shoutouts {
+    order: 3;
+}
+
 main section.visible-bg {
     background-color: #f4f4f4;
 }
 
-main section .me-lines {
-    width: 5.5rem;
-    display: inline-block;
-    position: absolute;
-    margin-left: -0.3rem;
-    margin-top: -5rem;
-    z-index: 1;
-}
-
 main section h1 {
-    z-index: 2;
-    position: absolute;
+    padding-top: 5.6rem;
+    background-image: url(../images/me-lines-trans-sm.png);
+    background-repeat: no-repeat;
     font-size: 1rem;
     padding-bottom: 1rem;
     text-shadow:
@@ -358,7 +376,7 @@ main section p {
 }
 
 main section p.l1 {
-    padding-top: 2rem;
+    padding-top: 0rem;
 }
 
 main section p.l2 {
@@ -712,6 +730,10 @@ footer ul li a {
         order: 1;
     }
 
+    header .about-wrapper .cta p.button {
+        display: block;
+    }
+
     header .about-wrapper .hero {
         order: 2;
     }
@@ -765,13 +787,28 @@ footer ul li a {
         padding-top: 10rem;
     }
 
-    main section .me-lines {
-        width: 5.5rem;
-        display: inline-block;
-        position: absolute;
-        margin-left: -0.3rem;
-        margin-top: -5rem;
-        z-index: 1;
+    main section.three-up {
+        flex-direction: row;
+        width: 100vw;
+        min-width: none;
+        gap: 2rem;
+    }
+
+    main section.three-up .pro-blurb {
+        order: 2;
+        flex: 4;
+    }
+
+    main section.three-up .bio {
+        order: 1;
+        flex: 2;
+        padding-top: 5.6rem;
+    }
+
+    main section.three-up .shoutouts {
+        order: 3;
+        flex: 2;
+        padding-top: 5.6rem;
     }
 
     main section h1 {
@@ -781,6 +818,12 @@ footer ul li a {
 
     main section h2 {
         font-size: 1.2rem;
+        padding-left: 2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    main section.three-up h2 {
+        font-size: 1rem;
         padding-left: 2rem;
         padding-bottom: 1.2rem;
     }
