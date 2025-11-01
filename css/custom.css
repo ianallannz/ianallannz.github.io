@@ -464,6 +464,12 @@ main section p a {
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
 
+main section.three-up .bio p a {
+    display: inline;
+    color: #1100FF;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+}
+
 a.popout::after {
     content: "↗";
     margin-left: 0.1em;
