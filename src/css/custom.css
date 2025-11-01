@@ -154,6 +154,8 @@ header ul.profile li.name {
 header .about-wrapper {
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 10;
 }
 
 header .about-wrapper .cta {
@@ -411,7 +413,9 @@ main section p.quote-author {
 
 main section ul {
     padding-left: 3.3rem;
+    padding-bottom: 1rem;
 }
+
 
 main section ul li {
     list-style: none;
@@ -436,7 +440,7 @@ main section table {
 }
 
 table col:first-child {
-  width: 40%;
+    width: 40%;
 }
 
 main section table tr th {
@@ -817,6 +821,7 @@ footer ul li a {
         background-repeat: no-repeat;
         background-position-y: 13rem;
         background-size: auto 60%;
+        pointer-events: none;
     }
 
     header .hero .me-image {
@@ -846,7 +851,7 @@ footer ul li a {
         flex-direction: row;
         width: 100vw;
         min-width: none;
-        gap: 2rem;
+        gap: 3rem;
     }
 
     main section.three-up .pro-blurb {
@@ -857,13 +862,13 @@ footer ul li a {
     main section.three-up .bio {
         order: 1;
         flex: 2;
-        padding-top: 5.6rem;
+        padding-top: 8.9rem;
     }
 
     main section.three-up .shoutouts {
         order: 3;
         flex: 2;
-        padding-top: 5.6rem;
+        padding-top: 8.9rem;
     }
 
     main section h1 {
@@ -887,15 +892,30 @@ footer ul li a {
         padding-bottom: 1.2rem;
     }
 
+    main section.three-up .bio p {
+        font-size: 1rem;
+    }
+
+    main section.three-up .bio ul {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
+
     main section p.l1 {
         padding-top: 2.5rem;
     }
 
-    main section p a {
+    main section p a,
+    main section li a {
         font-family: 'Space Mono', monospace;
     }
 
-    main section p a:hover {
+    main section.three-up .bio p a {
+        display: inline;
+    }
+
+    main section p a:hover,
+    main section li a:hover {
         text-decoration: none;
         font-weight: 700;
         text-transform: capitalize;
@@ -938,6 +958,11 @@ footer ul li a {
     span.infotip::before {
         max-width: 40vw;
         font-size: 1.2rem;
+    }
+
+    main section.three-up .bio span.infotip::before {
+        max-width: 40vw;
+        font-size: 1rem;
     }
 
     .tap-indicator {
