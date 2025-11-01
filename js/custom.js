@@ -4,13 +4,13 @@ let hashClearTimeout;
 const resetThreshold = 200; // pixels from top
 
 window.addEventListener('scroll', () => {
-  clearTimeout(hashClearTimeout);
+    clearTimeout(hashClearTimeout);
 
-  hashClearTimeout = setTimeout(() => {
-    if (window.scrollY < resetThreshold && window.location.hash) {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-  }, 150); // delay in ms
+    hashClearTimeout = setTimeout(() => {
+        if (window.scrollY < resetThreshold && window.location.hash) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+    }, 150); // delay in ms
 });
 
 
@@ -42,7 +42,8 @@ const observer = new IntersectionObserver(
         });
     },
     {
-        threshold: 0.5,
+        threshold: 0,
+        rootMargin: '0px 0px -40% 0px'
     }
 );
 
@@ -77,14 +78,14 @@ document.querySelectorAll('.popup, .locked').forEach(link => {
 });
 
 document.querySelectorAll('.modal .close').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal');
-    const content = modal.querySelector('.modal-content');
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal');
+        const content = modal.querySelector('.modal-content');
 
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
 
-    // Reset animation class
-    content.classList.remove('animate-in');
-  });
+        // Reset animation class
+        content.classList.remove('animate-in');
+    });
 });
