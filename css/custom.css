@@ -371,8 +371,13 @@ main section h2 {
     padding-bottom: 1rem;
 }
 
+
 main section p {
     padding-bottom: 1rem;
+}
+
+main section p .bit-bold {
+    font-weight: 600;
 }
 
 main section p.l1 {
@@ -381,6 +386,27 @@ main section p.l1 {
 
 main section p.l2 {
     padding-left: 2rem;
+}
+
+main section p.quote {
+    font-family: 'Recursive', sans-serif;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+    font-variation-settings:
+        'CASL' 1,
+        /* Full Casual */
+        'MONO' 0,
+        /* Sans mode */
+        'slnt' -15,
+        /* More slant for stronger italic feel */
+        'CRSV' 1;
+    /* Max cursive flair */
+}
+
+main section p.quote-author {
+    padding-left: 3rem;
+    font-size: 0.8rem;
+    color: #666666;
 }
 
 main section ul {
@@ -398,6 +424,35 @@ main section ul li::marker {
     font-size: 1.2rem;
     line-height: 0.8;
 }
+
+main section table {
+    width: calc(100% - 2rem);
+    margin-left: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table col:first-child {
+  width: 40%;
+}
+
+main section table tr th {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem 0.2rem 0.5rem 0.0rem;
+    border-bottom: 1px solid #000000;
+}
+
+main section table tr td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem 0.2rem 0.5rem 0.0rem;
+    border-bottom: 1px solid #CCCCCC;
+}
+
 
 main section p a {
     display: inline-block;
