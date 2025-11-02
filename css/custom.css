@@ -222,7 +222,51 @@ header .cta p.quote {
         -1.4px -1.4px 0 #FFFFFF;
 }
 
+header .cta p.featured-post {
+    max-width: 30rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+    font-family: 'Recursive', sans-serif;
+    font-weight: 300;
+    font-variation-settings:
+        'CASL' 1,
+        /* Full Casual */
+        'MONO' 0,
+        /* Sans mode */
+        'slnt' -15,
+        /* More slant for stronger italic feel */
+        'CRSV' 1;
+    /* Max cursive flair */
+    text-shadow:
+        2px 0 0 #FFFFFF,
+        -2px 0 0 #FFFFFF,
+        0 2px 0 #FFFFFF,
+        0 -2px 0 #FFFFFF,
+        1.4px 1.4px 0 #FFFFFF,
+        -1.4px 1.4px 0 #FFFFFF,
+        1.4px -1.4px 0 #FFFFFF,
+        -1.4px -1.4px 0 #FFFFFF;
+}
+
+header .cta p.featured-post a {
+    color: #1100FF;
+}
+
 header .cta p.quote-author {
+    padding-left: 0.8rem;
+    color: #666666;
+    text-shadow:
+        2px 0 0 #F4F4F4,
+        -2px 0 0 #F4F4F4,
+        0 2px 0 #F4F4F4,
+        0 -2px 0 #F4F4F4,
+        1.4px 1.4px 0 #F4F4F4,
+        -1.4px 1.4px 0 #F4F4F4,
+        1.4px -1.4px 0 #F4F4F4,
+        -1.4px -1.4px 0 #F4F4F4;
+}
+
+header .cta p.featured-post-date {
     padding-left: 0.8rem;
     color: #666666;
     text-shadow:
@@ -786,7 +830,16 @@ footer ul li a {
         font-size: 1.5rem;
     }
 
-    header .cta p.quote-author {
+    header .cta p.featured-post {
+        max-width: 30rem;
+        font-size: 1.7rem;
+    }
+
+    header .cta p.featured-post a:hover {
+        text-decoration: none;
+    }
+
+    header .cta p.featured-post-date {
         font-size: 1rem
     }
 
@@ -795,9 +848,26 @@ footer ul li a {
         order: 1;
     }
 
-    header .about-wrapper .cta p.button {
+        @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    10% { opacity: 0.6; }
+    20% { opacity: 0.9; }
+    30% { opacity: 0.4; }
+    40% { opacity: 1; }
+    50% { opacity: 0.7; }
+    60% { opacity: 1; }
+    70% { opacity: 0.5; }
+    80% { opacity: 0.8; }
+    90% { opacity: 1; }
+    }
+    header .cta p.button, header .about-wrapper .cta p.button {
         display: block;
     }
+
+    header .cta p.button:hover {
+        animation: flicker 0.6s linear;
+    }
+
 
     header .about-wrapper .hero {
         order: 2;
@@ -914,10 +984,6 @@ footer ul li a {
     main section.three-up .shoutouts ul {
         font-size: 1rem;
         padding-bottom: 1rem;
-    }
-
-    main section p.l1 {
-        padding-top: 2.5rem;
     }
 
     main section p a,
