@@ -166,6 +166,13 @@ header .about-wrapper .hero {
     order: 1;
 }
 
+header .blog-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
+}
+
 header .cta {
     margin-top: 2.5rem;
     margin-left: 4rem;
@@ -290,6 +297,25 @@ header .about-wrapper .cta p.button {
     display: none;
 }
 
+header .blog {
+    margin-left: 2rem;
+    margin-right: 0rem;
+    padding-top: 1rem;
+    padding-right: 7rem;
+    padding-bottom: 1rem;
+    background-image: url('../images/lamp-flip.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+header .blog::after {
+
+}
+
+header .blog p.button {
+    display: none;
+}
+
 header .cta p a.button-inline {
     display: inline-block;
     text-decoration: none;
@@ -368,10 +394,6 @@ main section.first {
     padding-top: 8rem;
 }
 
-main section.first {
-    padding-top: 8rem;
-}
-
 main section.three-up {
     display: flex;
     flex-direction: column;
@@ -388,6 +410,26 @@ main section.three-up .bio {
 
 main section.three-up .shoutouts {
     order: 3;
+}
+
+main section.posts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0rem;
+    padding-top: 3rem;
+    padding-right: 6rem;
+    background-image: url(../images/molly-watching-mobile.jpg);
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+main section.posts .posts-list {
+    order: 1;
+}
+
+main section.posts .sidebar {
+    order: 2;
+
 }
 
 main section.visible-bg {
@@ -417,6 +459,9 @@ main section h2 {
     padding-bottom: 1rem;
 }
 
+main section.posts h2 {
+    padding-left: 0rem;
+}
 
 main section p {
     padding-bottom: 1rem;
@@ -947,6 +992,23 @@ footer ul li a {
         padding-top: 8.9rem;
     }
 
+    main section.posts {
+        flex-direction: row;
+        width: 100vw;
+        min-width: none;
+        gap: 3rem;
+    }
+
+    main section.posts .posts-list {
+        order: 2;
+        flex: 4;
+    }
+
+    main section.posts .sidebar {
+        order: 1;
+        flex: 2;
+    }
+
     main section h1 {
         font-size: 1.2rem;
         padding-bottom: 1.2rem;
@@ -982,6 +1044,15 @@ footer ul li a {
     }
 
     main section.three-up .shoutouts ul {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    main section.posts .sidebar p {
+        font-size: 1rem;
+    }
+
+    main section.posts .sidebar ul {
         font-size: 1rem;
         padding-bottom: 1rem;
     }
@@ -1042,6 +1113,11 @@ footer ul li a {
     }
 
     main section.three-up .bio span.infotip::before {
+        max-width: 40vw;
+        font-size: 1rem;
+    }
+
+    main section.posts .sidebar span.infotip::before {
         max-width: 40vw;
         font-size: 1rem;
     }
