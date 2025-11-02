@@ -907,6 +907,15 @@ footer ul li a {
         padding-bottom: 1rem;
     }
 
+    main section.three-up .shoutouts p {
+        font-size: 1rem;
+    }
+
+    main section.three-up .shoutouts ul {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
+
     main section p.l1 {
         padding-top: 2.5rem;
     }
