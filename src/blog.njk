@@ -1,63 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About: Ian Allan, Venture designer and ethical technologist</title>
-    <link rel="stylesheet" href="/css/custom.css">
-</head>
-
-<body>
-    
-<svg class="diagonal-line-down small-screen-down" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <line x1="0" y1="0" x2="70" y2="100" stroke="black" stroke-width="0.1" />
-</svg>
-<svg class="diagonal-line-down small-screen-down" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <line x1="35" y1="100" x2="100" y2="35" stroke="black" stroke-width="0.1" />
-</svg>
-<svg class="diagonal-line-down large-screen-down" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <line x1="0" y1="0" x2="20" y2="100" stroke="black" stroke-width="0.05" />
-</svg>
-<svg class="diagonal-line-up large-screen-up" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <line x1="20" y1="100" x2="60" y2="0" stroke="black" stroke-width="0.05" />
-</svg>
-
-
-    <header>
-    
-<nav>
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        ☰
-    </button>
-    
-<ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
-    <li>/<a href="/about/"  class="active" >about</a></li>
-    <li>/<a href="/blog/" >blog</a></li>
-    <li>/<a href="/data-room/" >dataroom</a></li>
-    <li>/<a href="#modal-contact" class="popup">contact</a></li>
-</ul>
-</nav>
+---
+layout: base.njk
+title: "Blog: Ian Allan, Venture designer and ethical technologist"
+---
+<header>
+    {% include "navbar.njk" %}
     <div class="page-name">
-        <h1># About</h1>
+        <h1># Blog</h1>
     </div>
-    
-<ul class="profile">
-    <li class="name">Ian Allan</li>
-    <li class="what">Venture designer</li>
-    <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
-</ul>
+    {% include "profile.njk" %}
     <div class="about-wrapper">
         <div class="cta">
-            <h1>## Quote</h1>
-            <p class="quote">“I would encourage you to stir up this sleepy town.”
-            </p>
-            <p class="quote-author">&mdash; Post-election man on street</p>
-            <p class="button"><a class="button-inline-outline" href="#the-blurb">[Why me? ↓]</a><span
+            <h1>## Hot-or-not</h1>
+            <p class="featured-post"><a href="">On household incomes and wealth</a></p>
+            <p class="featured-post-blurb">I heard questions raised about average income statistics in the final council meeting.</p>
+            <p class="featured-post-date">&mdash; 2 October 2025</p>
+            <p class="button"><a class="button-inline-outline" href="#the-blurb">[Read it]</a><span
                     class="button-tag">
-                    (#the-blurb)</span></p>
+                    (/blog/on-household-incomes-and-wealth)</span></p>
         </div>
         <div class="hero">
             <img class="me-image" src="/images/me-cactus.png" alt="Me in cactus uniform">
@@ -278,51 +237,3 @@
 
 
 </main>
-
-    
-<!-- Modal: Contact -->
-<article id="modal-contact" class="modal" aria-hidden="true">
-    <div class="modal-content">
-        <button class="close" aria-label="Close modal">&times;</button>
-        <h3>### Get things moving</h3>
-        <p><strong>Email:</strong> <a href="mailto:ian@example.com">ian@example.com</a></p>
-        <p><strong>Phone:</strong> +64 21 123 4567</p>
-    </div>
-</article>
-    
-    <footer>
-        <div class="two-col">
-            <div class="col left">
-                <ul class="profile">
-                    <li class="name">Ian Allan</li>
-                    <li class="what">Venture designer</li>
-                    <li class="what">Ethical technologist</li>
-                    <li class="location">East Coast, New Zealand</li>
-                    <li class="email"><a href="mailto:ian.allan.nz@gmail.com" class="popout"
-                            target="_blank">ian.allan.nz@gmail.com</a></li>
-                    <li class="li"><a href="https://www.linkedin.com/in/ianallan/" class="popout"
-                            target="_blank">LinkedIn</a></li>
-                </ul>
-
-            </div>
-            <div class="col right">
-                
-<ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
-    <li>/<a href="/about/"  class="active" >about</a></li>
-    <li>/<a href="/blog/" >blog</a></li>
-    <li>/<a href="/data-room/" >dataroom</a></li>
-    <li>/<a href="#modal-contact" class="popup">contact</a></li>
-</ul>
-            </div>
-        </div>
-
-        <p>© Ian Allan 2025. All Rights Reserved.</p>
-
-    </footer>
-
-
-    <script src="/js/custom.js" defer></script>
-</body>
-
-</html>
