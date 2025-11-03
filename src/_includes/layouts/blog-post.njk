@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+    {% include "lines.njk" %}
+
+    <header>
+    {% include "navbar.njk" %}
+    <div class="page-name blog-name">
+        <h1># Blog</h1>
+    </div>
+    {% include "profile.njk" %}
+        <div class="cta blog">
+            <h1>## Hot-or-not</h1>
+            <p class="featured-post"><a href="">On household incomes and wealth</a></p>
+            <p class="featured-post-blurb">I heard questions raised about average income statistics in the final council meeting.</p>
+            <p class="featured-post-date">&mdash; 2 October 2025</p>
+            <p class="button"><a class="button-inline-outline" href="#the-blurb">[Read it]</a><span
+                    class="button-tag">
+                    (/blog/on-household-incomes-and-wealth)</span></p>
+        </div>
+    </header>
+    <main>
+        <article>
+            {{ content | safe }}
+        </article>
+    </main>
+    {% include "modal-contact.njk" %}
+    {% include "footer.njk" %}
+
+    <script src="/js/custom.js" defer></script>
+</body>
+
+</html>
