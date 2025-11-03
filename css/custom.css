@@ -116,7 +116,8 @@ header .page-name {
     right: 0rem;
     width: 8rem;
     height: 10rem;
-    background-image: url(../images/page-name-arrow.png);
+    background-image: url(../images/page-name-arrow.svg);
+    background-size: 86px;
     background-repeat: no-repeat;
 }
 
@@ -877,7 +878,8 @@ footer ul li a {
         padding-left: 6rem;
         width: 20rem;
         height: 10rem;
-        background-image: url(../images/page-name-arrow.png);
+        background-image: url(../images/page-name-arrow.svg);
+        background-size: 86px;
         background-repeat: no-repeat;
         background-position-y: 0.3rem;
     }
@@ -1030,8 +1032,9 @@ footer ul li a {
         width: calc(100vw - 1.8rem);
         min-width: none;
         gap: 3rem;
-        margin-top: 6rem;
+        margin-top: 8rem;
         margin-right: 0rem;
+        border-top: 1px dotted #000000;
         background-image: url(../images/molly-watching.jpg);
         background-position-x: 75vw;
         background-size: contain;
@@ -1088,8 +1091,8 @@ footer ul li a {
 
     main section.posts .posts-list .post-preview h2 {
         font-size: 1.3rem;
-        padding-bottom: 0.7rem;
-        line-height: 1rem;
+        padding-bottom: 0.3rem;
+        line-height: 1.3rem;
     }
 
     main section.posts .posts-list .post-preview h2 a {
