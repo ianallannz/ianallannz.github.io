@@ -89,3 +89,15 @@ document.querySelectorAll('.modal .close').forEach(button => {
         content.classList.remove('animate-in');
     });
 });
+
+
+// Show hide blog topics
+
+document.querySelector('.toggle-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const list = document.querySelector('.topics-list');
+  list.classList.toggle('visible-topics');
+
+  // Optional: toggle link text
+  this.textContent = list.classList.contains('visible-topics') ? '[Hide topics⇡]' : '[Show topics⇣]';
+});
