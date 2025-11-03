@@ -492,7 +492,7 @@ main section.posts .posts-list .post-preview {
 main section.posts .posts-list .post-preview h2 {
     font-size: 1rem;
     padding-bottom: 0.1rem;
-    /* line-height: 1rem; */
+    font-weight: normal;
 }
 
 main section.posts .posts-list .post-preview h2 a {
@@ -1107,10 +1107,15 @@ footer ul li a {
         padding-bottom: 1rem;
     }
 
+    main section.posts .posts-list .post-preview {
+        padding-bottom: 3rem;
+        max-width: 700px;
+    }
     main section.posts .posts-list .post-preview h2 {
         font-size: 1.3rem;
         padding-bottom: 0.3rem;
-        line-height: 1.3rem;
+        /* line-height: 1.9rem; */
+        font-weight: normal;
     }
 
     main section.posts .posts-list .post-preview h2 a {
