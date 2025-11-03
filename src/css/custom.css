@@ -428,12 +428,30 @@ main section.posts {
 }
 
 main section.posts .posts-list {
-    order: 1;
+    order: 2;
 }
 
 main section.posts .sidebar {
-    order: 2;
+    order: 1;
 
+}
+
+main section.posts .sidebar .topics-list {
+max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+main section.posts .sidebar .topics-list.visible-topics {
+  max-height: 500px; 
+  opacity: 1;
+}
+
+main section.posts .sidebar .toggle-topics .toggle-link {
+    color:#1100FF;
+    font-family: 'Space Mono', sans-serif;
+    text-decoration: none;
 }
 
 main section.visible-bg {
