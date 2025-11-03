@@ -127,6 +127,13 @@ header .page-name h1 {
     transform: translateY(1.5rem) translateX(4rem) rotate(90deg);
 }
 
+header .blog-name h1 {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transform: translateY(1.1rem) translateX(4.4rem) rotate(90deg);
+}
+
 header ul.profile {
     font-size: 1.2rem;
     margin-top: 4rem;
@@ -308,10 +315,6 @@ header .blog {
     background-position: bottom right;
 }
 
-header .blog::after {
-
-}
-
 header .blog p.button {
     display: none;
 }
@@ -461,6 +464,30 @@ main section h2 {
 
 main section.posts h2 {
     padding-left: 0rem;
+}
+
+main section.posts .posts-list .post-preview {
+    padding-bottom: 1.2rem;
+}
+
+main section.posts .posts-list .post-preview h2 {
+    font-size: 1rem;
+    padding-bottom: 0.1rem;
+    /* line-height: 1rem; */
+}
+
+main section.posts .posts-list .post-preview h2 a {
+    font-family: 'Space Mono', monospace;
+    color: #1100FF;
+    background-color: #FFFFFF;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+main section.posts .posts-list .post-preview p.post-date {
+    font-size: 0.9rem;
+    color: #666666;
+    padding-bottom: 0.2rem;
 }
 
 main section p {
@@ -870,6 +897,12 @@ footer ul li a {
         max-width: 40rem;
     }
 
+    header .blog {
+        padding-top: 0rem;
+        margin-top: -7.7rem;
+        background-image: none;
+    }
+
     header .cta p.quote {
         max-width: 30rem;
         font-size: 1.5rem;
@@ -937,7 +970,6 @@ footer ul li a {
         padding-left: 0rem;
         height: 80vh;
         width: calc(100% - 5rem);
-        /* width: calc(110% - 4rem); */
         background-image: url('../images/gorge.jpg');
         background-repeat: no-repeat;
         background-position-y: 13rem;
@@ -970,7 +1002,7 @@ footer ul li a {
 
     main section.three-up {
         flex-direction: row;
-        width: 100vw;
+        width: calc(100vw - 2.8rem);
         min-width: none;
         gap: 3rem;
     }
@@ -994,19 +1026,25 @@ footer ul li a {
 
     main section.posts {
         flex-direction: row;
-        width: 100vw;
+        padding-right: 30vw;
+        width: calc(100vw - 1.8rem);
         min-width: none;
         gap: 3rem;
+        margin-top: 6rem;
+        margin-right: 0rem;
+        background-image: url(../images/molly-watching.jpg);
+        background-position-x: 75vw;
+        background-size: contain;
     }
 
     main section.posts .posts-list {
         order: 2;
-        flex: 4;
+        flex: 3;
     }
 
     main section.posts .sidebar {
         order: 1;
-        flex: 2;
+        flex:1;
     }
 
     main section h1 {
@@ -1046,6 +1084,28 @@ footer ul li a {
     main section.three-up .shoutouts ul {
         font-size: 1rem;
         padding-bottom: 1rem;
+    }
+
+    main section.posts .posts-list .post-preview h2 {
+        font-size: 1.3rem;
+        padding-bottom: 0.7rem;
+        line-height: 1rem;
+    }
+
+    main section.posts .posts-list .post-preview h2 a {
+        font-family: 'Space Mono', monospace;
+        color: #1100FF;
+    }
+
+    main section.posts .posts-list .post-preview h2 a:hover {
+        text-decoration: none;
+        text-transform: capitalize;
+    }
+
+    main section.posts .posts-list .post-preview p.post-date {
+        font-size: 0.9rem;
+        color: #666666;
+        padding-bottom: 0.2rem;
     }
 
     main section.posts .sidebar p {
