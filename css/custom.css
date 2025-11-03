@@ -618,8 +618,8 @@ main section.blog-post article {
 }
 
 main section.blog-post article p {
-    font-size: 1.2rem;
-    line-height: 1.5em;
+    font-size: 1.1rem;
+    line-height: 1.3em;
 }
 
 main section.blog-post article h2 {
@@ -1257,7 +1257,7 @@ footer ul li a {
 
     main section.blog-post article p {
         font-size: 1.4rem;
-        line-height: 1.5em;
+        /* line-height: 1.4em; */
     }
 
     main section.blog-post article h2 {
