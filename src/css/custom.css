@@ -463,6 +463,7 @@ main section.posts .sidebar {
 }
 
 main section.posts .sidebar .topics-list {
+    padding-left: 2rem;
 max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -631,8 +632,45 @@ main section.three-up .bio p a {
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
 
-main section.blog-post article {
+main section.blog-post {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 3rem;
     padding-right: 1rem;
+    padding-bottom: 6rem;
+    /* background-image: url(../images/molly-watching-mobile-bottom.jpg); */
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+}
+
+main section.blog-post article {
+    order: 1;
+}
+
+main section.blog-post .related-posts {
+    order: 2;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px dotted #333333;
+    padding-left: 0rem;
+}
+
+main section.blog-post .related-posts h3 {
+    padding-left: 0rem;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+}
+
+main section.blog-post .related-posts ul {
+    padding-left: 2rem;
+}
+
+main section.blog-post article {
+    /* padding-right: 1rem; */
     font-family: 'Zilla slab', serif;
 }
 
@@ -1273,6 +1311,46 @@ footer ul li a {
         text-transform: capitalize;
     }
 
+
+    main section.blog-post {
+        flex-direction: row;
+        padding-right: 30vw;
+        width: calc(100vw - 1.8rem);
+        min-width: none;
+        gap: 3rem;
+        margin-top: 8rem;
+        margin-right: 0rem;
+        border-top: 1px dotted #000000;
+        background-image: none;
+        /* background-image: url(../images/blog-post-wash.jpg); */
+        background-position-x: 75vw;
+        /* background-position: right center; */
+        background-size: contain;
+    }
+
+    main section.blog-post article {
+        order: 2;
+        flex: 3;
+    }
+
+    main section.blog-post .related-posts {
+        order: 1;
+        flex:1;
+        font-size: 1rem;
+        margin-top: 0rem;
+        padding-top: 0rem;
+        border-top: none;
+    }
+
+    main section.blog-post .related-posts h3 {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    main section.blog-post .related-posts h3 {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
 
     main section.blog-post article p {
         font-size: 1.4rem;

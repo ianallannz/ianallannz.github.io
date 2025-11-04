@@ -23,19 +23,22 @@
             <article>
                 {{ content | safe }}
             </article>
+
+            {% set relatedPosts = collections.relatedPostMap.get(page.url) %}
+            {% if relatedPosts %}
+            <div class="related-posts">
+                <h3>### Related Posts</h3>
+                <ul>
+                    {% for post in relatedPosts %}
+                    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+
         </section>
 
-        {% set relatedPosts = collections.relatedPostMap.get(page.url) %}
-        {% if relatedPosts %}
-        <section class="related-posts">
-            <h2>Related Posts</h2>
-            <ul>
-                {% for post in relatedPosts %}
-                <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </section>
-        {% endif %}
 
     </main>
     {% include "modal-contact.njk" %}
