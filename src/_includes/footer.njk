@@ -3,7 +3,7 @@
         <div class="two-col">
             <div class="col left">
                 <ul class="profile">
-                    <li class="name">Ian Allan</li>
+                    <li class="name">{% if page.url!='/' %}<a href="/">{% endif %}Ian Allan{% if page.url!='/' %}</a>{% endif %}</li>
                     <li class="what">Venture designer</li>
                     <li class="what">Ethical technologist</li>
                     <li class="location">East Coast, New Zealand</li>

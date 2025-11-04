@@ -166,6 +166,15 @@ header ul.profile li.name {
     font-weight: 700;
 }
 
+header ul.profile li a {
+    color:#000000;
+    text-decoration: underline;
+}
+
+header ul.profile li a:hover {
+    text-decoration: none;
+}
+
 header .about-wrapper {
     display: flex;
     flex-direction: column;
