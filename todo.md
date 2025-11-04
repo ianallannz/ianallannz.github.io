@@ -11,10 +11,6 @@
 
 An .njk to handle all topic pages
 
-- Related posts
-  - padding 
-  - size
-  - link style
 
 - Blog post decoration styling
   - quotes
@@ -22,8 +18,6 @@ An .njk to handle all topic pages
   - ul
   - ol
 
-
-Topics shown by default
 
 
 Dataroom layout
