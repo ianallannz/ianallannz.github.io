@@ -50,6 +50,40 @@ eleventyConfig.addCollection("tagList", function (collectionApi) {
 });
 
 
+// Build related posts collection for each post
+eleventyConfig.addCollection("relatedPostMap", function (collectionApi) {
+  const posts = collectionApi.getFilteredByTag("blog");
+  const map = new Map();
+
+  posts.forEach(post => {
+    const thisTags = Array.isArray(post.data.tags) ? post.data.tags : [post.data.tags];
+    const filteredThisTags = thisTags.filter(tag => tag !== "blog");
+
+    const related = posts
+      .filter(other => other.url !== post.url)
+      .map(other => {
+        const otherTags = Array.isArray(other.data.tags) ? other.data.tags : [other.data.tags];
+        const filteredOtherTags = otherTags.filter(tag => tag !== "blog");
+
+        const shared = filteredThisTags.filter(tag => filteredOtherTags.includes(tag));
+        return {
+          post: other,
+          score: shared.length,
+        };
+      })
+      .filter(entry => entry.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(entry => entry.post);
+
+    map.set(post.url, related);
+  });
+
+  return map;
+});
+
+
+
+
 
   // Date filter
 

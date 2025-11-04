@@ -3,7 +3,7 @@ title: The homeless - what to do?
 date: 2025-08-23
 excerpt: A few thoughts on our homeless population.
 layout: blog-post.njk
-tags: blog
+tags: ["blog", "wealth inequality", "system failure"]
 isPost: true
 ---
 

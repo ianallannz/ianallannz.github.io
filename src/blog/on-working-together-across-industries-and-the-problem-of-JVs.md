@@ -3,7 +3,7 @@ title: Bringing education, research, trusts, and industry together; and the prob
 date: 2025-09-03
 excerpt: In my interview with Local Democracy Reporter Zita Campbell I touched on the Council as a facilitator across education, research, business, trusts, and industrial leaders.
 layout: blog-post.njk
-tags: blog
+tags: ["blog", "gisborne economy"]
 isPost: true
 ---
 

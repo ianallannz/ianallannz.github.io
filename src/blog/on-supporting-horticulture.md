@@ -3,7 +3,7 @@ title: Ways to support horticulture without a background in horticulture
 date: 2025-09-08
 excerpt: I was asked to answer a few questions from the Tairāwhiti Growers Association. Apart from student summer jobs, I don't have a background in horticulture and don't pretend to be an expert, so...
 layout: blog-post.njk
-tags: blog
+tags: ["blog", "gisborne economy"]
 isPost: true
 ---
 
