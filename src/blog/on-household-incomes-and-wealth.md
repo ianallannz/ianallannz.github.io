@@ -3,7 +3,7 @@ title: On household incomes and wealth
 date: 2025-10-02
 excerpt: I heard questions raised about average income statistics in the final council meeting.
 layout: blog-post.njk
-tags: blog
+tags: ["blog", "political economy", "wealth inequality", "system failure"]
 isPost: true
 pinned: true
 ---

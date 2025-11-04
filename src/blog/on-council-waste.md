@@ -3,8 +3,9 @@ title: On council waste
 date: 2025-09-19
 excerpt: I've been hearing variations of "the council needs to stop wasting all our money" on the campaign trail.
 layout: blog-post.njk
-tags: blog
+tags: ["blog", "Gisborne council", "spending", "political economy", "active transport"] 
 isPost: true
+pinned: false
 ---
 
 ## If we want to lighten the load we all need to change 

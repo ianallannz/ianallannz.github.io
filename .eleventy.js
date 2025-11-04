@@ -23,12 +23,39 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Get pinned post
+  eleventyConfig.addCollection("pinnedPost", function (collectionApi) {
+    return collectionApi.getFilteredByTag("blog").find(post => post.data.pinned);
+  });
+
+  // Build tag list without blog
+eleventyConfig.addCollection("tagList", function (collectionApi) {
+  const tagMap = new Map();
+
+  collectionApi.getAll().forEach(item => {
+    let tags = item.data.tags;
+    if (Array.isArray(tags)) {
+      tags.forEach(tag => {
+        if (!["blog"].includes(tag)) {
+          tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+        }
+      });
+    }
+  });
+
+  // Convert to array and sort by post count descending
+  return [...tagMap.entries()]
+    .sort((a, b) => b[1] - a[1]) // sort by count
+    .map(entry => entry[0]);     // return just the tag names
+});
+
+
 
   // Date filter
 
-    eleventyConfig.addFilter("date", (dateObj, format = "dd LLLL yyyy") => {
-      return DateTime.fromJSDate(dateObj).toFormat(format);
-    });
+  eleventyConfig.addFilter("date", (dateObj, format = "dd LLLL yyyy") => {
+    return DateTime.fromJSDate(dateObj).toFormat(format);
+  });
 
 
   // Copy static assets

@@ -10,12 +10,14 @@ title: "Blog: Ian Allan, Venture designer and ethical technologist"
     {% include "profile.njk" %}
     <div class="cta blog">
         <h1>## Hot-or-not</h1>
-        <p class="featured-post"><a href="">On household incomes and wealth</a></p>
-        <p class="featured-post-blurb">I heard questions raised about average income statistics in the final council
-            meeting.</p>
-        <p class="featured-post-date">&mdash; 2 October 2025</p>
-        <p class="button"><a class="button-inline-outline" href="#the-blurb">[Read it]</a><span class="button-tag">
-                (/blog/on-household-incomes-and-wealth)</span></p>
+        {% set pinnedPost = collections.pinnedPost %}
+
+        <p class="featured-post"><a href="{{ pinnedPost.url }}">{{ pinnedPost.data.title }}</a></p>
+        <p class="featured-post-blurb">{{ pinnedPost.data.excerpt }}</p>
+        <p class="featured-post-date">&mdash; {{ pinnedPost.date | date("d MMMM yyyy") }}</p>
+        <p class="button"><a class="button-inline-outline" href="{{ pinnedPost.url }}">[Read it]</a><span
+                class="button-tag">
+                ({{ pinnedPost.url }})</span></p>
     </div>
 </header>
 <main>
@@ -32,13 +34,8 @@ title: "Blog: Ian Allan, Venture designer and ethical technologist"
             {% endfor %}
         </div>
         <div class="sidebar">
-            <h2 class="toggle-topics">## <a href="#" class="toggle-link">[Show topics⇣]</a></h2>
-            <ul class="topics-list">
-                <li>link</li>
-                <li>link</li>
-                <li>link</li>
-                <li>link</li>
-            </ul>
+            {% include "blog-topics-list.njk" %}
+
         </div>
 
     </section>

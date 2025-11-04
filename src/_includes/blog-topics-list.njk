@@ -1,0 +1,11 @@
+{# _includes/blog-topics-list.njk #}
+<h2 class="toggle-topics">## <a href="#" class="toggle-link">[Show topics⇣]</a></h2>
+<ul class="topics-list">
+    {% for tag in collections.tagList %}
+    <li>
+        <a href="/tags/{{ tag | slug }}/">
+            {{ tag }} ({{ collections[tag] | length }})
+        </a>
+    </li>
+    {% endfor %}
+</ul>
