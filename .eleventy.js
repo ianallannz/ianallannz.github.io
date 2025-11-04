@@ -23,6 +23,7 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+
   // Date filter
 
     eleventyConfig.addFilter("date", (dateObj, format = "dd LLLL yyyy") => {
