@@ -659,7 +659,7 @@ main section.blog-post .related-posts {
     padding-left: 0rem;
 }
 
-main section.blog-post .related-posts h3 {
+main section.blog-post .related-posts h2 {
     padding-left: 0rem;
     font-size: 1rem;
     padding-bottom: 1rem;
@@ -1336,12 +1336,7 @@ footer ul li a {
         border-top: none;
     }
 
-    main section.blog-post .related-posts h3 {
-        font-size: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    main section.blog-post .related-posts h3 {
+    main section.blog-post .related-posts h2 {
         font-size: 1rem;
         padding-bottom: 1rem;
     }
