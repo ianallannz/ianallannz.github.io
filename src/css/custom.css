@@ -675,18 +675,20 @@ main section.blog-post article {
 }
 
 main section.blog-post article p {
-    font-size: 1.1rem;
-    line-height: 1.3em;
+    font-size: 1.2rem;
+    line-height: 1.4em;
 }
 
 main section.blog-post article ul {
     padding-left: 2rem;
     padding-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 main section.blog-post article ol {
     padding-left: 2rem;
     padding-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 main section.blog-post article ol li {
@@ -720,7 +722,7 @@ main section.blog-post article h3 {
 main section.blog-post article h4 {
     padding-left: 0.1rem;
     padding-right: 0.1rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     padding-bottom: 0rem;
