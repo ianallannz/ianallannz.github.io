@@ -909,7 +909,7 @@ span.infotip:focus::before {
 .modal-content .contact-detail {
     margin-top: 2.7rem;
     padding-right: 4.5rem;
-    padding-bottom: 5rem;
+    height: calc(100svh - 4.8rem);
     background-image: url(../images/modal-contact.jpg);
     background-repeat: no-repeat;
     background-position-x: right;
@@ -953,22 +953,20 @@ span.infotip:focus::before {
 }
 
 .modal-content .contact-detail p a {
+    text-decoration: underline;
     overflow-wrap: anywhere;
-    font-weight: 700;
     color: #1100FF;
 }
 
 .modal-content .contact-detail p a:hover {
     text-decoration: none;
+    font-weight: 700;
     text-transform: capitalize;
 }
 
-
-
-
-
-
-
+.modal-content .contact-detail .contact-type {
+    font-size: 1rem;
+}
 
 footer {
     font-size: 0.9rem;
