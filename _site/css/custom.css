@@ -742,6 +742,19 @@ main section.blog-post article h4 {
     background-color: #F8F8F8;
 }
 
+main section.blog-post article blockquote {
+    font-style: italic;
+    background-color: #DFFF00;
+    padding: 0.2rem;
+    padding-left: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+main section.blog-post article blockquote p {
+    padding-bottom: 0rem;
+}
+
+
 /* main section.blog-post article h2::before {
     content: "## ";
 }
@@ -1499,6 +1512,25 @@ footer ul li a {
     .tap-indicator {
         display: none;
     }
+
+
+
+
+    .modal-content .contact-detail {
+        margin-top: 2.7rem;
+        padding-left: 30vw;
+        padding-right: 4.5rem;
+        height: calc(100svh - 4.8rem);
+        background-image: url(../images/modal-contact-lg.jpg);
+        background-repeat: no-repeat;
+        background-position-x: 50vw;
+        background-position-y: top;
+        background-size: 339px auto;
+    }
+
+
+
+
 
     footer {
         padding: 2.5rem 2rem 2.5rem 2rem;
