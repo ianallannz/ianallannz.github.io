@@ -110,7 +110,5 @@ if (toggleLink) {
 // Obfuscate contact
 
 document.getElementById("mp-link").setAttribute("href", "tel:+64210473399");
-document.getElementById("mp-link").innerHTML = "+64 21 047 3399";
 document.getElementById("e-link").setAttribute("href", "mailto:ian.allan.nz@gmail.com");
-document.getElementById("e-link").innerHTML = "ian.allan.nz@gmail.com";
 
