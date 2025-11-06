@@ -679,6 +679,18 @@ main section.blog-post article p {
     line-height: 1.4em;
 }
 
+main section.blog-post article a {
+    display: inline;
+    padding: 0 0.1rem 0 0.1rem;
+}
+
+main section.blog-post article strong {
+    font-weight: normal;
+    background-color: rgba(223, 255, 0, 0.5);
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+
+}
+
 main section.blog-post article ul {
     padding-left: 2rem;
     padding-bottom: 1rem;
@@ -1414,6 +1426,11 @@ footer ul li a {
     main section.blog-post article p {
         font-size: 1.4rem;
         /* line-height: 1.4em; */
+    }
+
+    main section.blog-post article a {
+        display: inline;
+        padding: 0 0.1rem 0 0.1rem;
     }
 
     main section.blog-post article h2 {
