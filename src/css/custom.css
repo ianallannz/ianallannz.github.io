@@ -897,7 +897,7 @@ span.infotip:focus::before {
 .modal-content .contact-detail {
     margin-top: 2.6rem;
     padding-right: 4.5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 5rem;
     background-image: url(../images/modal-contact.jpg);
     background-repeat: no-repeat;
     background-position-x: right;
