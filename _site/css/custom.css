@@ -850,8 +850,7 @@ span.infotip:focus::before {
 
 .modal-content {
     margin: 1rem;
-    padding: 1rem;
-    padding-top: 3rem;
+    padding: 1.1rem 0rem 0rem 0.8rem;
     width: calc(100vw - 2rem);
     height: calc(100svh - 2rem);
     background: #FFFFFF;
@@ -870,7 +869,13 @@ span.infotip:focus::before {
     opacity: 1;
 }
 
-.modal-content h3 {
+.modal-content h1 {
+    position: absolute;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content h2 {
     font-size: 1rem;
     margin-bottom: 1rem;
 }
@@ -879,14 +884,79 @@ span.infotip:focus::before {
     position: absolute;
     text-align: right;
     top: 0rem;
-    right: 0rem;
+    right: 0.0rem;
     padding: 1.5rem;
+    padding-right: 1.6rem;
     background: none;
     border: none;
     font-size: 1rem;
     color: #000000;
     cursor: pointer;
 }
+
+.modal-content .contact-detail {
+    margin-top: 2.6rem;
+    padding-right: 4.5rem;
+    padding-bottom: 7rem;
+    background-image: url(../images/modal-contact.jpg);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: top;
+    background-size: 63px auto;
+}
+
+.modal-content .contact-detail ul.profile {
+    font-size: 1.2rem;
+    margin-top: 3.2rem;
+    margin-left: 0rem;
+    display: inline-block;
+}
+
+.modal-content .contact-detail ul.profile li {
+    list-style: none;
+}
+
+.modal-content .contact-detail ul.profile li.name {
+    font-weight: 700;
+}
+
+.modal-content .contact-detail ul.profile li a {
+    color:#000000;
+    text-decoration: underline;
+}
+
+.modal-content .contact-detail ul.profile li a:hover {
+    color: #1100FF;
+    text-decoration: none;
+}
+
+.modal-content .contact-detail h2 {
+    margin-top: 2rem;
+}
+
+.modal-content .contact-detail p {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    line-height: 1.4em;
+}
+
+.modal-content .contact-detail p a {
+    overflow-wrap: anywhere;
+    font-weight: 700;
+    color: #1100FF;
+}
+
+.modal-content .contact-detail p a:hover {
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+
 
 footer {
     font-size: 0.9rem;

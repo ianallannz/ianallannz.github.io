@@ -93,11 +93,24 @@ document.querySelectorAll('.modal .close').forEach(button => {
 
 // Show hide blog topics
 
-document.querySelector('.toggle-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const list = document.querySelector('.topics-list');
-  list.classList.toggle('visible-topics');
+const toggleLink = document.querySelector('.toggle-link');
+if (toggleLink) {
+  toggleLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const list = document.querySelector('.topics-list');
+    list.classList.toggle('visible-topics');
 
-  // Optional: toggle link text
-  this.textContent = list.classList.contains('visible-topics') ? '[Hide topics⇡]' : '[Show topics⇣]';
-});
+    this.textContent = list.classList.contains('visible-topics')
+      ? '[Hide topics⇡]'
+      : '[Show topics⇣]';
+  });
+}
+
+
+// Obfuscate contact
+
+document.getElementById("mp-link").setAttribute("href", "tel:+64210473399");
+document.getElementById("mp-link").innerHTML = "+64 21 047 3399";
+document.getElementById("e-link").setAttribute("href", "mailto:ian.allan.nz@gmail.com");
+document.getElementById("e-link").innerHTML = "ian.allan.nz@gmail.com";
+
