@@ -809,13 +809,117 @@ main section.dataroom .black-window-mob svg {
   /* transform: translate(-50%, -50%); */
 }
 
-.dataroom .cdv {
-  top: 5vh;
-  left: 35vw;
-  width: 60vw;
+.dataroom img {
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
+}
+
+.dataroom p {
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
+    background-color: #FFFFFF;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    font-family: 'Zilla Slab', serif;
+    font-style: italic;
+}
+
+.dataroom .img1 {
+  top: 17vh;
+  left: 30vw;
+  width: 65vw;
   height: auto;
 }
 
+.dataroom .img2 {
+  top: 12vh;
+  left: 5vw;
+  width: 50vw;
+  height: auto;
+  z-index: 2;
+}
+
+.dataroom .q1 {
+    top: 30vh;
+    left: 10vw;
+    width: 45vw;
+    z-index: 3;
+}
+
+.dataroom .img3 {
+  top: 40vh;
+  left: 35vw;
+  width: 55vw;
+  height: auto;
+  z-index: 2;
+}
+
+.dataroom .q2 {
+    top: 52vh;
+    left: 15vw;
+    width: 60vw;
+    z-index: 4;
+}
+
+.dataroom .img4 {
+  top: 57vh;
+  left: 5vw;
+  width: 65vw;
+  height: auto;
+  z-index: 2;
+}
+
+.dataroom .img5 {
+  top: 75vh;
+  left: 10vw;
+  width: 55vw;
+  height: auto;
+  z-index: 5;
+}
+
+.dataroom .q3 {
+    top: 78vh;
+    left: 60vw;
+    width: 35vw;
+    z-index: 6;
+}
+
+.dataroom .img6 {
+  top: 92vh;
+  left: 50vw;
+  width: 30vw;
+  height: auto;
+  z-index: 4;
+}
+
+.dataroom .q4 {
+    top: 95vh;
+    left: 5vw;
+    width: 50vw;
+    z-index: 6;
+}
+
+.dataroom .img7 {
+  top: 110vh;
+  left: 35vw;
+  width: 55vw;
+  height: auto;
+  z-index: 3;
+}
+
+.dataroom .q5 {
+    top: 112vh;
+    left: 10vw;
+    width: 35vw;
+    z-index: 6;
+}
+
+.dataroom .img8 {
+  top: 127vh;
+  left: 5vw;
+  width: 45vw;
+  height: auto;
+  z-index: 4;
+}
 
 a.popout::after {
     content: "↗";
