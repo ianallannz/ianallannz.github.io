@@ -112,3 +112,26 @@ if (toggleLink) {
 document.getElementById("mp-link").setAttribute("href", "tel:+64210473399");
 document.getElementById("e-link").setAttribute("href", "mailto:ian.allan.nz@gmail.com");
 
+
+// Work page show and hide
+
+const workObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  },
+  {
+    root: null,
+    rootMargin: '0px 0px -30% 0px', // Trigger when element reaches 30% from bottom
+    threshold: 0
+  }
+);
+
+document.querySelectorAll('.dataroom p').forEach(p => {
+  workObserver.observe(p);
+});
