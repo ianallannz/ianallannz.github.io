@@ -813,6 +813,15 @@ main section.dataroom .black-window-mob svg {
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
 }
 
+@keyframes flicker-bg {
+  0%   { background-color: #DFFF00; }
+  20%  { background-color: #FFFFFF; }
+  40%  { background-color: #DFFF00; }
+  60%  { background-color: #FFFFFF; }
+  80%  { background-color: #DFFF00; }
+  100% { background-color: #FFFFFF; }
+}
+
 .dataroom p {
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
     background-color: #FFFFFF;
@@ -821,6 +830,17 @@ main section.dataroom .black-window-mob svg {
     line-height: 1.1rem;
     font-family: 'Zilla Slab', serif;
     font-style: italic;
+    opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.dataroom p.visible {
+  opacity: 1;
+  transform: translateY(0);
+animation: flicker-bg 0.7s ease-out;
+  padding: 0.4em;
+  border-radius: 0.2em;
 }
 
 .dataroom .img1 {
