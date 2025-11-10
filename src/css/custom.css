@@ -824,11 +824,11 @@ main section.dataroom .black-window-mob svg {
 
 .dataroom p {
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
-    background-color: #FFFFFF;
+    background-color: #DFFF00;
     padding: 0.3rem;
     font-size: 1.1rem;
     line-height: 1.1rem;
-    font-family: 'Zilla Slab', serif;
+    font-family: ''Zilla Slab', serif';
     font-style: italic;
     opacity: 0;
   transform: translateY(20px);
