@@ -838,8 +838,7 @@ main section.dataroom .black-window-mob svg {
 .dataroom p.visible {
   opacity: 1;
   transform: translateY(0);
-animation: flicker-bg 0.7s ease-out;
-  padding: 0.4em;
+  animation: flicker-bg 0.5s ease-out;
   border-radius: 0.2em;
 }
 
