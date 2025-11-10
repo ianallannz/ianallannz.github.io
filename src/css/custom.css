@@ -810,7 +810,7 @@ main section.dataroom .black-window-mob svg {
 }
 
 .dataroom img {
-    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
 }
 
 @keyframes flicker-bg {
@@ -823,7 +823,7 @@ main section.dataroom .black-window-mob svg {
 }
 
 .dataroom p {
-    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
     background-color: #DFFF00;
     padding: 0.3rem;
     font-size: 1.1rem;
