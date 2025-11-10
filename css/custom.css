@@ -964,7 +964,7 @@ main section.dataroom .black-window-mob svg {
     top: 187vh;
     left: 5vw;
     width: 35vw;
-    z-index: 8;
+    z-index: 10;
 }
 
 .dataroom .img13 {
@@ -1046,6 +1046,12 @@ a.locked::after {
 
 .highlight {
     display: inline-block;
+    background-color: #DFFF00;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+}
+
+.highlight-inline {
+    display: inline;
     background-color: #DFFF00;
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
 }
