@@ -777,7 +777,7 @@ main section.blog-post article img {
 }
 
 .dataroom-wrapper main {
-    height: 200vh;
+    height: 300vh;
 }
 
 main section.dataroom {
@@ -919,6 +919,99 @@ main section.dataroom .black-window-mob svg {
   width: 45vw;
   height: auto;
   z-index: 4;
+}
+
+.dataroom .img9 {
+  top: 133vh;
+  left: 60vw;
+  width: 35vw;
+  height: auto;
+  z-index: 7;
+}
+
+.dataroom .img10 {
+  top: 150vh;
+  left: 10vw;
+  width: 65vw;
+  height: auto;
+  z-index: 6;
+}
+
+.dataroom .img11 {
+  top: 138vh;
+  left: 15vw;
+  width: 40vw;
+  height: auto;
+  z-index: 6;
+}
+
+.dataroom .q6 {
+    top: 167vh;
+    left: 20vw;
+    width: 70vw;
+    z-index: 8;
+}
+
+.dataroom .img12 {
+  top: 177vh;
+  left: 10vw;
+  width: 70vw;
+  height: auto;
+  z-index: 6;
+}
+
+.dataroom .q7 {
+    top: 187vh;
+    left: 5vw;
+    width: 35vw;
+    z-index: 8;
+}
+
+.dataroom .img13 {
+  top: 195vh;
+  left: 60vw;
+  width: 35vw;
+  height: auto;
+  z-index: 4;
+}
+
+.dataroom .img13 {
+  top: 198vh;
+  left: 60vw;
+  width: 35vw;
+  height: auto;
+  z-index: 4;
+}
+
+.dataroom .img14 {
+  top: 205vh;
+  left: 10vw;
+  width: 65vw;
+  height: auto;
+  z-index: 8;
+}
+
+.dataroom .q8 {
+    top: 220vh;
+    left: 30vw;
+    width: 50vw;
+    z-index: 9;
+}
+
+.dataroom .img15 {
+  top: 225vh;
+  left: 5vw;
+  width: 20vw;
+  height: auto;
+  z-index: 6;
+}
+
+.dataroom .img16 {
+  top: 233vh;
+  left: 30vw;
+  width: 65vw;
+  height: auto;
+  z-index: 6;
 }
 
 a.popout::after {
