@@ -831,13 +831,13 @@ main section.dataroom .black-window-mob svg {
     font-family: 'Zilla Slab', serif;
     font-style: italic;
     opacity: 0;
-  transform: translateY(20px);
+  transform: translateX(-10px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .dataroom p.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
   animation: flicker-bg 0.5s ease-out;
   border-radius: 0.2em;
 }
