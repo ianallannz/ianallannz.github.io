@@ -1755,16 +1755,30 @@ footer ul li a {
         overflow-x: auto; /* enables horizontal scroll */
         overflow-y: hidden; /* optional, if you want to suppress vertical scroll */ 
         flex: 1;
-        display: flex; /* optional, if you want to center or layout children */
+        display: flex; 
         flex-direction: column;
         height: 60vh;
         scroll-behavior: smooth;
-        scrollbar-width: none; /* Firefox */
+        scrollbar-width: thin;    
+        scrollbar-color: #000000 #f4f4f4;
+        border-radius: 0;
+        border: none;
     }
 
     .dataroom-wrapper main::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Edge */
+        height: 8px; /* horizontal scrollbar height */
     }
+
+    .dataroom-wrapper main::-webkit-scrollbar-track {
+        background: f4f4f4;
+    }
+
+    .dataroom-wrapper main::-webkit-scrollbar-thumb {
+        background-color: #000000;
+        border-radius: 0;
+        border: none;
+    }
+
 
     main section.dataroom {
         background: none;
@@ -1793,15 +1807,16 @@ footer ul li a {
         filter: drop-shadow(0px 30px 50px rgba(0, 0, 0, 0.25));
     }
 
+    main section.dataroom .black-window svg path {
+        border: 1px solid #CCCCCC;
+    }
+
     main section.dataroom .black-window-mob {
         display: none;
     }
 
     main section.dataroom .black-window-mob svg {
-        width: 100%;
-        height: auto; /* maintains aspect ratio */
-        display: block; /* avoids inline spacing */
-        filter: drop-shadow(0px 30px 50px rgba(0, 0, 0, 0.25));
+        display: none; /* avoids inline spacing */
     }
 
     .dataroom .dataroom-item {
@@ -1811,6 +1826,7 @@ footer ul li a {
 
     .dataroom img {
         filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+        max-width: 400px;
     }
 
     @keyframes flicker-bg {
@@ -1825,11 +1841,11 @@ footer ul li a {
     .dataroom p {
         filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
         background-color: #DFFF00;
-        padding: 0.3rem;
-        font-size: 1.1rem;
-        line-height: 1.1rem;
-        font-family: 'Zilla Slab', serif;
-        font-style: italic;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        /* font-family: 'Space Mono', serif; */
+        /* font-style: normal; */
         opacity: 0;
         transform: translateX(-10px);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -1842,109 +1858,110 @@ footer ul li a {
     }
 
     .dataroom .img1 {
-        top: 15vh;
+        top: 17vh;
         left: 20vw;
-        width: 20vw;
+        width: 25vw;
         height: auto;
+        z-index: 7;
     }
 
     .dataroom .img2 {
         top: 0vh;
         left: 15vw;
-        width: 20vw;
+        width: 25vw;
         height: auto;
-        z-index: 2;
+        z-index: 1;
     }
 
     .dataroom .q1 {
-        top: 8vh;
-        left: 32vw;
-        width: 10vw;
-        z-index: 3;
+        top: 2vh;
+        left: 36vw;
+        width: 12vw;
+        z-index: 8;
     }
 
     .dataroom .img3 {
-    top: 40vh;
-    left: 35vw;
-    width: 55vw;
+    top: 34vh;
+    left: 42vw;
+    width: 25vw;
     height: auto;
     z-index: 2;
     }
 
     .dataroom .q2 {
-        top: 52vh;
-        left: 15vw;
-        width: 60vw;
-        z-index: 4;
+        top: 50vh;
+        left: 45vw;
+        width: 18vw;
+        z-index: 6;
     }
 
     .dataroom .img4 {
-    top: 57vh;
-    left: 5vw;
-    width: 65vw;
+    top: 40vh;
+    left: 18vw;
+    width: 25vw;
     height: auto;
-    z-index: 2;
+    z-index: 1;
     }
 
     .dataroom .img5 {
-    top: 75vh;
-    left: 10vw;
-    width: 55vw;
+    top: 4vh;
+    left: 50vw;
+    width: 25vw;
     height: auto;
-    z-index: 5;
+    z-index: 4;
     }
 
     .dataroom .q3 {
-        top: 78vh;
-        left: 60vw;
-        width: 35vw;
+        top: 22vh;
+        left: 47vw;
+        width: 15vw;
         z-index: 6;
     }
 
     .dataroom .img6 {
-    top: 92vh;
-    left: 50vw;
-    width: 30vw;
+    top: 37vh;
+    left: 70vw;
+    width: 10vw;
     height: auto;
     z-index: 4;
     }
 
     .dataroom .q4 {
-        top: 95vh;
-        left: 5vw;
-        width: 50vw;
+        top: 45vh;
+        left: 78vw;
+        width: 15vw;
         z-index: 6;
     }
 
     .dataroom .img7 {
-    top: 110vh;
-    left: 35vw;
-    width: 55vw;
-    height: auto;
-    z-index: 3;
-    }
-
-    .dataroom .q5 {
-        top: 112vh;
-        left: 10vw;
-        width: 35vw;
-        z-index: 6;
-    }
-
-    .dataroom .img8 {
-    top: 127vh;
-    left: 5vw;
-    width: 45vw;
+    top: 38vh;
+    left: 95vw;
+    width: 17vw;
     height: auto;
     z-index: 4;
     }
 
-    .dataroom .img9 {
-    top: 133vh;
-    left: 60vw;
-    width: 35vw;
+    .dataroom .q5 {
+        top: 31vh;
+        left: 96vw;
+        width: 15vw;
+        z-index: 9;
+    }
+
+    .dataroom .img8 {
+    top: 27vh;
+    left: 110vw;
+    width: 17vw;
     height: auto;
-    z-index: 7;
+    z-index: 5;
+    }
+
+    .dataroom .img9 {
+    top: 1vh;
+    left: 77vw;
+    width: 17vw;
+    height: auto;
+    z-index: 3;
     }
 
     .dataroom .img10 {
@@ -1956,9 +1973,9 @@ footer ul li a {
     }
 
     .dataroom .img11 {
-    top: 138vh;
-    left: 15vw;
-    width: 40vw;
+    top: 20vh;
+    left: 84vw;
+    width: 16vw;
     height: auto;
     z-index: 6;
     }
