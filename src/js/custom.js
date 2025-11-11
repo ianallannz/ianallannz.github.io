@@ -115,23 +115,37 @@ document.getElementById("e-link").setAttribute("href", "mailto:ian.allan.nz@gmai
 
 // Work page show and hide
 
-const workObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
-    });
-  },
-  {
-    root: null,
-    rootMargin: '0px 0px -30% 0px', // Trigger when element reaches 30% from bottom
-    threshold: 0
-  }
-);
+const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
+
+const observerOptions = isLargeScreen
+  ? {
+      root: null,
+      rootMargin: '-30% 0px 0px 0px', // horizontal trigger from left
+      threshold: 0
+    }
+  : {
+      root: null,
+      rootMargin: '0px 0px -30% 0px', // vertical trigger from bottom
+      threshold: 0
+    };
+
+
+const workObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+    }
+  });
+}, observerOptions);
 
 document.querySelectorAll('.dataroom p').forEach(p => {
   workObserver.observe(p);
 });
+
+window.addEventListener('resize', () => {
+  location.reload(); // or re-init observer logic
+});
+
+
