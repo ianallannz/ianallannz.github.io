@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.style.position = "absolute";
                     img.style.top = `${top}px`;
                     img.style.left = `${left}px`;
-                    // img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+                    img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
 
                     placedImages.push({ top, left, width, height });
                     dataroomSection.appendChild(img);
