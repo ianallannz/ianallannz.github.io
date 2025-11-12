@@ -10,6 +10,10 @@ const workImageData = [
         related_how: 1
     },
     {
+        image_url: '../images/work-pockit3.jpg',
+        related_how: 1
+    },
+    {
         image_url: '../images/work-saved.jpg',
         related_how: 2
     },
@@ -19,6 +23,10 @@ const workImageData = [
     },
     {
         image_url: '../images/work-sinkashi.jpg',
+        related_how: 3
+    },
+    {
+        image_url: '../images/work-sinkashi1.jpg',
         related_how: 3
     },
     {
@@ -48,6 +56,10 @@ const workImageData = [
     {
         image_url: '../images/work-yt4.jpg',
         related_how: 7
+    },
+    {
+        image_url: '../images/work-pond1.jpg',
+        related_how: 8
     },
     {
         image_url: '../images/work-tki.jpg',
@@ -81,10 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function isOverlapping(x1, y1, w1, h1, x2, y2, w2, h2) {
         return !(
-            x1 + w1 * 0.9 < x2 ||
-            x1 > x2 + w2 * 0.9 ||
-            y1 + h1 * 0.9 < y2 ||
-            y1 > y2 + h2 * 0.9
+            x1 + w1 * 0.8 < x2 ||
+            x1 > x2 + w2 * 0.8 ||
+            y1 + h1 * 0.8 < y2 ||
+            y1 > y2 + h2 * 0.8
         );
     }
 
@@ -108,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 img.onload = () => {
                     const aspectRatio = img.naturalWidth / img.naturalHeight;
-                    let targetArea = Math.floor(Math.random() * 20000) + 20000;
+                    let targetArea = Math.floor(Math.random() * 30000) + 30000;
                     let width = Math.sqrt(targetArea * aspectRatio);
                     let height = width / aspectRatio;
 
