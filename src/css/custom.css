@@ -621,8 +621,9 @@ main section table tr td {
 
 
 main section p a {
-    display: inline-block;
+    display: inline;
     color: #1100FF;
+    text-underline-offset: 0.15em;
     padding: 0.1rem 0.1rem 0.1rem 0.1rem;
 }
 
