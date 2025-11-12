@@ -73,6 +73,14 @@ const workImageData = [
         image_url: '../images/work-tki3.jpg',
         related_how: 8
     },
+    {
+        image_url: '../images/work-eit.jpg',
+        related_how: 9
+    },
+    {
+        image_url: '../images/work-eit1.jpg',
+        related_how: 9
+    }
 ];
 
 const workHowData = [
@@ -83,7 +91,8 @@ const workHowData = [
     { id: 5, how_copy: "How do you know what device West African small merchants would actually use?" },
     { id: 6, how_copy: "How do you present curent and future value to attract $XXm from a SE Asian conglomerate?" },
     { id: 7, how_copy: "How do you create an app for street merchants who take cash and have informal supply lines?" },
-    { id: 8, how_copy: "How do you propose a reimagined social content platform for the MOE after you failed with the product you led?" }
+    { id: 8, how_copy: "How do you propose a reimagined social content platform for the MOE after you failed with the product you led?" },
+    { id: 9, how_copy: "How do you wrap reliable group assessment around experiential learning?" }
 ];
 
 
@@ -232,6 +241,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// Tooltip popup over work
+
+document.addEventListener("DOMContentLoaded", () => {
+    const tooltipTarget = document.querySelector(".work-tooltip");
+
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip-popup";
+    tooltip.textContent = tooltipTarget.dataset.tooltip;
+    document.body.appendChild(tooltip);
+
+    tooltipTarget.addEventListener("mousemove", (e) => {
+        tooltip.style.left = `${e.clientX + 12}px`;
+        tooltip.style.top = `${e.clientY + 12}px`;
+        tooltip.style.opacity = "1";
+    });
+
+    tooltipTarget.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = "0";
+    });
+
+    tooltipTarget.addEventListener("click", (e) => {
+        const trigger = document.getElementById("modal-trigger-contact");
+        if (trigger) {
+            trigger.click();
+        }
+    });
+
+});
 
 
 

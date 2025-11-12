@@ -870,6 +870,32 @@ a.locked::after {
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
 }
 
+.work-tooltip {
+  cursor: pointer;
+}
+
+
+.tooltip-popup {
+    position: fixed;
+    cursor: pointer;
+    pointer-events: none;
+    display: inline-block;
+    text-decoration: none;
+    color: #1100FF;
+    background-color: #FFFFFF;
+    padding: 0.4rem 0.6rem 0.5rem 0.6rem;
+    border: 2px solid #1100FF;
+    font-size: 0.9rem;
+    font-family: 'Space Mono', monospace;
+    border-radius: 0px;
+    white-space: nowrap;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+
+
 .infotip {
     position: relative;
     border-bottom: 1px dotted #999999;
