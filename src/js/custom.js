@@ -130,15 +130,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.onload = () => {
                     const aspectRatio = img.naturalWidth / img.naturalHeight;
                     let targetArea = Math.floor(Math.random() * 30000) + 30000;
-                    let width = Math.sqrt(targetArea * aspectRatio);
-                    let height = width / aspectRatio;
+                    let width = Math.round(Math.sqrt(targetArea * aspectRatio));
+                    let height = Math.round(width / aspectRatio);
+
 
                     let tries = 0;
                     let top, left, overlap;
 
                     do {
-                        top = Math.random() * (containerRect.height - height);
-                        left = Math.random() * (containerRect.width - width);
+                        top = Math.round(Math.random() * (containerRect.height - height));
+                        left = Math.round(Math.random() * (containerRect.width - width));
                         overlap = placedImages.some((other) =>
                             isOverlapping(left, top, width, height, other.left, other.top, other.width, other.height)
                         );
@@ -146,10 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     } while (overlap && tries < maxRetries);
 
                     if (overlap) {
-                        width *= 0.8;
-                        height *= 0.8;
-                        top = Math.random() * (containerRect.height - height);
-                        left = Math.random() * (containerRect.width - width);
+                        width = Math.round(width * 0.8);
+                        height = Math.round(height * 0.8);
+
+                        top = Math.round(Math.random() * (containerRect.height - height));
+                        left = Math.round(Math.random() * (containerRect.width - width));
                     }
 
                     img.style.width = `${width}px`;
@@ -157,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.style.position = "absolute";
                     img.style.top = `${top}px`;
                     img.style.left = `${left}px`;
-                    img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+                    // img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
 
                     placedImages.push({ top, left, width, height });
                     dataroomSection.appendChild(img);
