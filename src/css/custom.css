@@ -777,7 +777,7 @@ main section.blog-post article img {
 }
 
 .dataroom-wrapper main {
-    height: 200vh;
+    height: 350vh;
 }
 
 main section.dataroom-dt {
@@ -785,7 +785,7 @@ main section.dataroom-dt {
     padding: 0;
     margin-top: 4rem;
     width: 100%;
-    height: 200vh;
+    height: 350vh;
     position: relative;
     overflow: hidden;
 }
