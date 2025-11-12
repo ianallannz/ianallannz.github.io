@@ -1,0 +1,16 @@
+---
+layout: base.njk
+title: All Topics
+permalink: /blog/topics/index.html
+---
+
+<h1>All Topics</h1>
+
+<ul>
+  {% for tag in collections.tagList %}
+    <li>
+      <a href="/blog/topics/{{ tag | slug }}/">{{ tag }}</a>
+      <span class="tag-count">({{ collections[tag].length }})</span>
+    </li>
+  {% endfor %}
+</ul>

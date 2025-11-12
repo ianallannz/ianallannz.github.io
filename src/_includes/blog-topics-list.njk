@@ -3,7 +3,7 @@
 <ul class="topics-list">
     {% for tag in collections.tagList %}
     <li>
-        <a href="/tags/{{ tag | slug }}/">
+        <a href="/blog/topics/{{ tag | slug }}/">
             {{ tag }} ({{ collections[tag] | length }})
         </a>
     </li>
