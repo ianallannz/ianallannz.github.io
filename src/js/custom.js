@@ -10,6 +10,10 @@ const workImageData = [
         related_how: 1
     },
     {
+        image_url: '../images/work-pockit2.jpg',
+        related_how: 1
+    },
+    {
         image_url: '../images/work-pockit3.jpg',
         related_how: 1
     },
