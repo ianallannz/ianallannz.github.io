@@ -62,7 +62,7 @@ title: Ian Allan, Venture designer and ethical technologist
                 data-tooltip="I've been advocating and implementing successful experiential assessments for learning.">learning
                 design</a>, <a href="#modal-advocacy" class="popup tooltip" rel="noopener"
                 data-tooltip="AI will make public vocational education the most societally-valuable skill-builder.">vocational education advocacy</a>, <a
-                href="#modal-tech-exec" class="locked" rel="noopener"
+                href="#modal-exec" class="locked" rel="noopener"
                 data-tooltip="I provide intrapreneurial value to organisations: taking initiative to develop new ideas, products, or services">tech-exec services</a>.</p>
         <h2>## Emerging</h2>
         <p class="l2"><a href="#modal-pockit" class="locked tooltip" rel="noopener"
@@ -80,33 +80,11 @@ title: Ian Allan, Venture designer and ethical technologist
             {% endfor %}
             and <a href="/blog">the rest</a>.
         </p>
-
-        <!-- Modal: Learning Design -->
-        <article id="modal-learning" class="modal" aria-hidden="true">
-            <div class="modal-content">
-                <button class="close" aria-label="Close modal">&times;</button>
-                <h3>### Learning design</h3>
-                <p>Content about learning design goes here...</p>
-            </div>
-        </article>
-
-        <!-- Modal: Vocational Education -->
-        <article id="modal-advocacy" class="modal" aria-hidden="true">
-            <div class="modal-content">
-                <button class="close" aria-label="Close modal">&times;</button>
-                <h3>### Vocational Education Advocacy</h3>
-                <p>Content about vocational education goes here...</p>
-            </div>
-        </article>
-
-        <!-- Modal: Venture Design -->
-        <article id="modal-tech-exec" class="modal" aria-hidden="true">
-            <div class="modal-content">
-                <button class="close" aria-label="Close modal">&times;</button>
-                <h3>### Venture Design</h3>
-                <p>Content about venture design goes here...</p>
-            </div>
-        </article>
-
     </section>
 </main>
+{% include "modal-learning.njk" %}
+{% include "modal-advocacy.njk" %}
+{% include "modal-exec.njk" %}
+{% include "modal-pockit.njk" %}
+{% include "modal-saved.njk" %}
+{% include "modal-sinkashi.njk" %}
