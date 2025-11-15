@@ -1019,65 +1019,92 @@ span.infotip:focus::before {
     cursor: pointer;
 }
 
-.modal-content .contact-detail {
+.modal-content .detail {
     margin-top: 2.7rem;
     padding-right: 4.5rem;
     height: calc(100svh - 4.8rem);
-    background-image: url(../images/modal-contact.jpg);
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: top;
     background-size: 63px auto;
 }
 
-.modal-content .contact-detail ul.profile {
+.modal-content .contact {
+    background-image: url(../images/modal-contact.jpg);
+}
+
+.modal-content .saved {
+    background-image: url(../images/modal-saved.jpg);
+}
+
+.modal-content .pockit {
+    background-image: url(../images/modal-pockit.jpg);
+}
+
+.modal-content .sinkashi {
+    background-image: url(../images/modal-sinkashi.jpg);
+}
+
+.modal-content .exec {
+    background-image: url(../images/modal-exec.jpg);
+}
+
+.modal-content .advocacy {
+    background-image: url(../images/modal-advocacy.jpg);
+}
+
+.modal-content .learning {
+    background-image: url(../images/modal-learning.jpg);
+}
+
+.modal-content .detail ul.profile {
     font-size: 1.2rem;
     margin-top: 3.2rem;
     margin-left: 0rem;
     display: inline-block;
 }
 
-.modal-content .contact-detail ul.profile li {
+.modal-content .detail ul.profile li {
     list-style: none;
 }
 
-.modal-content .contact-detail ul.profile li.name {
+.modal-content .detail ul.profile li.name {
     font-weight: 700;
 }
 
-.modal-content .contact-detail ul.profile li a {
+.modal-content .detail ul.profile li a {
     color:#000000;
     text-decoration: underline;
 }
 
-.modal-content .contact-detail ul.profile li a:hover {
+.modal-content .detail ul.profile li a:hover {
     color: #1100FF;
     text-decoration: none;
 }
 
-.modal-content .contact-detail h2 {
+.modal-content .detail h2 {
     margin-top: 2rem;
 }
 
-.modal-content .contact-detail p {
+.modal-content .detail p {
     font-family: 'Space Mono', monospace;
     font-size: 1.5rem;
     line-height: 1.4em;
 }
 
-.modal-content .contact-detail p a {
+.modal-content .detail p a {
     text-decoration: underline;
     overflow-wrap: anywhere;
     color: #1100FF;
 }
 
-.modal-content .contact-detail p a:hover {
+.modal-content .detail p a:hover {
     text-decoration: none;
     font-weight: 700;
     text-transform: capitalize;
 }
 
-.modal-content .contact-detail .contact-type {
+.modal-content .detail .contact-type {
     font-size: 1rem;
 }
 
@@ -1642,22 +1669,44 @@ footer ul li a {
 
 
 
-
-    .modal-content .contact-detail {
+    .modal-content .detail {
         margin-top: 2.7rem;
         padding-left: 30vw;
         padding-right: 4.5rem;
         height: calc(100svh - 4.8rem);
-        background-image: url(../images/modal-contact-lg.jpg);
         background-repeat: no-repeat;
         background-position-x: 50vw;
         background-position-y: top;
         background-size: 339px auto;
     }
 
+    .modal-content .contact {
+        background-image: url(../images/modal-contact-lg.jpg);
+    }
 
+    .modal-content .saved {
+        background-image: url(../images/modal-saved-lg.jpg);
+    }
 
+    .modal-content .pockit {
+        background-image: url(../images/modal-pockit-lg.jpg);
+    }
 
+    .modal-content .sinkashi {
+        background-image: url(../images/modal-sinkashi-lg.jpg);
+    }
+
+    .modal-content .exec {
+        background-image: url(../images/modal-exec-lg.jpg);
+    }
+
+    .modal-content .advocacy {
+        background-image: url(../images/modal-advocacy-lg.jpg);
+    }
+
+    .modal-content .learning {
+        background-image: url(../images/modal-learning-lg.jpg);
+    }
 
     footer {
         padding: 2.5rem 2rem 2.5rem 2rem;
