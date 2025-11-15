@@ -26,6 +26,10 @@ const workImageData = [
         related_how: 2
     },
     {
+        image_url: '../images/work-saved2.jpg',
+        related_how: 2
+    },
+    {
         image_url: '../images/work-sinkashi.jpg',
         related_how: 3
     },
