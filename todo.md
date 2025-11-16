@@ -3,8 +3,6 @@
 
 
 - make partials
-  - modals
-  - modals have a b-roll style image on them from my collection
   - modals restate the how questions
   - Modals list skills/services applied
 

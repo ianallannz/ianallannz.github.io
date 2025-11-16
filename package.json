@@ -14,5 +14,8 @@
     "@11ty/eleventy": "^3.1.2",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0"
+  },
+  "dependencies": {
+    "@fontsource/commit-mono": "^5.2.5"
   }
 }
