@@ -1076,6 +1076,13 @@ span.infotip:focus::before {
     margin-bottom: 3rem;
 }
 
+.modal-content .work.advocacy img {
+    width: 5.5rem;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
 .modal-content .work ul {
     padding-left: 1rem;
     padding-bottom: 1rem;
