@@ -1138,6 +1138,19 @@ span.infotip:focus::before {
     margin-bottom: 1rem;
 }
 
+.modal-content .work p a.button-inline-outline {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #1100FF;
+    background-color: #FFFFFF;
+    padding: 0.4rem 0.6rem 0.5rem 0.6rem;
+    border: 2px solid #1100FF;
+    border-radius: 0px;
+}
+
+
 .modal-content .detail .contact-type {
     font-size: 1rem;
 }
