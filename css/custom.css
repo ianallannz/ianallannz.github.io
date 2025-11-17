@@ -1059,10 +1059,21 @@ span.infotip:focus::before {
     background-image: url(../images/modal-learning.jpg);
 }
 
-.modal-content .detail img {
+.modal-content .work img {
     width: 4rem;
     margin-bottom: 1.3rem;
     display: block;
+}
+
+.modal-content .work.saved img {
+    width: 5rem;
+}
+
+.modal-content .work.exec img {
+    width: 5.5rem;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
 }
 
 .modal-content .work ul {
@@ -1132,7 +1143,7 @@ span.infotip:focus::before {
 .modal-content .work p {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.1rem;
-    line-height: 1.2em;
+    line-height: 1.3em;
 }
 
 .modal-content .work p.tagline {
