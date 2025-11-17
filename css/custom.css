@@ -1003,7 +1003,7 @@ span.infotip:focus::before {
 
 .modal-content h2 {
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 .modal-content .close {
@@ -1058,6 +1058,29 @@ span.infotip:focus::before {
     background-image: url(../images/modal-learning.jpg);
 }
 
+.modal-content .detail img {
+    width: 4rem;
+    margin-bottom: 1.3rem;
+    display: block;
+}
+
+.modal-content .work ul {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.modal-content .work ul li {
+    list-style: none;
+    padding-left: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.modal-content .work ul li::marker {
+    content: "› ";
+    font-size: 1.2rem;
+    line-height: 0.8;
+}
+
 .modal-content .detail ul.profile {
     font-size: 1.2rem;
     margin-top: 3.2rem;
@@ -1103,6 +1126,16 @@ span.infotip:focus::before {
     text-decoration: none;
     font-weight: 700;
     text-transform: capitalize;
+}
+
+.modal-content .work p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.2em;
+}
+
+.modal-content .work p.tagline {
+    margin-bottom: 1rem;
 }
 
 .modal-content .detail .contact-type {
