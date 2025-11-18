@@ -3,7 +3,7 @@ title: On household incomes and wealth
 date: 2025-10-02
 excerpt: I heard questions raised about average income statistics in the final council meeting.
 layout: blog-post.njk
-tags: ["blog", "political economy", "wealth inequality", "system failure"]
+tags: ["blog", "political economy", "wealth inequality", "system failure", "from local election campaign"]
 isPost: true
 pinned: true
 ---
@@ -12,11 +12,11 @@ pinned: true
 
 Listening to the Council meeting on 2 October, there was some discussion about the **average household income statistic in Tairāwhiti**; that it doesn't sound like what it feels like on the ground for most families. 
 
-It was a great point to raise by <a href="https://www.gdc.govt.nz/council/mayor-and-councillors/councillor-profiles" target="_blank">Councillor Rawinia Parata</a>&#8599;; she's right, high levels of income/wealth in some households skew the average up. 
+It was a great point to raise by <a href="https://www.gdc.govt.nz/council/mayor-and-councillors/councillor-profiles" target="_blank" data-tooltip="Re-elected Councillor Rawinia Parata's council profile." class="popout tooltip">Councillor Rawinia Parata</a>; she's right, high levels of income/wealth in some households skew the average up. 
 
 **Average income statistics are unhelpful at best, seriously misleading at worst**.
 
-You might have heard me <a href="https://ianallan.vote/blog/1min-pitch/" title="1min pitch">banging on and on</a> about being in a system that's making most families poorer. You might have even rolled your eyes and thought ***what are you talking about, seems OK to me, I just bought a 70"&nbsp;TV***. 
+During the recent local elections you might have heard me <a href="https://ianallan.vote/blog/1min-pitch/" data-tooltip="My 1min pitch from my local election campaign." class="popout tooltip" target="_blank">banging on and on</a> about being in a system that's making most families poorer. You might have even rolled your eyes and thought ***what are you talking about, seems OK to me, I just bought a 70"&nbsp;TV***. 
 
 But it's true; wealth increasingly accumulating at the top &mdash; where it often sits largely outside circulation in less-liquid, less-productive, lightly-taxed places &mdash; is increasingly making most families worse off, exactly as Cr Parata identifies in her communities. 
 

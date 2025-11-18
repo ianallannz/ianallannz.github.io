@@ -1,9 +1,9 @@
 ---
 title: Ways to support horticulture without a background in horticulture
 date: 2025-09-08
-excerpt: I was asked to answer a few questions from the Tairāwhiti Growers Association. Apart from student summer jobs, I don't have a background in horticulture and don't pretend to be an expert, so...
+excerpt: During recent local elections I was asked to answer a few questions from the Tairāwhiti Growers Association. Apart from student summer jobs, I don't have a background in horticulture and don't pretend to be an expert, so...
 layout: blog-post.njk
-tags: ["blog", "gisborne economy"]
+tags: ["blog", "gisborne economy", "from local election campaign"]
 isPost: true
 ---
 
@@ -13,9 +13,9 @@ isPost: true
 
 Apart from student summer jobs, I don't have a background in horticulture and don't pretend to be an expert. 
 
-So I take the approach I've taken throughout my career: talk to the people in the weeds, take on the advice of the key stakeholders, defer to experts and the experienced, and form pragmatic positions.
+So councillors should take the approach I've taken throughout my career: talk to the people in the weeds, take on the advice of the key stakeholders, defer to experts and the experienced, and form pragmatic positions.
 
-It's to ***fall in love with the problem, not the solution***. Or put another way: <a href="https://halfbanana.medium.com/strong-opinions-weakly-held-a-paradox-unpacked-6201fffe797e" target="_blank">stubborn goals, flexible methods</a>&#8599;.
+It's to ***fall in love with the problem, not the solution***. Or put another way: <a href="https://halfbanana.medium.com/strong-opinions-weakly-held-a-paradox-unpacked-6201fffe797e" target="_blank" data-tooltip="Exploring the idea of strong opinions weakly held." class="popout tooltip">stubborn goals, flexible methods</a>.
 
 ### Enabling a thriving horticulture sector in Tairāwhiti
 
@@ -23,7 +23,7 @@ As mentioned, I don't have a background in horticulture, but I have had a fruitf
 
 It will be technology solutions &mdash; that cleverly and pragmatically address our needs &mdash; that shift us up the value chain. An ideal scenario becomes home-grown horticultural technology &mdash; proven on our fields &mdash; that is productised and exported at high margins.
 
-However, right now **we are short of visible pathways from secondary to vocational education to high-skilled work in our local industries**. As a Councillor I will use this background to support a locally-focused, joined-up strategy for STEAM education connected to useful work here. 
+However, right now **we are short of visible pathways from secondary to vocational education to high-skilled work in our local industries**. I'd like to see a locally-focused joined-up strategy led by the council for STEAM education connected to useful work here. 
 
 ### The most pressing challenges facing horticultural growers now and into the future
 
@@ -39,6 +39,6 @@ Attracting and retaining highly-skilled workers is harder and will take longer t
 
 ### The importance of irrigation water security to our region’s growers and how to ensure a reliable, cost-effective irrigation water supply into the future
 
-Incredibly important. Though this isn't an area where I have enough understanding to form a strong opinion as yet. So as I do, I'll go all-in to understand the problem by taking on the advice of the key stakeholders, experts, and fellow councillors who have this experience. 
+Incredibly important. Though this isn't an area where I have enough understanding to form a strong opinion as yet. 
 
->**Broadly my goal is to press Council to be a conscientious enabler, with an increased risk appetite, while ensuring negative externalities are not passed on to the public.**
+>**Broadly I want to press our council to be a conscientious enabler, with an increased risk appetite, while ensuring negative externalities are not passed on to the public.**

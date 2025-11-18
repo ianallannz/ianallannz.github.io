@@ -1,9 +1,9 @@
 ---
 title: On council waste
 date: 2025-09-19
-excerpt: I've been hearing variations of "the council needs to stop wasting all our money" on the campaign trail.
+excerpt: During the recent local election I regularly heard variations of "the council needs to stop wasting all our money".
 layout: blog-post.njk
-tags: ["blog", "Gisborne council", "spending", "wealth inequality", "political economy", "active transport"] 
+tags: ["blog", "Gisborne council", "spending", "wealth inequality", "political economy", "active transport", "from local election campaign"] 
 isPost: true
 pinned: false
 ---
@@ -12,7 +12,7 @@ pinned: false
 
 ### Stop wasting all our money!
 
-I've been hearing variations of "the council needs to stop wasting all our money" on the campaign trail. When asked for examples of that waste, it's:
+During the recent local election I regularly heard variations of "the council needs to stop wasting all our money". When asked for examples of that waste, it's:
 
 - **"Too many staff!"**
 - **"Bloody raised crossings!"**, and the 
@@ -60,7 +60,7 @@ I want to believe there are gains we can make here. I've said elsewhere:
 
 >The goal is for our council to be a conscientious enabler, with an increased risk appetite, while ensuring negative externalities are not passed on to the public. 
 
-And from what I'm hearing, all council candidates agree.
+And from what I'm hearing, all local councillors agree.
 
 So why do the public feel like compliance and consenting is so onerous and costly? 
 
@@ -107,5 +107,5 @@ Not trying to be too hippy dippy, but we could:
 - seriously reduce, reuse, and repurpose; and 
 - use mentally and physcially healthier means to get around when we can.
 
-What are your simple or innovative suggestions and fixes? It's exactly what I'm here for!
+I'll throw my weight behind any and all councillors who think the same!
 

@@ -22,6 +22,7 @@
     <main>
         <section id="blog-post" class="blog-post">
             <article>
+                <p class="post-date">{{ date | date("d MMMM yyyy") }}</p>
                 {{ content | safe }}
             </article>
 
