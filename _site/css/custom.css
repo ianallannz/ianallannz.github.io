@@ -9,12 +9,14 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
     font-family: 'Space Grotesk', sans-serif;
     background-color: #f4f4f4;
     color: #000000;
+    overflow-x: hidden;
 }
 
 nav {
@@ -1252,6 +1254,7 @@ footer ul li a {
     height: 100vh;
     z-index: -1;
     pointer-events: none;
+    overflow: clip;
 }
 
 .diagonal-line-up {
@@ -1262,6 +1265,7 @@ footer ul li a {
     height: 100vh;
     z-index: -1;
     pointer-events: none;
+    overflow: clip;
 }
 
 .small-screen-down {
@@ -1293,11 +1297,13 @@ footer ul li a {
     .large-screen-down {
         display: block;
         left: 4rem;
+        width: calc(100vw - 4rem);
     }
 
     .large-screen-up {
         display: block;
         left: 4rem;
+        width: calc(100vw - 4rem);
     }
 
     nav {
