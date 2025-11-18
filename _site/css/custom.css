@@ -251,17 +251,14 @@ header .cta p.copy {
 header .cta p.quote {
     max-width: 30rem;
     font-size: 1.2rem;
-    font-family: 'Recursive', sans-serif;
+    font-family: 'Recursive', 'Zilla Slab', 'Space Grotesk', serif;
     font-weight: 300;
+    font-style: italic;
     font-variation-settings:
         'CASL' 1,
-        /* Full Casual */
         'MONO' 0,
-        /* Sans mode */
         'slnt' -15,
-        /* More slant for stronger italic feel */
         'CRSV' 1;
-    /* Max cursive flair */
     text-shadow:
         2px 0 0 #FFFFFF,
         -2px 0 0 #FFFFFF,
@@ -277,17 +274,14 @@ header .cta p.featured-post {
     max-width: 30rem;
     margin-bottom: 0.3rem;
     font-size: 1.4rem;
-    font-family: 'Recursive', sans-serif;
+    font-family: 'Recursive', 'Zilla Slab', 'Space Grotesk', serif;
     font-weight: 300;
+    font-style: italic;    
     font-variation-settings:
         'CASL' 1,
-        /* Full Casual */
         'MONO' 0,
-        /* Sans mode */
         'slnt' -15,
-        /* More slant for stronger italic feel */
         'CRSV' 1;
-    /* Max cursive flair */
     text-shadow:
         2px 0 0 #FFFFFF,
         -2px 0 0 #FFFFFF,
@@ -571,18 +565,15 @@ main section p.l2 {
 }
 
 main section p.quote {
-    font-family: 'Recursive', sans-serif;
+    font-family: 'Recursive', 'Zilla Slab', 'Space Grotesk', serif;
     font-weight: 300;
+    font-style: italic;
     padding-bottom: 0.3rem;
     font-variation-settings:
         'CASL' 1,
-        /* Full Casual */
         'MONO' 0,
-        /* Sans mode */
         'slnt' -15,
-        /* More slant for stronger italic feel */
         'CRSV' 1;
-    /* Max cursive flair */
 }
 
 main section p.quote-author {
