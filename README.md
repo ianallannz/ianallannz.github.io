@@ -19,7 +19,8 @@ Fonts used:
 Images:
 - My own
 
-### Still to do
+### To do for now
 
-- Tablet media query
+- Couple of accessibility warnings
+- Some JS trying to run where it shouldn't
 - Safari testing

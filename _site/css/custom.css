@@ -474,10 +474,10 @@ main section.posts .sidebar {
 
 main section.posts .sidebar .topics-list {
     padding-left: 2rem;
-max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
 }
 
 main section.posts .sidebar .topics-list.visible-topics {
@@ -993,7 +993,7 @@ span.infotip:focus::before {
 .modal-content {
     margin: 1rem;
     padding: 1.1rem 0rem 0rem 0.8rem;
-    width: calc(100vw - 2rem);
+    width: calc(100% - 2rem);
     height: calc(100svh - 2rem);
     background: #FFFFFF;
     color: #000000;
@@ -1832,5 +1832,132 @@ footer ul li a {
     }
 
 
+
+}
+
+
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+
+    header .cta {
+        margin-top: -7.5rem;
+        margin-left: 25rem;
+        max-width: 50rem;
+    }
+ 
+    header .about-wrapper .cta {
+        margin-top: -4.5rem;
+        margin-left: 26rem;
+        max-width: 50rem;
+    }
+
+    header .cta.blog {
+        margin-top: -4.5rem;
+        margin-left: 26rem;
+        max-width: 50rem;
+    }
+
+    header .cta.work {
+        margin-top: -4.5rem;
+        margin-left: 26rem;
+        max-width: 50rem;
+    }
+
+    header .hero {
+        margin-top: 3rem;
+        text-align: left;
+        margin-left: 14rem;
+        width: calc(100% - 14rem);
+        height: 80vh;
+        background-image: url('../images/vintage-gissy-river-double.jpg');
+        background-repeat: no-repeat;
+        background-position-y: 12rem;
+        background-position-x: left;
+    }
+
+    main section#services {
+        width: 60vw;
+        margin-left: 3rem;
+    }
+
+    main section#activities {
+        width: 60vw;
+        margin-left: 3rem;
+    }
+
+    main section.three-up {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        margin-left: 3rem;
+    }
+
+    main section.three-up .pro-blurb {
+        order: 1;
+    }
+
+    main section.three-up .bio {
+        order: 2;
+        padding-top: 2rem;
+    }
+
+    main section.three-up .shoutouts {
+        order: 3;
+        padding-top: 2rem;
+    }
+
+    main section.posts {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0rem;
+        padding-top: 3rem;
+        padding-right: 16rem;
+        background-image: url(../images/molly-watching-mobile.jpg);
+        background-repeat: no-repeat;
+        background-position-x: right;
+    }
+
+    main section.posts .posts-list {
+        order: 2;
+    }
+
+    main section.posts .sidebar {
+        order: 1;
+
+    }
+
+    main section.blog-post {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5rem;
+        margin-bottom: 0rem;
+        padding-top: 3rem;
+        padding-left: 2rem;
+        padding-right: 10rem;
+        padding-bottom: 6rem;
+        /* background-image: url(../images/molly-watching-mobile-bottom.jpg); */
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: bottom;
+    }
+
+    main section.blog-post article {
+        order: 1;
+    }
+
+    main section.blog-post .related-posts {
+        order: 2;
+        margin-top: 3rem;
+        padding-top: 3rem;
+        border-top: 1px dotted #333333;
+        padding-left: 0rem;
+    }
+
+
+
+    .modal-content .detail {
+        margin-top: 10rem;
+        padding-left: 10vw;
+    }
 
 }
