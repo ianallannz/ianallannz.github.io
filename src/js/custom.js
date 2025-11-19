@@ -105,6 +105,7 @@ const workHowData = [
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (!document.body.classList.contains("work")) return;
     const dataroomSection = document.getElementById("dataroom-dt");
     const maxRetries = 20;
 
@@ -254,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Tooltip popup over work
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (!document.body.classList.contains("work")) return;
     const tooltipTarget = document.querySelector(".work-tooltip");
 
     const tooltip = document.createElement("div");
@@ -344,42 +346,53 @@ sections.forEach(el => observer.observe(el));
 
 // Modal functionality
 
+const modalTriggers = new Map();
+
 document.querySelectorAll('.popup, .locked').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const modal = document.querySelector(targetId);
-        const content = modal.querySelector('.modal-content');
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const modal = document.querySelector(targetId);
+    const content = modal.querySelector('.modal-content');
+    const closeButton = modal.querySelector('.close');
 
-        // Set transform origin based on click
-        const x = e.clientX / window.innerWidth * 100;
-        const y = e.clientY / window.innerHeight * 100;
-        content.style.transformOrigin = `${x}% ${y}%`;
+    // Store the triggering element
+    modalTriggers.set(modal, link);
 
-        // Show modal
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+    // Set transform origin
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    content.style.transformOrigin = `${x}% ${y}%`;
 
-        // Animate in
-        requestAnimationFrame(() => {
-            content.classList.remove('animate-in');
-            void content.offsetWidth;
-            content.classList.add('animate-in');
-        });
+    // Show modal
+    modal.removeAttribute('inert');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(() => {
+      content.classList.remove('animate-in');
+      void content.offsetWidth;
+      content.classList.add('animate-in');
     });
+
+    closeButton.focus();
+  });
 });
 
 document.querySelectorAll('.modal .close').forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = button.closest('.modal');
-        const content = modal.querySelector('.modal-content');
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    const content = modal.querySelector('.modal-content');
 
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+    modal.setAttribute('inert', '');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    content.classList.remove('animate-in');
 
-        // Reset animation class
-        content.classList.remove('animate-in');
-    });
+    // Restore focus
+    const trigger = modalTriggers.get(modal);
+    if (trigger) trigger.focus();
+  });
 });
 
 
