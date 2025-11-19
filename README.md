@@ -21,6 +21,6 @@ Images:
 
 ### To do for now
 
+- Welcome blog post
 - Couple of accessibility warnings
 - Some JS trying to run where it shouldn't
-- Safari testing
