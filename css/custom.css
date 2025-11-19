@@ -405,7 +405,6 @@ header .about-wrapper .hero {
     padding-left: 0rem;
     height: 80vh;
     width: calc(100% - 2rem);
-    /* width: calc(110% - 4rem); */
     background-image: url('../images/gorge.jpg');
     background-repeat: no-repeat;
     background-position-y: 12rem;
@@ -418,7 +417,6 @@ header .hero .me-image {
 }
 
 header .about-wrapper .hero .me-image {
-    /* width: calc(110% - 4rem); */
     width: 100%;
     transform: translateX(-4rem) rotate(-15deg);
 }
@@ -514,7 +512,7 @@ main section h1 {
 
 main section h2 {
     font-size: 1rem;
-    padding-left: 2rem;
+    padding-left: 0rem;
     padding-bottom: 1rem;
 }
 
@@ -563,7 +561,7 @@ main section p.l1 {
 }
 
 main section p.l2 {
-    padding-left: 2rem;
+    padding-left: 0rem;
 }
 
 main section p.quote {
@@ -585,26 +583,31 @@ main section p.quote-author {
 }
 
 main section ul {
-    padding-left: 3.3rem;
-    padding-bottom: 1rem;
+  padding-left: 0rem;
+  padding-bottom: 1rem;
 }
-
 
 main section ul li {
-    list-style: none;
-    padding-left: 0.4rem;
-    margin-bottom: 0.6rem;
+  list-style: none;
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.4; /* Ensures consistent vertical rhythm */
 }
 
-main section ul li::marker {
-    content: "› ";
-    font-size: 1.2rem;
-    line-height: 0.8;
+main section ul li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: 0; /* Adjust this value to fine-tune vertical alignment */
+  font-size: 1.2rem;
+  line-height: 1;
+  display: inline-block;
 }
 
 main section table {
     width: calc(100% - 2rem);
-    margin-left: 2rem;
+    margin-left: 0rem;
     margin-right: 1rem;
     margin-bottom: 2rem;
     font-size: 0.9rem;
@@ -678,7 +681,7 @@ main section.blog-post .related-posts h2 {
 }
 
 main section.blog-post .related-posts ul {
-    padding-left: 2rem;
+    padding-left: 0rem;
 }
 
 main section.blog-post article {
@@ -710,13 +713,13 @@ main section.blog-post article strong {
 }
 
 main section.blog-post article ul {
-    padding-left: 2rem;
+    padding-left: 1rem;
     padding-bottom: 1rem;
     font-size: 1.1rem;
 }
 
 main section.blog-post article ol {
-    padding-left: 2rem;
+    padding-left: 1rem;
     padding-bottom: 1rem;
     font-size: 1.1rem;
 }
@@ -1532,13 +1535,13 @@ footer ul li a {
 
     main section h2 {
         font-size: 1.2rem;
-        padding-left: 2rem;
+        padding-left: 0rem;
         padding-bottom: 1rem;
     }
 
     main section.three-up h2 {
         font-size: 1rem;
-        padding-left: 2rem;
+        padding-left: 0rem;
         padding-bottom: 1rem;
     }
 
