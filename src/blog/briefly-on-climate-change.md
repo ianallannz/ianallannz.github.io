@@ -6,7 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "from local election campaign"]
 isPost: true
 pinned: false
-carsonify: fullon
+carsonify: off
 ---
 
 ## Pursuing place, not things

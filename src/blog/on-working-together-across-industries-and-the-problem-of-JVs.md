@@ -6,7 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "gisborne economy", "from local election campaign"]
 isPost: true
 pinned: false
-carsonify: mild
+carsonify: off
 ---
 
 ## Bringing education, research, trusts, and industry together; and the problem with Joint Ventures 

@@ -30,76 +30,94 @@ const carsonPresets = {
 
 
 function extractFragments() {
-    const section = document.querySelector('.blog-post');
-    const elements = section.querySelectorAll('article > *');
-    const fragments = [];
+  const section = document.querySelector('.blog-post');
+  const elements = section.querySelectorAll('article > *');
+  const fragments = [];
 
-    elements.forEach(el => {
-        const tag = el.tagName.toLowerCase();
+  elements.forEach(el => {
+    const tag = el.tagName.toLowerCase();
 
-        if (['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) {
-            el.childNodes.forEach(node => {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    const parts = node.textContent.trim().split(/(?<=[.?!])\s+/);
-                    parts.forEach(part => {
-                        if (part.trim()) fragments.push({ type: tag, content: part });
-                    });
-                } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    const subtype = node.tagName.toLowerCase();
-                    const content = node.textContent.trim();
-
-                    if (['strong', 'em', 'a', 'span'].includes(subtype) && content) {
-                        fragments.push({
-                            type: subtype,
-                            content,
-                            href: subtype === 'a' ? node.getAttribute('href') : null
-                        });
-                    }
-
-                    // 🖼️ NEW: extract <img> inside <p>
-                    if (subtype === 'img') {
-                        fragments.push({
-                            type: 'img',
-                            src: node.getAttribute('src'),
-                            alt: node.getAttribute('alt') || ''
-                        });
-                    }
-
-                    // 🖼️ NEW: extract <a><img></a> inside <p>
-                    if (subtype === 'a') {
-                        const img = node.querySelector('img');
-                        if (img) {
-                            fragments.push({
-                                type: 'img',
-                                src: img.getAttribute('src'),
-                                alt: img.getAttribute('alt') || '',
-                                href: node.getAttribute('href')
-                            });
-                        }
-                    }
-                }
-            });
-
-        } else if (['ul', 'ol'].includes(tag)) {
-            el.querySelectorAll('li').forEach(li =>
-                fragments.push({ type: 'li', content: li.textContent.trim() })
-            );
-        } else if (tag === 'img') {
-            fragments.push({ type: 'img', src: el.src, alt: el.alt });
-        } else if (tag === 'div') {
-            const iframe = el.querySelector('iframe');
-            if (iframe && iframe.src.includes('youtube.com/embed')) {
-                fragments.push({
-                    type: 'youtube',
-                    src: iframe.src
-                });
-            }
-        } else if (tag === 'iframe' && el.src.includes('youtube')) {
-            fragments.push({ type: 'youtube', src: el.src });
+    // Handle blockquotes with nested elements
+    if (tag === 'blockquote') {
+      el.querySelectorAll('p, span, em, strong, a').forEach(nested => {
+        const content = nested.textContent.trim();
+        if (content) {
+          fragments.push({
+            type: 'blockquote',
+            content,
+            href: nested.tagName.toLowerCase() === 'a' ? nested.getAttribute('href') : null
+          });
         }
-    });
+      });
+    }
 
-    return fragments;
+    // Handle standard text elements
+    else if (['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) {
+      el.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const parts = node.textContent.trim().split(/(?<=[.?!])\s+/);
+          parts.forEach(part => {
+            if (part.trim()) fragments.push({ type: tag, content: part });
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const subtype = node.tagName.toLowerCase();
+          const content = node.textContent.trim();
+
+          if (['strong', 'em', 'a', 'span'].includes(subtype) && content) {
+            fragments.push({
+              type: subtype,
+              content,
+              href: subtype === 'a' ? node.getAttribute('href') : null
+            });
+          }
+
+          if (subtype === 'img') {
+            fragments.push({
+              type: 'img',
+              src: node.getAttribute('src'),
+              alt: node.getAttribute('alt') || ''
+            });
+          }
+
+          if (subtype === 'a') {
+            const img = node.querySelector('img');
+            if (img) {
+              fragments.push({
+                type: 'img',
+                src: img.getAttribute('src'),
+                alt: img.getAttribute('alt') || '',
+                href: node.getAttribute('href')
+              });
+            }
+          }
+        }
+      });
+    }
+
+    // Lists
+    else if (['ul', 'ol'].includes(tag)) {
+      el.querySelectorAll('li').forEach(li =>
+        fragments.push({ type: 'li', content: li.textContent.trim() })
+      );
+    }
+
+    // Standalone images
+    else if (tag === 'img') {
+      fragments.push({ type: 'img', src: el.src, alt: el.alt });
+    }
+
+    // YouTube embeds
+    else if (tag === 'div') {
+      const iframe = el.querySelector('iframe');
+      if (iframe && iframe.src.includes('youtube.com/embed')) {
+        fragments.push({ type: 'youtube', src: iframe.src });
+      }
+    } else if (tag === 'iframe' && el.src.includes('youtube')) {
+      fragments.push({ type: 'youtube', src: el.src });
+    }
+  });
+
+  return fragments;
 }
 
 // 🎨 Apply random styles to a fragment
@@ -181,7 +199,7 @@ function styleFragment(el, frag, params) {
     }
 
     // ✒️ Typography chaos
-    const weight = 400 + Math.random() * 600 * params.fontVariation;
+    const weight = 200 + Math.random() * 400 * params.fontVariation;
     const width = 75 + Math.random() * 25;
     const spacing = (Math.random() - 0.5) * 0.2 + 'em';
 
@@ -210,7 +228,7 @@ function styleFragment(el, frag, params) {
 
     // 🧱 Heading styling
     if (frag.type.startsWith('h')) {
-        el.style.fontFamily = `'Libre Baskerville', serif`;
+        el.style.fontFamily = `'Baskervville', serif`;
         el.style.fontSize = `${1.5 + Math.random()}rem`;
         el.style.fontWeight = '700';
         el.style.textTransform = 'uppercase';

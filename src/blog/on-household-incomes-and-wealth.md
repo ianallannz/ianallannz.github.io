@@ -6,6 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "political economy", "wealth inequality", "system failure", "from local election campaign"]
 isPost: true
 pinned: true
+carsonify: off
 ---
 
 ## Average household incomes... eh? That doesn't sound like what it feels like 

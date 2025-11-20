@@ -6,7 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "Gisborne council", "spending", "wealth inequality", "political economy", "active transport", "from local election campaign"] 
 isPost: true
 pinned: false
-carsonify: expressive
+carsonify: off
 ---
 
 ## If we want to lighten the load we all need to change 

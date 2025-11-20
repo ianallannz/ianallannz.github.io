@@ -6,7 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "wealth inequality", "system failure", "from local election campaign"]
 isPost: true
 pinned: false
-carsonify: fullon
+carsonify: off
 ---
 
 ## Some thoughts on the homeless 

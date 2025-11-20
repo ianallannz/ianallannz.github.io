@@ -1,75 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 .carson-render {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 4;
-  gap: 1rem;
-  position: relative;
-  min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 4;
+    gap: 1rem;
+    position: relative;
+    min-height: 100vh;
 }
 
 .carson-frag {
-  font-family: 'BespokeVariableFont', sans-serif;
-  mix-blend-mode: multiply;
-  transition: all 0.3s ease;
-  flex: 0 1 auto; /* allow fragments to size naturally */
+    font-family: "Public Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    mix-blend-mode: multiply;
+    transition: all 0.3s ease;
+    flex: 0 1 auto;
+    /* allow fragments to size naturally */
 }
 
 
 .carson-toggle-wrapper {
-  all: unset;
-  display: inline-block;
-  position: relative;
-  margin-bottom: 1rem;
-  z-index: 10;
+    all: unset;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1rem;
+    z-index: 10;
 }
 
 .carson-toggle {
-  appearance: none;
-  background-color: #FFFFFF;
-  color: #1100FF;
-  border: 2px solid #1100FF;
-  padding: 0.3rem 2rem 0.3rem 0.3rem; /* extra right padding for arrow */
-  font-size: 0.7rem;
-  font-family: 'Space Mono', monospace;
-  cursor: pointer;
-  border-radius: 0;
-  line-height: normal;
-  height: auto;
+    appearance: none;
+    background-color: #FFFFFF;
+    color: #1100FF;
+    border: 2px solid #1100FF;
+    padding: 0.3rem 2rem 0.3rem 0.3rem;
+    /* extra right padding for arrow */
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    border-radius: 0;
+    line-height: normal;
+    height: auto;
 
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231100FF'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-  background-size: 0.6rem;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231100FF'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 0.6rem;
 }
 
 .carson-toggle:focus {
-  outline: 2px dashed #fff;
-  outline-offset: 2px;
+    outline: 2px dashed #fff;
+    outline-offset: 2px;
 }
 
 .carson-frag.carson-img {
-  margin: 2rem auto;
-  flex-basis: 100%;
-  display: flex;
-  justify-content: center;
+    margin: 2rem auto;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .carson-frag.carson-img img {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  opacity: 0.8;
-  mix-blend-mode: multiply;
-  z-index: 2;
-  position: relative;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+    z-index: 2;
+    position: relative;
 }
 
 .related-posts {
-  flex-basis: 100%;
-  flex: 1;
-  position: relative;
-  z-index: 5;
+    flex-basis: 100%;
+    flex: 1;
+    position: relative;
+    z-index: 5;
 }
 
 .blog-post {
