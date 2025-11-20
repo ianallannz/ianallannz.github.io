@@ -82,3 +82,25 @@
 .blog-post {
     padding-right: 2rem !important;
 }
+
+.carson-render a {
+  color: #1100FF;
+  text-decoration: none;
+}
+
+/* Blink only on hover */
+.carson-render a:hover {
+  animation: blink 0.1s infinite;
+}
+
+/* Randomize blink speed per element */
+.carson-render a:nth-child(3n):hover { animation-duration: 0.3s; }
+.carson-render a:nth-child(4n):hover { animation-duration: 0.2s; }
+.carson-render a:nth-child(5n):hover { animation-duration: 0.4s; }
+.carson-render a:nth-child(6n):hover { animation-duration: 0.25s; }
+
+/* Blink keyframes */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.1; }
+}
