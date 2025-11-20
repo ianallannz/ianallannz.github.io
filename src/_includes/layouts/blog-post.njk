@@ -39,7 +39,7 @@
         {% include "profile.njk" %}
     </header>
     <main>
-        <section id="blog-post" class="blog-post">
+        <section id="blog-post" class="blog-post{% if not carsonify %} carsonify-off{% else %} carsonify-{{ carsonify }}{% endif %}">
             <article>
                 <p class="post-date">{{ date | date("d MMMM yyyy") }}</p>
                 {{ content | safe }}

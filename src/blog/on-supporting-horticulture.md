@@ -5,6 +5,8 @@ excerpt: During recent local elections I was asked to answer a few questions fro
 layout: blog-post.njk
 tags: ["blog", "gisborne economy", "from local election campaign"]
 isPost: true
+pinned: false
+carsonify: off
 ---
 
 ## I was asked a few questions from the Tairāwhiti Growers Association 

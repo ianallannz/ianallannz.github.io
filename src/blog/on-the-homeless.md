@@ -5,6 +5,8 @@ excerpt: A few thoughts on our homeless population.
 layout: blog-post.njk
 tags: ["blog", "wealth inequality", "system failure", "from local election campaign"]
 isPost: true
+pinned: false
+carsonify: fullon
 ---
 
 ## Some thoughts on the homeless 

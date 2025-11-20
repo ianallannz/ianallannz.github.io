@@ -5,6 +5,8 @@ excerpt: Our thoughts on climate change were captured when we recorded our GDC c
 layout: blog-post.njk
 tags: ["blog", "from local election campaign"]
 isPost: true
+pinned: false
+carsonify: fullon
 ---
 
 ## Pursuing place, not things

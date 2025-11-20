@@ -22,3 +22,15 @@ Images:
 ### To do for now
 
 - Welcome blog post
+- Carsonify v0.2
+  - use fonts in use
+  - 2rem right margin (or media query)
+  - variation in bold colour
+  - blinking links or similar
+  - tilt on some text
+- Carsonify v0.3
+  - duplicate images with big overlap
+    - or re-use a cropped part
+  - inject special characters, maybe use very large in behind
+  - inject an SVG line or two
+  - an additional collection of image artefacts that can be injected

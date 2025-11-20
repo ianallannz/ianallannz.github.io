@@ -5,6 +5,8 @@ excerpt: In my interview with Local Democracy Reporter Zita Campbell I touched o
 layout: blog-post.njk
 tags: ["blog", "gisborne economy", "from local election campaign"]
 isPost: true
+pinned: false
+carsonify: mild
 ---
 
 ## Bringing education, research, trusts, and industry together; and the problem with Joint Ventures 
