@@ -1624,7 +1624,6 @@ footer ul li a {
         flex-direction: row;
         padding-right: 30vw;
         width: calc(100vw - 1.8rem);
-        min-width: none;
         gap: 3rem;
         margin-top: 8rem;
         margin-right: 0rem;
@@ -1639,11 +1638,13 @@ footer ul li a {
     main section.blog-post article {
         order: 2;
         flex: 3;
+        max-width: 700px;
     }
 
     main section.blog-post .related-posts {
         order: 1;
         flex:1;
+        max-width: 300px;
         font-size: 1rem;
         margin-top: 0rem;
         padding-top: 0rem;

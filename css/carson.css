@@ -1,0 +1,60 @@
+.carson-render {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 4;
+  gap: 1rem;
+  position: relative;
+  min-height: 100vh;
+}
+
+.carson-frag {
+  font-family: 'BespokeVariableFont', sans-serif;
+  mix-blend-mode: multiply;
+  transition: all 0.3s ease;
+  flex: 0 1 auto; /* allow fragments to size naturally */
+}
+
+
+.carson-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+
+.carson-frag.carson-img {
+  margin: 2rem auto;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carson-frag.carson-img img {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  z-index: 2;
+  position: relative;
+}
+
+.related-posts {
+  flex-basis: 100%;
+  flex: 1;
+  width: 100%;
+  margin: 3rem 0 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-top: 2px solid #ccc;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 5;
+}
+
+.blog-post {
+    padding-right: 4rem !important;
+}
