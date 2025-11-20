@@ -23,8 +23,6 @@ Images:
 
 - Welcome blog post
 - Carsonify v0.2
-  - use fonts in use
-  - 2rem right margin (or media query)
   - variation in bold colour
   - blinking links or similar
   - tilt on some text
