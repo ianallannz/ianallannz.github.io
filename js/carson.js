@@ -247,7 +247,7 @@ function toggleCarsonMode() {
     let currentPreset = 'fullChaos'; // default
 
     const btn = document.createElement('button');
-    btn.textContent = 'Carson Mode';
+    btn.textContent = 'Carsonify v0.1';
     btn.className = 'carson-toggle';
     document.body.prepend(btn);
 
@@ -275,7 +275,7 @@ function toggleCarsonMode() {
                 document.querySelector('.carson-render')?.after(related);
             }
 
-            btn.textContent = `Readable Mode`;
+            btn.textContent = `Normal`;
         } else {
             // Restore original layout
             document.querySelector('.carson-render')?.remove();
@@ -294,7 +294,7 @@ function toggleCarsonMode() {
                 related.style.display = '';
             }
 
-            btn.textContent = `Carson Mode`;
+            btn.textContent = `Carsonify v0.1`;
         }
 
         active = !active;
