@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ['off', 'mild', 'expressive', 'fullon', 'brutalist'].forEach(preset => {
     const option = document.createElement('option');
     option.value = preset;
-    option.textContent = `Rewild internet: ${preset}`;
+    option.textContent = `The 90's: ${preset}`;
     if (preset === currentPreset) option.selected = true;
     select.appendChild(option);
   });
