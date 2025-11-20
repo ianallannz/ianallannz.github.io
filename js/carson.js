@@ -179,10 +179,12 @@ function styleFragment(el, frag, params) {
         link.textContent = frag.content;
         link.target = '_blank';
         link.style.fontVariationSettings = `'wght' ${500 + Math.random() * 300}`;
-        link.style.textDecoration = Math.random() < 0.5 ? 'underline' : 'none';
+        // link.style.textDecoration = Math.random() < 0.5 ? 'underline' : 'none';
+        link.style.textDecoration = 'underline';
         link.style.mixBlendMode = 'difference';
-        link.style.color = 'teal';
+        link.style.color = '#1100FF';
         link.style.fontWeight = '600';
+        link.style.fontFamily = 'Space Mono, monospace';
         el.appendChild(link);
     }
 
