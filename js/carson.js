@@ -14,13 +14,13 @@ const carsonPresets = {
         indentChaos: 0.4,
         overlapChaos: 0.3
     },
-    fullChaos: {
+    fullon: {
         fontVariation: 1.0,
         lineHeightChaos: 0.8,
         indentChaos: 0.7,
         overlapChaos: 0.6
     },
-    brutalistOverdrive: {
+    brutalist: {
         fontVariation: 1.2,
         lineHeightChaos: 1.0,
         indentChaos: 1.0,
@@ -241,76 +241,113 @@ function renderCarsonLayout(fragments, params) {
     document.querySelector('.blog-post').appendChild(container);
 }
 
-// 🔁 Toggle Carson Mode
-function toggleCarsonMode() {
-    let active = false;
-    let currentPreset = 'fullChaos'; // default
 
-    const btn = document.createElement('button');
-    btn.textContent = 'Carsonify v0.1';
-    btn.className = 'carson-toggle';
-    document.body.prepend(btn);
+document.addEventListener('DOMContentLoaded', () => {
+  const blogPost = document.querySelector('.blog-post');
+  const article = blogPost?.querySelector('article');
+  const related = document.querySelector('.related-posts');
+  const classList = blogPost?.classList || [];
+  let active = false;
 
-    btn.addEventListener('click', () => {
-        const article = document.querySelector('.blog-post article');
-        const related = document.querySelector('.related-posts');
+  // Extract preset from class
+  const presetClass = Array.from(classList).find(cls => cls.startsWith('carsonify-'));
+  let currentPreset = presetClass?.replace('carsonify-', '') || 'off';
 
-        if (!active) {
-            const fragments = extractFragments();
-            renderCarsonLayout(fragments, carsonPresets[currentPreset]);
+  // Create select dropdown
+  const select = document.createElement('select');
+  select.className = 'carson-toggle';
+  ['off', 'mild', 'expressive', 'fullon', 'brutalist'].forEach(preset => {
+    const option = document.createElement('option');
+    option.value = preset;
+    option.textContent = `Rewild internet: ${preset}`;
+    if (preset === currentPreset) option.selected = true;
+    select.appendChild(option);
+  });
 
-            // Hide original layout elements
-            if (article) {
-                article.style.visibility = 'hidden';
-                article.style.position = 'absolute';
-                article.style.left = '-9999px';
-            }
+  // Wrap the select in a container
+  const wrapper = document.createElement('div');
+  wrapper.className = 'carson-toggle-wrapper';
+  wrapper.appendChild(select);
 
-            // Float related-posts below Carson layout
-            if (related) {
-                related.style.visibility = '';
-                related.style.position = '';
-                related.style.left = '';
-                related.style.display = '';
-                document.querySelector('.carson-render')?.after(related);
-            }
+  // Insert toggle into article initially
+  if (article) {
+    article.prepend(wrapper);
+  }
 
-            btn.textContent = `Normal`;
-        } else {
-            // Restore original layout
-            document.querySelector('.carson-render')?.remove();
+  // Apply preset on load if not 'off'
+  if (currentPreset !== 'off') {
+    applyCarsonPreset(currentPreset);
+    active = true;
+  }
 
-            if (article) {
-                article.style.visibility = '';
-                article.style.position = '';
-                article.style.left = '';
-                article.style.display = '';
-            }
+  // Handle preset change
+  select.addEventListener('change', () => {
+    const newPreset = select.value;
+    removeCarsonLayout();
 
-            if (related) {
-                related.style.visibility = '';
-                related.style.position = '';
-                related.style.left = '';
-                related.style.display = '';
-            }
+    if (newPreset !== 'off') {
+      applyCarsonPreset(newPreset);
+      active = true;
+    } else {
+      // Reinsert toggle into article when returning to readable mode
+      if (article && !article.contains(wrapper)) {
+        document.querySelectorAll('.carson-toggle-wrapper').forEach(el => el.remove());
+        article.prepend(wrapper);
+      }
+      active = false;
+    }
 
-            btn.textContent = `Carsonify v0.1`;
-        }
+    currentPreset = newPreset;
+  });
 
-        active = !active;
-    });
+  function applyCarsonPreset(presetName) {
+    const fragments = extractFragments();
+    renderCarsonLayout(fragments, carsonPresets[presetName]);
 
-    // Optional: cycle presets on right-click
-    btn.addEventListener('contextmenu', e => {
-        e.preventDefault();
-        const keys = Object.keys(carsonPresets);
-        const index = keys.indexOf(currentPreset);
-        currentPreset = keys[(index + 1) % keys.length];
-        if (!active) {
-            btn.textContent = `Carson Mode: ${capitalize(currentPreset)}`;
-        }
-    });
-}
+    // Hide original article
+    if (article) {
+      article.style.visibility = 'hidden';
+      article.style.position = 'absolute';
+      article.style.left = '-9999px';
+    }
+
+    // Show related posts
+    if (related) {
+      related.style.visibility = '';
+      related.style.position = '';
+      related.style.left = '';
+      related.style.display = '';
+    }
+
+    // Move toggle into .carson-render
+    const container = document.querySelector('.carson-render');
+    if (container && !container.contains(wrapper)) {
+      document.querySelectorAll('.carson-toggle-wrapper').forEach(el => el.remove());
+      container.prepend(wrapper);
+    }
+
+    // Reattach related posts below Carson layout
+    container?.after(related);
+  }
+
+  function removeCarsonLayout() {
+    document.querySelector('.carson-render')?.remove();
+
+    if (article) {
+      article.style.visibility = '';
+      article.style.position = '';
+      article.style.left = '';
+      article.style.display = '';
+    }
+
+    if (related) {
+      related.style.visibility = '';
+      related.style.position = '';
+      related.style.left = '';
+      related.style.display = '';
+    }
+  }
+});
 
 
 function capitalize(str) {
@@ -318,4 +355,4 @@ function capitalize(str) {
 }
 
 // 🚀 Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', toggleCarsonMode);
+// document.addEventListener('DOMContentLoaded', toggleCarsonMode);
