@@ -166,10 +166,10 @@ function styleFragment(el, frag, params) {
         img.src = frag.src;
         img.alt = frag.alt || '';
         img.style.width = '100%';
-        img.style.maxWidth = '400px';
+        img.style.maxWidth = '600px';
         img.style.marginTop = `${(Math.random() - 0.5) * 100}px`;
         img.style.marginLeft = `${(Math.random() - 0.5) * 100}px`;
-        img.style.opacity = '0.7';
+        img.style.opacity = '0.9';
         img.style.mixBlendMode = 'multiply';
         img.style.position = 'relative';
         img.style.zIndex = '1';
@@ -253,21 +253,22 @@ function styleFragment(el, frag, params) {
         el.style.marginTop = `-${Math.random() * 40}px`;
     }
 
+    const r = Math.floor(Math.random() * 100);
+    const g = Math.floor(Math.random() * 100);
+    const b = Math.floor(Math.random() * 100);
+
     // Emphasis styling
     if (frag.type === 'strong') {
-        el.style.fontVariationSettings = `'wght' ${weight*1.5}, 'wdth' ${width}`;
+        el.style.fontVariationSettings = `'wght' ${weight * 1.5}, 'wdth' ${width}`;
 
         // el.style.fontWeight = '900';
         el.style.textTransform = 'uppercase';
-
-        const g = Math.floor(Math.random() * 100);
-        const b = Math.floor(Math.random() * 100);
         el.style.color = `rgb(200, ${g}, ${b})`;
     }
 
     if (frag.type === 'em') {
         el.style.fontStyle = 'italic';
-        el.style.color = 'darkslateblue';
+        el.style.color = `rgb(${r}, ${g}, 150)`;
     }
 
     // Heading styling
