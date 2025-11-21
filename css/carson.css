@@ -64,7 +64,7 @@
 .carson-frag.carson-img img {
     display: block;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     height: auto;
     opacity: 0.8;
     mix-blend-mode: multiply;
@@ -105,6 +105,3 @@
   50% { opacity: 0.1; }
 }
 
-.carson-frag.carson-a.direct-link {
-  display: none;
-}
