@@ -41,7 +41,9 @@ So while I'm **helping you professionally** in an extraordinary ordinary way, I'
 
 ### Thank God it's Monday
 
-Thanks wading down here to experience a little rewilding of the web. 
+Thanks for wading down here to experience a little rewilding of the web. 
+
+![Carson-like texture](../../images/blog-black-abstract.jpg)
 
 Meanwhile, I'll see you out there for the extraordinary ordinary, [let's talk!](/work)
 
