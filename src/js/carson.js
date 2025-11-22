@@ -8,7 +8,8 @@ const carsonPresets = {
         indentChaos: 0.1,
         letterSpacingChaos: 0.2,
         tiltChaos: 0.1,
-        overlapChaos: 0.1
+        overlapChaos: 0.1,
+        imageChaos: 0.1
     },
     expressive: {
         fontVariation: 0.7,
@@ -16,7 +17,8 @@ const carsonPresets = {
         indentChaos: 0.4,
         letterSpacingChaos: 0.4,
         tiltChaos: 0.3,
-        overlapChaos: 0.3
+        overlapChaos: 0.3,
+        imageChaos: 0.3
     },
     fullon: {
         fontVariation: 1.0,
@@ -24,7 +26,8 @@ const carsonPresets = {
         indentChaos: 0.7,
         letterSpacingChaos: 0.6,
         tiltChaos: 0.4,
-        overlapChaos: 0.6
+        overlapChaos: 0.6,
+        imageChaos: 0.5
     },
     brutalist: {
         fontVariation: 1.2,
@@ -32,7 +35,8 @@ const carsonPresets = {
         letterSpacingChaos: 0.8,
         indentChaos: 1.0,
         tiltChaos: 0.5,
-        overlapChaos: 0.9
+        overlapChaos: 0.9,
+        imageChaos: 0.8
     }
 };
 
@@ -183,6 +187,38 @@ function styleFragment(el, frag, params) {
         } else {
             el.appendChild(img);
         }
+
+        // Create a fragment container
+        const fragDiv = document.createElement('div');
+        fragDiv.style.position = 'absolute';
+        fragDiv.style.zIndex = 0; // behind text
+        fragDiv.style.overflow = 'hidden';
+
+        // Random size based on chaos
+        const maxW = 1200;
+        const maxH = 800;
+        const chaosFactor = params.imageChaos; // 0 → tame, 1 → wild
+        const width = Math.floor((0.3 + chaosFactor * 0.5) * maxW);   // 50–100% of max
+        const height = Math.floor((0.3 + chaosFactor * 0.5) * maxH);  // 50–100% of max
+        fragDiv.style.width = width + 'px';
+        fragDiv.style.height = height + 'px';
+
+        // Random placement (can bleed off screen)
+        fragDiv.style.top = `${Math.random() * 100}%`;
+        fragDiv.style.left = `${(Math.random() * 120 - 20)}%`;
+
+        // Background image with random scaling
+        const scaleMin = 2; // minimum double size
+        const scaleFactor = scaleMin + chaosFactor * 3; // up to 5×
+        fragDiv.style.backgroundImage = `url(${frag.src})`;
+        fragDiv.style.backgroundRepeat = 'no-repeat';
+        fragDiv.style.backgroundSize = `${scaleFactor * 100}% auto`;
+        fragDiv.style.backgroundPosition = `${Math.random() * 100}% ${Math.random() * 100}%`;
+        fragDiv.style.opacity = 0.5;
+
+        // Append to post container
+        el.appendChild(fragDiv);
+
     }
 
     // Anchor text
@@ -247,7 +283,8 @@ function styleFragment(el, frag, params) {
     el.style.lineHeight = `${1 + (Math.random() - 0.5) * params.lineHeightChaos}`;
     el.style.marginLeft = `${(Math.random() - 0.5) * 100 * params.indentChaos}px`;
     el.style.position = 'relative';
-    el.style.zIndex = Math.floor(Math.random() * 10);
+    el.style.zIndex = Math.floor(Math.random() * 10) + 2;
+    el.style.mixBlendMode = 'multiply';
 
     if (Math.random() < params.overlapChaos) {
         el.style.marginTop = `-${Math.random() * 40}px`;

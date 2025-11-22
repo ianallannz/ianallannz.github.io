@@ -22,8 +22,6 @@ Images:
 ### To do for now
 
 - Welcome blog post
-- carson.js v0.2.2
-  - generally less margin on mobile
 - carson.js v0.3
   - re-use a cropped part of an img for random zoome placement
 - carson.js v0.4
