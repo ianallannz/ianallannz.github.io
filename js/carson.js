@@ -20,7 +20,7 @@ const carsonPresets = {
         overlapChaos: 0.3,
         imageChaos: 0.3
     },
-    fullon: {
+    cranked: {
         fontVariation: 1.0,
         lineHeightChaos: 0.8,
         indentChaos: 0.7,
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create select dropdown
     const select = document.createElement('select');
     select.className = 'carson-toggle';
-    ['off', 'mild', 'expressive', 'fullon', 'brutalist'].forEach(preset => {
+    ['off', 'mild', 'expressive', 'cranked', 'brutalist'].forEach(preset => {
         const option = document.createElement('option');
         option.value = preset;
         option.textContent = `So 90's: ${preset} 🙂`;
