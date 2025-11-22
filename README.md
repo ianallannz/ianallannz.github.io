@@ -29,6 +29,7 @@ Images:
 ### To do for now
 
 - carson.js v0.4
+  - handle data-tooltips on links
   - inject special characters, maybe use very large in behind
   - inject an SVG line or two
   - support an additional collection of image artefacts that can be injected

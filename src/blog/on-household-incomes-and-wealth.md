@@ -5,7 +5,7 @@ excerpt: I heard questions raised about average income statistics in the final c
 layout: blog-post.njk
 tags: ["blog", "political economy", "wealth inequality", "system failure", "from local election campaign"]
 isPost: true
-pinned: true
+pinned: false
 carsonify: off
 ---
 
