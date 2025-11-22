@@ -22,13 +22,11 @@ Images:
 ### To do for now
 
 - Welcome blog post
-- Carsonify v0.2
-  - variation in bold colour
-  - blinking links or similar
-  - tilt on some text
-- Carsonify v0.3
-  - duplicate images with big overlap
-    - or re-use a cropped part
+- carson.js v0.2.2
+  - generally less margin on mobile
+- carson.js v0.3
+  - re-use a cropped part of an img for random zoome placement
+- carson.js v0.4
   - inject special characters, maybe use very large in behind
   - inject an SVG line or two
   - an additional collection of image artefacts that can be injected

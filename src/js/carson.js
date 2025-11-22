@@ -292,8 +292,12 @@ function styleFragment(el, frag, params) {
     }
 
 
-    // Layout chaos
-    el.style.flexBasis = `${30 + Math.random() * 40}%`;
+    // Layout chaos with mobile adjustment
+    const isMobile = window.innerWidth < 600;
+    const minBasis = isMobile ? 60 : 30;  // on mobile, keep wider
+    const maxBasis = isMobile ? 100 : 70; // on mobile, avoid narrow slivers
+
+    el.style.flexBasis = `${minBasis + Math.random() * (maxBasis - minBasis)}%`;
     el.style.alignSelf = Math.random() < 0.5 ? 'flex-start' : 'flex-end';
 }
 
