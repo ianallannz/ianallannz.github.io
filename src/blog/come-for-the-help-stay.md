@@ -13,7 +13,7 @@ carsonify: expressive
 
 ### Wait, stop right there!
 
-Before we go any further, this is **so 90's**. I've been re-reading an old <a href="https://www.davidcarsondesign.com/" target="_blank" data-tooltip="The most influential designer of the 90's and by my reckoning soon to be again as we react allergically to AI." class="popout tooltip">David Carson</a> book of mine recently. **Carson says some important things about intuition**, professionally, that I will explore in future posts.
+Before we go any further, this is **so 90's**. I've been re-reading an old <a href="https://www.davidcarsondesign.com/" target="_blank" data-tooltip="The most influential designer of the 90's and by my reckoning soon to be again as we react allergically to AI." class="popout tooltip">David Carson</a> book of mine recently. **Carson says some important things about professional intuition** that I will explore in future posts.
 
 ![Photo from David Carson's book Second Sight](../../images/blog-carson-book-image.jpg)
 
