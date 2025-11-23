@@ -27,7 +27,7 @@ I'll release it as a standalone library on Github soon.
 
 Welcome to my new corner on the web! 
 
-I'm here and you're here to [see where I can help professionally](/#services). I do do [extraordinary ordinary work](/work) and you'll have noticed that this site is a bit of an off-kilter experience.
+I'm here and you're here to [see where I can help professionally](/#services). I do do [extraordinary ordinary work](/work) and you'll have also noticed that this site is a bit of an off-kilter experience.
 
 I'm one of those **OG web creators** who emerged as the web was invented by the glorious Sir Tim Berners-Lee. <a href="https://thisisforeveryone.timbl.com/" target="_blank" data-tooltip="Easy-to-read memoir of Sir Tim Berners-Lee, the inventor of the web. What he has to say about the state of the web and his vision should be taken on board by anyone who cares about positive human flourishing." class="popout tooltip">Read his book!</a>
 
