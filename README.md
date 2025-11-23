@@ -30,6 +30,7 @@ Images:
 
 - carson.js v0.4
   - handle data-tooltips on links
+  - handle #modal popups
   - inject special characters, maybe use very large in behind
   - inject an SVG line or two
   - support an additional collection of image artefacts that can be injected

@@ -17,13 +17,17 @@ Before we go any further, this is **so 90's**. I've been re-reading an old <a hr
 
 ![Photo from David Carson's book Second Sight](../../images/blog-carson-book-image.jpg)
 
-Experiencing that book, and Carson's work again, inspired me to algorithmically create Carson-like experiences online. So that's what you're seeing in its early stages here with *"So 90's"*. You can turn off or play with So 90's up ^ there 🙂.
+Experiencing that book and Carson's work again inspired me to try **algorithmically creating Carson-like layouts**. So that's what you're seeing here with *"So 90's"*; it's early days. 
+
+It can be wild so you can turn off "So 90's" or play with it up ^ there 🙂. It's different every time. 
+
+I'll release it as a standalone library on Github soon.
 
 ### Back to business...
 
-Welcome to my new corner on the web, thanks for dropping in. 
+Welcome to my new corner on the web! 
 
-Yes, I'm here and you're here to [see where I can help professionally](/#services). I do do [extraordinary ordinary work](/work) and you'll have noticed that this is also a bit of an off-kilter experience.
+I'm here and you're here to [see where I can help professionally](/#services). I do do [extraordinary ordinary work](/work) and you'll have noticed that this site is a bit of an off-kilter experience.
 
 I'm one of those **OG web creators** who emerged as the web was invented by the glorious Sir Tim Berners-Lee. <a href="https://thisisforeveryone.timbl.com/" target="_blank" data-tooltip="Easy-to-read memoir of Sir Tim Berners-Lee, the inventor of the web. What he has to say about the state of the web and his vision should be taken on board by anyone who cares about positive human flourishing." class="popout tooltip">Read his book!</a>
 
@@ -31,11 +35,11 @@ I'm one of those **OG web creators** who emerged as the web was invented by the 
 
 #### In love with the human spirit
 
-For a quite while now I've lamented how the **very human ingenuity** in web design, graphic design, and even interior design has been pushed down by **social media and SEO algorithms, and now AI producing efficiency and homogenisation**. 
+For a quite while now I've lamented how the **very human eccentricities** in web design, graphic design, and even interior design have been mostly **neutered by social media and SEO algorithms (and now LLMs) in the name of efficiency and homogenisation**. 
 
 ![Carson-like texture](../../images/blog-pink-abstract.jpg)
 
-We're also losing our resiliency and our soveriegnty online. It's nothing new to say we've become dependent on bigtech platforms, often compulsively even *resentfully* so. 
+We're also losing our resiliency and our soveriegnty online. It's nothing new to say we've become dependent on bigtech platforms, often compulsively, even *resentfully*. 
 
 So while I'm **helping you professionally** in an extraordinary ordinary way, I'll also be pursuing a <a href="https://www.noemamag.com/we-need-to-rewild-the-internet/" target="_blank" data-tooltip="Our online spaces are not ecosystems, though tech firms love that word. They’re plantations..." class="popout tooltip">rewilding of the internet</a>, definitely personally, but all going well as a commercial venture too.
 
@@ -45,7 +49,7 @@ Thanks for wading down here to experience a little rewilding of the web.
 
 ![Carson-like texture](../../images/blog-black-abstract.jpg)
 
-Meanwhile, I'll see you out there for the extraordinary ordinary, [let's talk!](/work)
+Meanwhile, I'll see you out there for the extraordinary ordinary; [let's talk!](/work)
 
 
 
