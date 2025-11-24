@@ -39,7 +39,7 @@ For a quite while now I've lamented how the **very human eccentricities** in web
 
 ![Carson-like texture](../../images/blog-pink-abstract.jpg)
 
-We're also losing our resiliency and our soveriegnty online. It's nothing new to say we've become dependent on bigtech platforms, often compulsively, even *resentfully*. 
+We're also losing our resiliency and our sovereignty online. It's nothing new to say we've become dependent on bigtech platforms, often compulsively, even *resentfully*. 
 
 So while I'm **helping you professionally** in an extraordinary ordinary way, I'll also be pursuing a <a href="https://www.noemamag.com/we-need-to-rewild-the-internet/" target="_blank" data-tooltip="Our online spaces are not ecosystems, though tech firms love that word. They’re plantations..." class="popout tooltip">rewilding of the internet</a>, definitely personally, but all going well as a commercial venture too.
 
