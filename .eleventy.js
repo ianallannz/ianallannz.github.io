@@ -1,46 +1,34 @@
+// .eleventy.js
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import { DateTime } from "luxon";
+import slugify from "slugify";
 
-
-module.exports = function (eleventyConfig) {
-  const markdownIt = require("markdown-it");
-  const markdownItAnchor = require("markdown-it-anchor");
-  const { DateTime } = require("luxon");
-
+export default function(eleventyConfig) {
   const md = markdownIt({ html: true, linkify: true })
     .use(markdownItAnchor, { permalink: true, permalinkClass: "direct-link", permalinkSymbol: "#" });
 
-  // make a Nunjucks filter to render Markdown
-  eleventyConfig.addNunjucksFilter("markdown", function (value) {
-    return md.render(String(value || ""));
-  });
-
+  // Markdown filter
+  eleventyConfig.addNunjucksFilter("markdown", value => md.render(String(value || "")));
   eleventyConfig.setLibrary("md", md);
 
+  // Slug filter
+  eleventyConfig.addFilter("slug", input => slugify(input, { lower: true, strict: true }));
 
-  // tidy consisten blog urls
-  const slugify = require("slugify");
-
-  eleventyConfig.addFilter("slug", function (input) {
-    return slugify(input, { lower: true, strict: true });
-  });
-
-
-  // Set fixed blog number counts to posts
-  eleventyConfig.addCollection("blogWithNumbers", function (collectionApi) {
-    return collectionApi.getFilteredByTag("blog").map((item, index) => {
+  // Blog collections
+  eleventyConfig.addCollection("blogWithNumbers", collectionApi =>
+    collectionApi.getFilteredByTag("blog").map((item, index) => {
       item.data.postNumber = index + 1;
       return item;
-    });
-  });
+    })
+  );
 
-  // Get pinned post
-  eleventyConfig.addCollection("pinnedPost", function (collectionApi) {
-    return collectionApi.getFilteredByTag("blog").find(post => post.data.pinned);
-  });
+  eleventyConfig.addCollection("pinnedPost", collectionApi =>
+    collectionApi.getFilteredByTag("blog").find(post => post.data.pinned)
+  );
 
-  // Build tag list without blog
-  eleventyConfig.addCollection("tagList", function (collectionApi) {
+  eleventyConfig.addCollection("tagList", collectionApi => {
     const tagMap = new Map();
-
     collectionApi.getAll().forEach(item => {
       let tags = item.data.tags;
       if (Array.isArray(tags)) {
@@ -51,19 +39,12 @@ module.exports = function (eleventyConfig) {
         });
       }
     });
-
-    // Convert to array and sort by post count descending
-    return [...tagMap.entries()]
-      .sort((a, b) => b[1] - a[1]) // sort by count
-      .map(entry => entry[0]);     // return just the tag names
+    return [...tagMap.entries()].sort((a, b) => b[1] - a[1]).map(entry => entry[0]);
   });
 
-
-  // Build related posts collection for each post
-  eleventyConfig.addCollection("relatedPostMap", function (collectionApi) {
+  eleventyConfig.addCollection("relatedPostMap", collectionApi => {
     const posts = collectionApi.getFilteredByTag("blog");
     const map = new Map();
-
     posts.forEach(post => {
       const thisTags = Array.isArray(post.data.tags) ? post.data.tags : [post.data.tags];
       const filteredThisTags = thisTags.filter(tag => tag !== "blog");
@@ -73,12 +54,8 @@ module.exports = function (eleventyConfig) {
         .map(other => {
           const otherTags = Array.isArray(other.data.tags) ? other.data.tags : [other.data.tags];
           const filteredOtherTags = otherTags.filter(tag => tag !== "blog");
-
           const shared = filteredThisTags.filter(tag => filteredOtherTags.includes(tag));
-          return {
-            post: other,
-            score: shared.length,
-          };
+          return { post: other, score: shared.length };
         })
         .filter(entry => entry.score > 0)
         .sort((a, b) => b.score - a.score)
@@ -86,27 +63,20 @@ module.exports = function (eleventyConfig) {
 
       map.set(post.url, related);
     });
-
     return map;
   });
 
-
-
-
-
   // Date filter
+  eleventyConfig.addFilter("date", (dateObj, format = "dd LLLL yyyy") =>
+    DateTime.fromJSDate(dateObj).toFormat(format)
+  );
 
-  eleventyConfig.addFilter("date", (dateObj, format = "dd LLLL yyyy") => {
-    return DateTime.fromJSDate(dateObj).toFormat(format);
-  });
 
-
-  // Copy static assets
+  // Passthrough copies
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
 
-  // Default layout settings
   return {
     dir: {
       input: "src",
@@ -119,4 +89,4 @@ module.exports = function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk"
   };
-};
+}

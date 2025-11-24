@@ -17,5 +17,6 @@
   },
   "dependencies": {
     "@fontsource/commit-mono": "^5.2.5"
-  }
+  },
+  "type": "module"
 }

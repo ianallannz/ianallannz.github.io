@@ -1,0 +1,23 @@
+---
+permalink: /feed.xml
+layout: false
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Ian Allan: Venture designer and ethical technologist</title>
+    <link>https://ianallannz.github.io</link>
+    <description>Latest posts from Ian Allan</description>
+
+    {% for post in collections.blog | reverse %}
+      <item>
+        <title>{{ post.data.title }}</title>
+        <link>hhttps://ianallannz.github.io{{ post.url }}</link>
+        <guid isPermaLink="true">https://ianallannz.github.io{{ post.url }}</guid>
+        <pubDate>{{ post.date | date("EEE, dd MMM yyyy HH:mm:ss 'GMT'") }}</pubDate>
+        <description><![CDATA[{{ post.data.excerpt }}]]></description>
+      </item>
+    {% endfor %}
+  </channel>
+</rss>
