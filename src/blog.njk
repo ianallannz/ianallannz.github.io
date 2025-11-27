@@ -25,7 +25,7 @@ excerpt: "The blog of Ian Allan, an ongoing reflection on rewilding the internet
 
     <section id="posts" class="posts">
         <div class="posts-list">
-            <h2>## All</h2>
+            <h2 class="rss"><span>## All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
             {% for post in collections.blogWithNumbers | reverse %}
             <article class="post-preview">
                 <h2>{{ post.data.postNumber }}. <a href="{{ post.url }}">{{ post.data.title }}</a></h2>

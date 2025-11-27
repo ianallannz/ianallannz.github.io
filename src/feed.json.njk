@@ -1,0 +1,23 @@
+---
+permalink: /feed.json
+layout: false
+eleventyExcludeFromCollections: true
+---
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Ian Allan: Venture designer and ethical technologist",
+  "home_page_url": "https://ianallannz.github.io",
+  "feed_url": "https://ianallannz.github.io/feed.json",
+  "description": "Latest posts from Ian Allan",
+  "items": [
+    {% for post in collections.blog | reverse %}
+    {
+      "id": "https://ianallannz.github.io{{ post.url }}",
+      "url": "https://ianallannz.github.io{{ post.url }}",
+      "title": {{ post.data.title | dump }},
+      "content_html": {{ post.data.excerpt | dump }},
+      "date_published": "{{ post.date | date("yyyy-MM-dd'T'HH:mm:ssXXX") }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
