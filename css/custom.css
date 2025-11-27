@@ -548,6 +548,36 @@ main section.posts .posts-list .post-preview p.post-date {
     padding-bottom: 0.2rem;
 }
 
+main section.posts .posts-list h2.rss {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+}
+
+main section.posts .posts-list h2.rss a {
+    text-decoration: none;
+    color:#1100FF;
+    text-align: right;
+}
+
+main section.posts .posts-list h2.rss a:hover {
+    text-decoration: underline;
+}
+
+main section.posts .posts-list h2.rss .rss-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+}
+
+main section.posts .posts-list h2.rss .rss-text {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.3rem;
+}
+
 main section p {
     padding-bottom: 1rem;
 }
@@ -938,7 +968,6 @@ a.locked::after {
     cursor: help;
 }
 
-/* Tooltip box */
 span.infotip::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -1742,6 +1771,12 @@ footer ul li a {
         z-index: 10;
     }
 
+    main section.posts .posts-list h2.rss a.tooltip::before {
+        width: 400px;
+        text-align: left;
+        right: 0;
+        left: auto;
+    }
     /* Show on hover */
     a.tooltip:hover::before {
         opacity: 1;
