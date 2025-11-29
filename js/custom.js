@@ -100,7 +100,8 @@ const workHowData = [
     { id: 6, how_copy: "How do you present curent and future value to attract $XXm from a SE Asian conglomerate?" },
     { id: 7, how_copy: "How do you create an app for street merchants who take cash and have informal supply lines?" },
     { id: 8, how_copy: "How do you propose a reimagined social content platform for the MOE after you failed with the product you led?" },
-    { id: 9, how_copy: "How do you wrap reliable group assessment around experiential learning?" }
+    { id: 9, how_copy: "How do you wrap reliable group assessment around experiential learning?" },
+    { id: 10, how_copy: "What question do you need answered?" }
 ];
 
 

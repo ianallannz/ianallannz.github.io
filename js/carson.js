@@ -1,5 +1,8 @@
 // carson.js
 
+// Options: bottom-fixed, top-of-post
+const carsonMenuPosition = 'bottom-fixed';
+
 // Parameters for Carson Mode
 const carsonPresets = {
     mild: {
@@ -39,7 +42,6 @@ const carsonPresets = {
         imageChaos: 0.8
     }
 };
-
 
 function extractFragments() {
     const section = document.querySelector('.blog-post');
@@ -367,6 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const presetClass = Array.from(classList).find(cls => cls.startsWith('carsonify-'));
     let currentPreset = presetClass?.replace('carsonify-', '') || 'off';
 
+    // Check querystring override (?c=0)
+    const params = new URLSearchParams(window.location.search);
+    const queryOverride = params.get('c');
+    if (queryOverride === '0') {
+        currentPreset = 'off';
+    }
+
     // Create select dropdown
     const select = document.createElement('select');
     select.className = 'carson-toggle';
@@ -383,10 +392,26 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapper.className = 'carson-toggle-wrapper';
     wrapper.appendChild(select);
 
-    // Insert toggle into article initially
-    if (article) {
-        article.prepend(wrapper);
+    // Helper: place toggle depending on menu position, with blink
+    function placeToggle() {
+        document.querySelectorAll('.carson-toggle-wrapper').forEach(el => el.remove());
+
+        if (carsonMenuPosition === 'top-of-post' && article) {
+            article.prepend(wrapper);
+        } else if (carsonMenuPosition === 'bottom-fixed') {
+            wrapper.classList.add('carson-toggle-fixed');
+            document.body.appendChild(wrapper);
+        }
+
+        // Trigger blink
+        wrapper.classList.add('carson-select-blink');
+        wrapper.addEventListener('animationend', () => {
+            wrapper.classList.remove('carson-select-blink');
+        }, { once: true });
     }
+
+    // Initial placement
+    placeToggle();
 
     // Apply preset on load if not 'off'
     if (currentPreset !== 'off') {
@@ -394,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         active = true;
     }
 
-    // Handle preset change
+    // Handle preset change (ignores querystring after first load)
     select.addEventListener('change', () => {
         const newPreset = select.value;
         removeCarsonLayout();
@@ -403,11 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
             applyCarsonPreset(newPreset);
             active = true;
         } else {
-            // Reinsert toggle into article when returning to readable mode
-            if (article && !article.contains(wrapper)) {
-                document.querySelectorAll('.carson-toggle-wrapper').forEach(el => el.remove());
-                article.prepend(wrapper);
-            }
+            placeToggle();
             active = false;
         }
 
@@ -418,14 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragments = extractFragments();
         renderCarsonLayout(fragments, carsonPresets[presetName]);
 
-        // Hide original article
         if (article) {
             article.style.visibility = 'hidden';
             article.style.position = 'absolute';
             article.style.left = '-9999px';
         }
 
-        // Show related posts
         if (related) {
             related.style.visibility = '';
             related.style.position = '';
@@ -433,14 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
             related.style.display = '';
         }
 
-        // Move toggle into .carson-render
-        const container = document.querySelector('.carson-render');
-        if (container && !container.contains(wrapper)) {
-            document.querySelectorAll('.carson-toggle-wrapper').forEach(el => el.remove());
-            container.prepend(wrapper);
-        }
+        placeToggle();
 
-        // Reattach related posts below Carson layout
+        const container = document.querySelector('.carson-render');
         container?.after(related);
     }
 
