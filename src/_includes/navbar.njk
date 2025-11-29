@@ -1,7 +1,21 @@
 {# _includes/navbar.njk #}
+{% set latestPost = collections.pinnedPost %}
 <nav>
+    <div class="nav-left">
+        <ul class="menu-left">
+    
+            <li class="latest-post">
+                {% if page.url!='/blog/' %}
+                <span class="scroll-text">Latest: <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></span>
+            {% endif %}
+
+            </li>
+        </ul>
+    </div>
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
+
+    
     {% include "navlinks.njk" %}
 </nav>

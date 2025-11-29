@@ -5,7 +5,7 @@ excerpt: "I'm here — very locally — to help, but also to do my little bit to
 layout: blog-post.njk
 tags: ["blog", "rewilding", "professional services", "graphic design", "social media"] 
 isPost: true
-pinned: true
+pinned: false
 carsonify: expressive
 ---
 

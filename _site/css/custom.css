@@ -22,9 +22,8 @@ body {
 nav {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav .hamburger {
@@ -34,6 +33,51 @@ nav .hamburger {
     border: none;
     cursor: pointer;
     z-index: 2;
+}
+
+nav .nav-left {
+  display: flex;
+}
+
+nav .nav-left .menu-left {
+    list-style: none;
+    padding-left: 1.3rem;
+}
+
+nav .nav-left .menu-left li {
+    width: 80vw;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+nav .nav-left .menu-left li .scroll-text {
+    display: inline-block;
+    padding-left: 100%; /* start off to the right */
+    animation: scroll-title 18s linear infinite;
+}
+
+nav .nav-left .menu-left li a {
+    color: #1100FF;
+    text-decoration: underline;
+}
+
+nav .nav-left .menu-left li a:hover {
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+nav .nav-left .menu-left li .scroll-text:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-title {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 nav .menu {
@@ -1344,6 +1388,14 @@ footer ul li a {
 
     nav .hamburger {
         display: none;
+    }
+
+    nav .nav-left .menu-left li {
+        width: 40vw;
+    }
+
+    nav .nav-left .menu-left li .scroll-text {
+        animation: scroll-title 30s linear infinite;
     }
 
     nav .menu {

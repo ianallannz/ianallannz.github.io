@@ -5,7 +5,7 @@ excerpt: "Digesting the resonant takeaways from Tim Berners-Lee's book This is f
 layout: blog-post.njk
 tags: ["blog", "rewilding", "online sovereignty", "future of work", "social media"] 
 isPost: true
-pinned: false
+pinned: true
 carsonify: mild
 ---
 
