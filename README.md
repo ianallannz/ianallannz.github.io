@@ -26,9 +26,15 @@ Images:
 - At the moment it's a little intertwined with my site but I'll soon productise it so anyone can drop it into a page.
 - My 11ty build lets me set whether a blog post is "carsonified" by default or not, and if so, how extremely
 
-### To do for now
+>"I had known for a while that something was wrong with the web. What was intended to be a tool for creativity and collaboration had become divisive, polarizing and toxic. I had often talked publicly of the two Cs of the web: creativity and collaboration. After 2016, I began to talk of a third C: compassion..."
+-- TB-L
 
-- carson.js v0.4
+>"This organic, emergent structure of the early web was a fragile thing of beauty and I was greatly impressed by it. Unfortunately, it doesn't much resemble the web of today"
+-- TB-L 
+
+
+### To do for now
+- carson.js v0.5
   - handle data-tooltips on links
   - handle #modal popups
   - inject special characters, maybe use very large in behind
@@ -36,3 +42,6 @@ Images:
   - support an additional collection of image artefacts that can be injected
 - carson.js v1.0
   - standalone with settings to enable it to be applied to content within any element
+
+
+

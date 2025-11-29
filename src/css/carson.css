@@ -54,6 +54,13 @@
     outline-offset: 2px;
 }
 
+.carson-toggle-fixed {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999; /* keep it above layouts */
+}
+
 .carson-frag.carson-img {
     margin: 2rem auto;
     flex-basis: 100%;
@@ -93,6 +100,10 @@
   animation: blink 0.1s infinite;
 }
 
+.carson-select-blink {
+  animation: select-blink 0.2s ease-in-out 3; /* 3 blinks */
+}
+
 /* Randomize blink speed per element */
 .carson-render a:nth-child(3n):hover { animation-duration: 0.3s; }
 .carson-render a:nth-child(4n):hover { animation-duration: 0.2s; }
@@ -103,5 +114,10 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.1; }
+}
+
+@keyframes select-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
