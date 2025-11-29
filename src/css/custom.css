@@ -22,8 +22,8 @@ body {
 nav {
     position: relative;
     display: flex;
-  justify-content: space-between;
-  align-items: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav .hamburger {
@@ -45,7 +45,7 @@ nav .nav-left .menu-left {
 }
 
 nav .nav-left .menu-left li {
-    width: 80vw;
+    width: calc(100vw - 5rem);
     overflow: hidden;
     white-space: nowrap;
     position: relative;
