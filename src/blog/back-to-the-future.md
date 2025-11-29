@@ -78,7 +78,8 @@ I'm using my time:
 - Supporting and building sovereign technology and ventures. 
 - Taking ownership of our corners of the web and our online identities. 
 - Delighting one another with whimsical creations not made for the likes. 
-- Advocating for learning useful long-term skills. 
 - Providing tools to help us get off bigtech.
 - And offline.
-- To live like it's the 90's and early noughties without nostalgia, for real.  
+- Advocating for learning useful long-term skills. 
+- Advocating for a fair politcal economy for our rangatahi.
+- **To live like it's the 90's and early noughties without nostalgia, for real.**
