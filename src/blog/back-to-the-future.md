@@ -11,13 +11,15 @@ carsonify: mild
 
 ## Where are we going?
 
-### The scene
+### It's right to be worried
 
 <a title="Gage Skidmore from Surprise, AZ, United States of America, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Peter_Thiel_(51875328132).jpg"><img width="512" alt="Peter Thiel (51875328132)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Peter_Thiel_%2851875328132%29.jpg/512px-Peter_Thiel_%2851875328132%29.jpg?20220212051622" class="float-lg"></a>When Peter Thiel &mdash; one of the most quietly powerful people on the planet &mdash; thinks **technological progress should reduce reliance on human labour**, we should listen.
 
 <a title="Tyler Cowen, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Tyler_Cowen_1.jpg"><img width="256" alt="Tyler Cowen 1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tyler_Cowen_1.jpg/256px-Tyler_Cowen_1.jpg?20070814221349" class="float-lg"></a>When Tyler Cowen &mdash; a favourite economist among the techbro elite &mdash; thinks **labour is a tax on productivity**, we should listen.
 
 These aren't visions of human flourishing, **these are visions of humans as high cost, low-value data sources**.
+
+Maybe as capitalists it's always been the case that we've viewed human labour not as an asset, but as a liability. Now that sentiment is super-charged and looking right at the <a href="https://www.mediaite.com/media/tv/we-risk-revolution-scott-galloway-goes-on-epic-tirade-over-ceo-murder-and-out-of-control-wealth-inequality/" target="_blank" data-tooltip="This entire system is rigged, and it is rigged against [workers] and rigged for billionaires." class="popout tooltip">middle class, the greatest invention of the 20th century</a>, as Scott Galloway puts it.
 
 ### Workers on computers look very expensive 
 
