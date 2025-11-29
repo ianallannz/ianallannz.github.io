@@ -1,7 +1,7 @@
 ---
 title: "Where are we going?"
 date: 2025-11-29
-excerpt: "Digesting the resonant takeaways from Tim Berners-Lee's book This is for Everyone, while looking for hope when bigtech is investing $trillions into devaluing human work." 
+excerpt: "Digesting the resonant takeaways from Tim Berners-Lee's book This is for Everyone, while looking for hope when bigtech is investing $trillions into devaluing the middle class." 
 layout: blog-post.njk
 tags: ["blog", "rewilding", "online sovereignty", "future of work", "social media"] 
 isPost: true
