@@ -3,12 +3,13 @@
 <nav>
     <div class="nav-left">
         <ul class="menu-left">
-    
-            <li class="latest-post">
-                {% if page.url!='/blog/' %}
-                <span class="scroll-text">Latest: <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></span>
-            {% endif %}
 
+            <li class="latest-post">
+                {% if page.url != '/blog/' %}
+                    {% if page.url != latestPost.url %}
+                <span class="scroll-text">Latest: <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></span>
+                    {% endif %}
+                {% endif %}
             </li>
         </ul>
     </div>
@@ -16,6 +17,6 @@
         ☰
     </button>
 
-    
+
     {% include "navlinks.njk" %}
 </nav>
