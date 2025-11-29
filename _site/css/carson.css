@@ -101,7 +101,7 @@
 }
 
 .carson-select-blink {
-  animation: select-blink 0.2s ease-in-out 3; /* 3 blinks */
+  animation: select-blink 0.2s ease-in-out 5; 
 }
 
 /* Randomize blink speed per element */
