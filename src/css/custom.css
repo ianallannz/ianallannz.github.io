@@ -65,6 +65,10 @@ nav .nav-left .menu-left li a {
     text-decoration: underline;
 }
 
+nav .nav-left .menu-left li a .latest-text {
+    color: #000000;
+    font-weight: 400;
+}
 nav .nav-left .menu-left li a:hover {
     text-decoration: none;
     font-weight: 700;

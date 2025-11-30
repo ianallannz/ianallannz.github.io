@@ -1,13 +1,13 @@
 {# _includes/navbar.njk #}
 {% set latestPost = collections.pinnedPost %}
 <nav>
-    <div class="nav-left">
+    <div class="nav-left" onclick="location.href='{{ latestPost.url }}'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 {% if page.url != '/blog/' %}
                     {% if page.url != latestPost.url %}
-                <span class="scroll-text">Latest: <a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></span>
+                <a class="scroll-text" href="{{ latestPost.url }}"><span class="latest-text">Latest: </span>{{ latestPost.data.title }}</a>
                     {% endif %}
                 {% endif %}
             </li>
