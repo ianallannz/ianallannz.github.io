@@ -50,7 +50,7 @@ Windows 10 laptops won't need saving forever.
 - Digital inequities exacerbating wider inequalities
 - Precarious education and employment prospects for young and old
 
-Saved is a venture designed to tap into in **the emerging zeitgeist**. 
+Saved is a venture designed to tap into **the emerging zeitgeist**. 
 
 It's not just that Windows 10 can't be upgraded for so many, it's that **Windows 11 is shit, by design**. 
 
