@@ -1,7 +1,7 @@
 ---
 title: "The summer pause"
 date: 2026-02-02
-excerpt: "I should know by now that a summer break doesn't mean I'll rip into all those digital venture. But, among other things, there is still a bit of a Saved update." 
+excerpt: "I should know by now that a summer break doesn't mean I'll rip into all those digital projects. But, among other things, there is still a bit of a Saved update in here." 
 layout: blog-post.njk
 tags: ["blog", "venture design", "linux", "Saved", "Pockit", "product design", "family"] 
 isPost: true
