@@ -6,7 +6,7 @@ layout: blog-post.njk
 tags: ["blog", "venture design", "linux", "Saved", "Pockit", "product design", "family"] 
 isPost: true
 pinned: false
-carsonify: expressive
+carsonify: cranked
 ---
 
 ## The inevitable summer pause
