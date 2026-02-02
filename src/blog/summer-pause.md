@@ -70,7 +70,7 @@ Pockit Cards slot into the Pockit Course folder as students progress, so that by
 
 But as teachers we do prepare a lesson plan and resources for each week. 
 
-So I've built a system where I just need to drop 5-6 simple markdown files with into a folder and it's published to the web as lovely online resources. But also, click the print button for the week and it recreates the week's Pockit Cards into a mm-perfect 4-up format ready for printing and quick cutting using the guides (students will happily do this bit).
+So I've built a system where I just need to drop 5-6 simple markdown files into a folder and it's published to the web as lovely online resources. But also, click the print button for the week and it recreates the week's Pockit Cards into a mm-perfect 4-up format ready for printing and quick cutting using the guides (students will happily do this bit).
 
 Excited to share the alpha ASAP... the semester at EIT starts in 2 weeks!
 
