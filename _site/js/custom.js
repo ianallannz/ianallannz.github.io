@@ -96,6 +96,14 @@ const workImageData = [
     {
         image_url: '../images/work-occam-ui.jpg',
         related_how: 10
+    },
+    {
+        image_url: '../images/work-loadrite01.jpg',
+        related_how: 11
+    },
+    {
+        image_url: '../images/work-loadrite02.jpg',
+        related_how: 11
     }
 ];
 
@@ -109,8 +117,9 @@ const workHowData = [
     { id: 7, how_copy: "How do you create an app for street merchants who take cash and have informal supply lines?" },
     { id: 8, how_copy: "How do you propose a reimagined social content platform for the MOE after you failed with the product you led?" },
     { id: 9, how_copy: "How do you wrap reliable group assessment around experiential learning?" },
-    { id: 10, how_copy: "How do you make a 20-year old software platform that's still leading-edge look leading-edge?" },
-    { id: 11, how_copy: "What question do you need answered?" }
+    { id: 10, how_copy: "How do you make a 20-year old software platform that's still bleeding-edge look bleeding-edge?" },
+    { id: 11, how_copy: "How do you make a fun game on your company stand the talk of the trade show while collecting contacts?" },
+    { id: 12, how_copy: "What question do you need answered?" }
 ];
 
 
@@ -255,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderAll();
-    setInterval(renderAll, 8000);
+    setInterval(renderAll, 10000);
 });
 
 
