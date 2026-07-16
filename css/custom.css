@@ -808,18 +808,18 @@ main section.blog-post article ol li {
 }
 
 main section.blog-post article h2 {
-    padding-left: 0.1rem;
+    /* padding-left: 0.1rem; */
     padding-right: 0.1rem;
     font-size: 1.5rem;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
     padding-bottom: 0rem;
     margin-bottom: 1rem;
-    background-color: #FFFFFF;
+    /* background-color: #FFFFFF; */
 }
 
 main section.blog-post article h3 {
-    padding-left: 0.1rem;
+    /* padding-left: 0.1rem; */
     padding-right: 0.1rem;
     font-size: 1.3rem;
     font-family: 'Space Grotesk', sans-serif;
@@ -827,18 +827,18 @@ main section.blog-post article h3 {
     margin-top: 0.5rem;
     padding-bottom: 0rem;
     margin-bottom: 1rem;
-    background-color: #F8F8F8;
+    /* background-color: #F8F8F8; */
 }
 
 main section.blog-post article h4 {
-    padding-left: 0.1rem;
+    /* padding-left: 0.1rem; */
     padding-right: 0.1rem;
     font-size: 1.2rem;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     padding-bottom: 0rem;
     margin-bottom: 1rem;
-    background-color: #F8F8F8;
+    /* background-color: #F8F8F8; */
 }
 
 main section.blog-post article blockquote {
