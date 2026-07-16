@@ -3,9 +3,9 @@ title: "Believing IT can be saved, and WE can be saved"
 date: 2025-12-18
 excerpt: "Introducing Saved: a venture I've designed that first believes Windows 10 laptops can be saved, and made better. And through doing so, then believes we can be saved..." 
 layout: blog-post.njk
-tags: ["blog", "Saved", "windows 10", "online sovereignty", "venture design", "ethical technology", "linux", "future of work", "social media"] 
+tags: ["blog", "Saved", "windows 10", "online sovereignty", "venture design", "resilient technology", "linux", "future of work", "social media"] 
 isPost: true
-pinned: true
+pinned: false
 carsonify: off
 ---
 

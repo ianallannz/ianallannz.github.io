@@ -1759,6 +1759,7 @@ footer ul li a {
     main section.blog-post article a {
         display: inline;
         padding: 0 0.1rem 0 0.1rem;
+        font-size: 1.25rem;
     }
 
     main section.blog-post article h2 {
