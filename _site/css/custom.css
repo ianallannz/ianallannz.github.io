@@ -1478,6 +1478,16 @@ footer ul li a {
         text-decoration: none;
     }
 
+    header .cta.work p a {
+        color: #1100FF;
+    }
+
+    header .cta.work p a:hover {
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
     header .cta p.featured-post-date {
         font-size: 1rem
     }
