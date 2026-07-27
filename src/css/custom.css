@@ -762,11 +762,6 @@ main section.blog-post .related-posts ul {
     padding-left: 0rem;
 }
 
-main section.blog-post article {
-    /* padding-right: 1rem; */
-    /* font-family: 'Zilla slab', serif; */
-}
-
 main section.blog-post article p {
     font-size: 1.1rem;
     line-height: 1.4em;
