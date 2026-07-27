@@ -21,7 +21,7 @@ Still, by sticking to 5am starts &mdash; a couple of hours of clear air each day
 
 ## Saved, and a Diploma in Resilient Technologies
 
-Everything I've read, listened to, ruminated, and experienced over the last four years has funnelled through my [professional](/about) and [personal](/blog/topics/from-local-election-campaign/) world view to create [Saved](http://saved.co.nz). And now a **Diploma in Resilient Technologies**:
+Everything I've read, listened to, ruminated, and experienced over the last four years has funnelled through my [professional](/about) and [personal](/blog/topics/from-local-election-campaign/) world view to create [Saved](http://saved.co.nz/about). And now a **Diploma in Resilient Technologies**:
 
 - [Pitch for a new Diploma in Resilient Technologies](http://saved.co.nz/diploma-pitch)
 - [Full proposal for a new Diploma in Resilient Technologies](http://saved.co.nz/diploma)
