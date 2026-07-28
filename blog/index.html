@@ -8,7 +8,27 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link id="style-og" rel="stylesheet" href="/css/custom.css">
+    <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <script>
+        // Apply the saved design before first paint. Default is custom.css.
+        //
+        // Both stylesheets are linked up front and the unwanted one is switched
+        // off here. Swapping a single link's href instead disowns the current
+        // stylesheet the moment it is set, leaving the document with NO styles
+        // until the replacement downloads — which is what caused the flash of
+        // raw markup (modals, diagonal rules) when moving between pages.
+        // Parser-inserted stylesheets block rendering, and a script waits for
+        // them, so by the time this runs both are loaded and first paint is
+        // already correct. It also makes switching instant: no refetch.
+        (function () {
+            var pro = false;
+            try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+            document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
+            document.getElementById('style-og').disabled = pro;
+            document.getElementById('style-pro').disabled = !pro;
+        })();
+    </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
     <meta name="description" content="The blog of Ian Allan, an ongoing reflection on rewilding the internet and other things.">
@@ -48,6 +68,14 @@
     
 
 <nav>
+    
+    <a class="nav-brand" href="/">
+        <span class="nav-brand-name">Ian Allan</span>
+        <span class="nav-brand-role">Venture designer</span>
+        <span class="nav-brand-role">Ethical technologist</span>
+        <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
+    </a>
+
     <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
         <ul class="menu-left">
 
@@ -56,6 +84,21 @@
             </li>
         </ul>
     </div>
+    
+
+
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>
+
+
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
@@ -63,31 +106,34 @@
 
     
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>
     <li>#<a href="#modal-contact" class="popup">contact</a></li>
 </ul>
 </nav>
+
+
+
     <div class="page-name blog-name">
-        <h1># Blog</h1>
+        <h1>Blog</h1>
     </div>
     
 <ul class="profile">
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
     <div class="cta blog">
-        <h1>## Hot-or-not</h1>
+        <h1>Featured</h1>
         
 
         <p class="featured-post"><a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></p>
         <p class="featured-post-blurb">Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.</p>
         <p class="featured-post-date">&mdash; 17 July 2026</p>
-        <p class="button"><a class="button-inline-outline" href="/blog/resilient-technologies/">[Read it]</a><span
+        <p class="button"><a class="button-inline-outline" href="/blog/resilient-technologies/"><span class="bracket">[</span>Read<span class="bracket">]</span></a><span
                 class="button-tag">
                 (/blog/resilient-technologies/)</span></p>
     </div>
@@ -96,7 +142,7 @@
 
     <section id="posts" class="posts">
         <div class="posts-list">
-            <h2 class="rss"><span>## All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
+            <h2 class="rss"><span>All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
             
             <article class="post-preview">
                 <h2>12. <a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></h2>
@@ -173,7 +219,9 @@
         </div>
         <div class="sidebar">
             
-<h2 class="toggle-topics">## <a href="#" class="toggle-link">[Show topics⇣]</a></h2>
+
+<h2 class="toggle-topics"><a href="#" class="toggle-link"><span class="bracket">[</span><span
+            class="toggle-label">Show topics⇣</span><span class="bracket">]</span></a></h2>
 <ul class="topics-list">
     
     <li>
@@ -320,7 +368,7 @@
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Contact</h1>
+        <h1>Contact</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail contact">
             
@@ -328,9 +376,9 @@
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-            <h2>## Let's meet</h2>
+            <h2>Let's meet</h2>
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
@@ -354,7 +402,7 @@
             <div class="col right">
                 
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>

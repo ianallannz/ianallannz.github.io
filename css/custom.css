@@ -19,6 +19,60 @@ body {
     overflow-x: hidden;
 }
 
+
+/* ---------------------------------------------------------------------------
+   Heading markers
+
+   The "#" and "##" in front of headings used to be typed into the templates as
+   literal text. They're generated here instead, so the markup carries only the
+   words and this stylesheet owns the look. (pro.css deliberately doesn't
+   generate them.)
+
+   Note the marker level does NOT follow the heading level — several h1s take
+   "##" (the CTA headings on about/blog/work/topics) — so these rules key off
+   position, not tag name. The last group is for the headings that never had a
+   marker: post titles in a listing, and markdown-authored headings in a post.
+   ------------------------------------------------------------------------ */
+
+header .page-name h1::before,
+header > .cta:not(.blog):not(.work) h1::before,
+main section h1::before,
+.modal-content h1::before {
+    content: "# ";
+}
+
+header .about-wrapper .cta h1::before,
+header .cta.blog h1::before,
+header .cta.work h1::before,
+main section h2::before,
+.modal-content h2::before {
+    content: "## ";
+}
+
+/* The location in profile.njk used to hard-break with a <br>. The two halves
+   are spans now, and this stylesheet decides they stack — pro.css leaves them
+   inline on one line. (A span each is the minimum the markup has to carry: CSS
+   can't put a break inside a bare text node.) */
+ul.profile li.location span {
+    display: block;
+}
+
+/* Headings that carry no marker. */
+main section .post-preview h2::before,
+main section.blog-post article h2::before {
+    content: none;
+}
+
+/* The RSS row is a flex container, so its marker goes on the inner span
+   rather than on the h2 (a ::before there would become a flex item). */
+main section.posts .posts-list h2.rss::before {
+    content: none;
+}
+
+main section.posts .posts-list h2.rss > span:first-child::before {
+    content: "## ";
+}
+
 nav {
     position: relative;
     display: flex;
@@ -35,6 +89,98 @@ nav .hamburger {
     z-index: 2;
 }
 
+/* Style switcher — Ian / Pro Ian. Square and hard-edged here; pro.css sets the
+   same markup as a rounded pill. State comes from [data-site-style] on <html>,
+   which the head script sets before first paint. */
+
+nav .style-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-left: auto;
+    padding: 0.4rem 0.2rem;
+    z-index: 2;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    line-height: 1;
+    color: #666666;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+nav .style-switch .style-switch-track {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 36px;
+    height: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #1100FF;
+    border-radius: 0;
+}
+
+nav .style-switch .style-switch-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #1100FF;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+:root[data-site-style="pro"] nav .style-switch .style-switch-track {
+    background-color: #1100FF;
+}
+
+:root[data-site-style="pro"] nav .style-switch .style-switch-knob {
+    background-color: #FFFFFF;
+    transform: translateX(16px);
+}
+
+:root[data-site-style="og"] nav .style-switch .style-switch-label[data-for="og"],
+:root[data-site-style="pro"] nav .style-switch .style-switch-label[data-for="pro"] {
+    color: #000000;
+    font-weight: 700;
+}
+
+nav .style-switch:hover .style-switch-track {
+    border-color: #000000;
+}
+
+/* Tooltip. This design is only ever showing when we're in it, so it reads the
+   "-og" string; pro.css reads the "-pro" one. Hangs below the switch — there's
+   no room above it at the top of the page. Absolutely positioned, so it doesn't
+   become a flex item of the button. */
+nav .style-switch[data-tooltip-og]::before {
+    content: attr(data-tooltip-og);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    width: max-content;
+    max-width: 60vw;
+    margin-top: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-align: left;
+    color: #000000;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+nav .style-switch[data-tooltip-og]:hover::before,
+nav .style-switch[data-tooltip-og]:focus-visible::before {
+    opacity: 1;
+}
+
 nav .nav-left {
   display: flex;
 }
@@ -45,7 +191,10 @@ nav .nav-left .menu-left {
 }
 
 nav .nav-left .menu-left li {
-    width: calc(100vw - 5rem);
+    /* Narrowed from 5rem to clear the switcher, which carries its Ian / Pro Ian
+       labels at every width. That leaves the headline a short window on a
+       phone — deliberate: the labels matter more than the length on show. */
+    width: calc(100vw - 15rem);
     overflow: hidden;
     white-space: nowrap;
     position: relative;
@@ -65,7 +214,24 @@ nav .nav-left .menu-left li a {
     text-decoration: underline;
 }
 
+/* The nav brand mark belongs to the Pro design only — this design keeps the
+   identity in profile.njk, below the nav. Hidden here, so nothing about the OG
+   nav changes. */
+nav .nav-brand {
+    display: none;
+}
+
+/* Likewise the Pro design's featured-post strip — this design keeps the
+   featured post as the marquee inside the nav. */
+.featured-strip {
+    display: none;
+}
+
+/* The featured-post star. inline-block both carries the gap that used to be a
+   trailing space in the markup, and keeps the link's underline off the glyph. */
 nav .nav-left .menu-left li a .latest-text {
+    display: inline-block;
+    margin-right: 0.4rem;
     color: #000000;
     font-weight: 400;
 }
@@ -665,6 +831,78 @@ main section ul {
   padding-bottom: 1rem;
 }
 
+/* The services skill lists are marked up as real <ul>s so the Pro design can
+   lay them out. Here they keep reading as the running sentence they always
+   were: items inline, semicolons between them, a full stop on the last. These
+   rules make a ul.skills render exactly as the p.l2 it replaced. */
+main section ul.skills {
+    padding-left: 0rem;
+    padding-bottom: 1rem;
+}
+
+main section ul.skills li {
+    display: inline;
+    padding-left: 0;
+    margin-bottom: 0;
+    line-height: inherit;
+}
+
+/* No "›" marker — these aren't presented as list items here. */
+main section ul.skills li::before {
+    content: none;
+}
+
+/* The delimiter. The space after it comes from the newline between the <li>s. */
+main section ul.skills li::after {
+    content: ";";
+}
+
+main section ul.skills li:last-child::after {
+    content: ".";
+}
+
+/* The activity lists work the same way, but comma-delimited. Two variants:
+   .no-stop for the standalone "Saved", which carries no closing full stop, and
+   .and-last for the blogging list, which reads "…, and the rest." */
+main section ul.activities {
+    padding-left: 0rem;
+    padding-bottom: 1rem;
+}
+
+main section ul.activities li {
+    display: inline;
+    padding-left: 0;
+    margin-bottom: 0;
+    line-height: inherit;
+}
+
+main section ul.activities li::before {
+    content: none;
+}
+
+main section ul.activities li::after {
+    content: ",";
+}
+
+main section ul.activities li:last-child::after {
+    content: ".";
+}
+
+main section ul.activities.no-stop li:last-child::after {
+    content: none;
+}
+
+main section ul.activities.and-last li:last-child::before {
+    content: "and ";
+    /* The generic "›" marker rule above absolutely positions ::before at the
+       list item's origin and sizes it up. This one is running text in the
+       middle of a sentence, so put it back in flow at the surrounding size —
+       otherwise it lands on top of the last item. */
+    position: static;
+    font-size: inherit;
+    line-height: inherit;
+}
+
 main section ul li {
   list-style: none;
   position: relative;
@@ -712,7 +950,11 @@ main section table tr td {
 }
 
 
-main section p a {
+/* ul.activities is included here because its links used to sit in a <p>, and
+   this is the only rule that gave them their colour and padding — there is no
+   generic "main section li a" at this width. */
+main section p a,
+main section ul.activities li a {
     display: inline;
     color: #1100FF;
     text-underline-offset: 0.15em;
@@ -1389,6 +1631,10 @@ footer ul li a {
         display: none;
     }
 
+    nav .style-switch {
+        margin-right: 1.4rem;
+    }
+
     nav .nav-left .menu-left li {
         width: 40vw;
     }
@@ -1636,6 +1882,12 @@ footer ul li a {
     }
 
     main section p {
+        padding-bottom: 1.2rem;
+    }
+
+    /* Keep the skill and activity lists spaced like the paragraphs they read as. */
+    main section ul.skills,
+    main section ul.activities {
         padding-bottom: 1.2rem;
     }
 

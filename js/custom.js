@@ -1,3 +1,75 @@
+// Style switcher: Ian (custom.css) <-> Pro Ian (pro.css)
+//
+// The initial state is applied by the inline script in the layout <head> so
+// there is no flash of the wrong design. This block only handles clicks and
+// keeps aria-checked in sync. Kept first in the file, and self-contained, so a
+// failure further down can't stop the switch from working.
+
+(function () {
+    const STORAGE_KEY = 'site-style';
+
+    // Both stylesheets are already linked in the document head — switching is a
+    // matter of enabling one and disabling the other, which is instant and
+    // needs no network round trip. See the note in the layout <head>.
+    const sheets = {
+        og: document.getElementById('style-og'),
+        pro: document.getElementById('style-pro'),
+    };
+    const switches = document.querySelectorAll('.style-switch');
+    if (!sheets.og || !sheets.pro || !switches.length) return;
+
+    const current = () =>
+        document.documentElement.getAttribute('data-site-style') === 'pro' ? 'pro' : 'og';
+
+    function apply(style) {
+        const pro = style === 'pro';
+        document.documentElement.setAttribute('data-site-style', style);
+        sheets.og.disabled = pro;
+        sheets.pro.disabled = !pro;
+        switches.forEach(el => el.setAttribute('aria-checked', String(pro)));
+        try {
+            localStorage.setItem(STORAGE_KEY, style);
+        } catch (e) {
+            // Private browsing / storage disabled: the switch still works for this page view.
+        }
+    }
+
+    // Sync the control with whatever the head script already decided.
+    switches.forEach(el => {
+        el.setAttribute('aria-checked', String(current() === 'pro'));
+        el.addEventListener('click', () => apply(current() === 'pro' ? 'og' : 'pro'));
+    });
+})();
+
+
+// Scroll state
+//
+// Flags [data-scrolled] on <html> once the page has moved off the top. The Pro
+// design uses it to dock its floating nav island into a full-width bar; the OG
+// design ignores it entirely. Kept near the top of the file, and self-contained,
+// so a failure further down can't stop it.
+
+(function () {
+    const root = document.documentElement;
+    const DOCK_AT = 24;
+    let queued = false;
+
+    function update() {
+        queued = false;
+        root.toggleAttribute('data-scrolled', window.scrollY > DOCK_AT);
+    }
+
+    function onScroll() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+
 // Work examples
 
 const workImageData = [
@@ -335,6 +407,10 @@ const menu = document.querySelector('.menu');
 hamburger.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', isOpen);
+    // Flag the state only; each stylesheet decides what to do with it. The Pro
+    // design locks page scrolling behind its full-screen panel, the OG design
+    // ignores it — its menu is a small dropdown that shouldn't lock anything.
+    document.documentElement.toggleAttribute('data-nav-open', isOpen);
 });
 
 
@@ -424,9 +500,13 @@ if (toggleLink) {
         const list = document.querySelector('.topics-list');
         list.classList.toggle('visible-topics');
 
-        this.textContent = list.classList.contains('visible-topics')
-            ? '[Hide topics⇡]'
-            : '[Show topics⇣]';
+        // Write to the inner label only. Setting textContent on the link would
+        // wipe the bracket spans around it (which pro.css hides and the OG
+        // design shows). Falls back to the link itself if the span is missing.
+        const label = this.querySelector('.toggle-label') || this;
+        label.textContent = list.classList.contains('visible-topics')
+            ? 'Hide topics⇡'
+            : 'Show topics⇣';
     });
 }
 

@@ -8,7 +8,27 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link id="style-og" rel="stylesheet" href="/css/custom.css">
+    <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <script>
+        // Apply the saved design before first paint. Default is custom.css.
+        //
+        // Both stylesheets are linked up front and the unwanted one is switched
+        // off here. Swapping a single link's href instead disowns the current
+        // stylesheet the moment it is set, leaving the document with NO styles
+        // until the replacement downloads — which is what caused the flash of
+        // raw markup (modals, diagonal rules) when moving between pages.
+        // Parser-inserted stylesheets block rendering, and a script waits for
+        // them, so by the time this runs both are loaded and first paint is
+        // already correct. It also makes switching instant: no refetch.
+        (function () {
+            var pro = false;
+            try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+            document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
+            document.getElementById('style-og').disabled = pro;
+            document.getElementById('style-pro').disabled = !pro;
+        })();
+    </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
     <meta name="description" content="The professional bio of Ian Allan, and an ongoing experiment in rewilding the internet.">
@@ -48,18 +68,41 @@
     
 
 <nav>
+    
+    <a class="nav-brand" href="/">
+        <span class="nav-brand-name">Ian Allan</span>
+        <span class="nav-brand-role">Venture designer</span>
+        <span class="nav-brand-role">Ethical technologist</span>
+        <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
+    </a>
+
     <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text">Hot or not: </span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
                     
                 
             </li>
         </ul>
     </div>
+    
+
+
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>
+
+
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
@@ -67,30 +110,33 @@
 
     
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/"  class="active" >about</a></li>
     <li>/<a href="/blog/" >blog</a></li>
     <li>/<a href="/work/" >work</a></li>
     <li>#<a href="#modal-contact" class="popup">contact</a></li>
 </ul>
 </nav>
+
+
+
     <div class="page-name">
-        <h1># About</h1>
+        <h1>About</h1>
     </div>
     
 <ul class="profile">
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
     <div class="about-wrapper">
         <div class="cta">
-            <h1>## Quote</h1>
+            <h1>Quote</h1>
             <p class="quote">“I would encourage you to stir up this sleepy town.”
             </p>
             <p class="quote-author">&mdash; Post-election man on street</p>
-            <p class="button"><a class="button-inline-outline" href="#the-blurb">[Why me? ↓]</a><span
+            <p class="button"><a class="button-inline-outline" href="#the-blurb"><span class="bracket">[</span>Why me? ↓<span class="bracket">]</span></a><span
                     class="button-tag">
                     (#the-blurb)</span></p>
         </div>
@@ -104,7 +150,7 @@
     <section id="the-blurb" class="three-up">
 
         <div class="pro-blurb">
-            <h1># Professional blurb</h1>
+            <h1>Professional blurb</h1>
             <p>I'm a <span class="highlight">product professional</span> who has <a
                     href="https://www.linkedin.com/in/ianallan/" target="_blank" class="popout tooltip" rel="noopener"
                     data-tooltip="Check my LinkedIn for all the details.">specialised</a><img src="../images/li-icon.png" style="display: inline-block; width:1.2rem; padding-right: 4px;"> in solving for gaps in growing
@@ -113,7 +159,7 @@
                 vocational skills advocate.</p>
             <p>I'm <span class="highlight">highly regarded</span> for my breadth of skills, insights, and translation of
                 ideas into hi- and low-tech ventures and products for persistent and emergent needs.</p>
-            <h2>## Quote</h2>
+            <h2>Quote</h2>
             <p class="l2 quote">"Ian is a deep thinker who is always one step ahead of the market. I have admired his
                 remarkable ability to recognise global trends and predict where technology is headed. He demonstrates
                 strong leadership skills and the ability to influence executives in a positive way. Best of all, Ian is
@@ -122,9 +168,9 @@
                 Paykel Healthcare
             </p>
 
-            <h1># Skill-set</h1>
+            <h1>Skill-set</h1>
 
-            <h2>## Ventures &amp; product</h2>
+            <h2>Ventures &amp; product</h2>
             <table>
                 <colgroup>
                     <col>
@@ -184,7 +230,7 @@
                 </tr>
             </table>
 
-            <h2>## Focus areas</h2>
+            <h2>Focus areas</h2>
             <table>
                 <colgroup>
                     <col>
@@ -220,7 +266,7 @@
                 </tr>
             </table>
 
-            <h2>## Technical &amp; design</h2>
+            <h2>Technical &amp; design</h2>
             <table>
                 <colgroup>
                     <col>
@@ -262,18 +308,18 @@
 
         </div>
         <div class="bio">
-            <h2>## Qualifications &amp; part-time roles</h2>
+            <h2>Qualifications &amp; part-time roles</h2>
             <ul>
                 <li>Bachelor of Computing &amp; Mathematical Sciences (Hons), University of Waikato</li>
                 <li>Certificate in Adult and Tertiary Teaching, Open Polytechnic</li>
                 <li>Tertiary Education Union co-Branch President, EIT</li>
                 <li>Senior Academic Staff Member, EIT</li>
             </ul>            
-            <h2>## Bio</h2>
+            <h2>Bio</h2>
             <p class="l2">Born and raised in Gisborne, New Zealand before making that northward drift.</p>
             <p class="l2">I returned a few years ago in a <a href="https://ianallan.vote/seachange" target="_blank" class="popout tooltip" rel="noopener" data-tooltip="I turned the blog of that year into a big book for my children.">family caravan</a> and have been doing up a dunga of a house, teaching adults, and advocating for strong public vocational education.</p>
             <p class="l2">Oh, and I recently stepped out to <a href="https://ianallan.vote/about/" target="_blank" class="popout tooltip" rel="noopener" data-tooltip="You can still find a thorough personal bio there.">run for the Gisborne District Council</a>. <a href="https://ianallan.vote/blog/its-all-over/" target="_blank" class="popout tooltip" rel="noopener" data-tooltip="Summing up the experience.">I didn't make it</a>, but left a decent impression and a <a href="/blog/topics/from-local-election-campaign/" target="_blank" class="tooltip" rel="noopener" data-tooltip="If you want to know what I think of this place I call home, my council run motivated me to write things down: honest about the broader system but still hopeful we can solves things for ourselves out here.">useful collection of thinking</a>.</p>
-            <h2>## Into</h2>
+            <h2>Into</h2>
             <ul>
                 <li><a href="https://www.nzherald.co.nz/gisborne-herald/news/gisborne-candidates-vision-a-place-worth-staying-and-returning-to/3DIBTCTJDVCWNJPVUX3TZGLWC4/" target="_blank" class="popout tooltip" rel="noopener" data-tooltip="I was profiled by The Gisborne Herald recently.">Falling in love with the problem</a></li>
                 <li><a href="https://www.noemamag.com/we-need-to-rewild-the-internet/" target="_blank" class="popout tooltip" rel="noopener" data-tooltip="'The internet has become an extractive and fragile monoculture. But we can revitalize it using lessons learned by ecologists.'">Rewilding the Internet</a></li>
@@ -285,7 +331,7 @@
             </ul>            
         </div>
         <div class="shoutouts">
-            <h2>## Shout-outs</h2>
+            <h2>Shout-outs</h2>
             <ul>
                 <li><a href="https://sunshinebrewing.co.nz/" target="_blank" class="popout" rel="noopener">Sunshine Brewery</a></li>
                 <li><a href="https://cactusoutdoor.co.nz/" target="_blank" class="popout" rel="noopener">Cactus Outdoor</a></li>
@@ -318,7 +364,7 @@
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Contact</h1>
+        <h1>Contact</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail contact">
             
@@ -326,9 +372,9 @@
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-            <h2>## Let's meet</h2>
+            <h2>Let's meet</h2>
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
@@ -352,7 +398,7 @@
             <div class="col right">
                 
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/"  class="active" >about</a></li>
     <li>/<a href="/blog/" >blog</a></li>
     <li>/<a href="/work/" >work</a></li>
