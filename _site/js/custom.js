@@ -42,12 +42,6 @@
 })();
 
 
-// Scroll state
-//
-// Flags [data-scrolled] on <html> once the page has moved off the top. The Pro
-// design uses it to dock its floating nav island into a full-width bar; the OG
-// design ignores it entirely. Kept near the top of the file, and self-contained,
-// so a failure further down can't stop it.
 
 (function () {
     const root = document.documentElement;
@@ -407,9 +401,6 @@ const menu = document.querySelector('.menu');
 hamburger.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', isOpen);
-    // Flag the state only; each stylesheet decides what to do with it. The Pro
-    // design locks page scrolling behind its full-screen panel, the OG design
-    // ignores it — its menu is a small dropdown that shouldn't lock anything.
     document.documentElement.toggleAttribute('data-nav-open', isOpen);
 });
 
@@ -500,9 +491,6 @@ if (toggleLink) {
         const list = document.querySelector('.topics-list');
         list.classList.toggle('visible-topics');
 
-        // Write to the inner label only. Setting textContent on the link would
-        // wipe the bracket spans around it (which pro.css hides and the OG
-        // design shows). Falls back to the link itself if the span is missing.
         const label = this.querySelector('.toggle-label') || this;
         label.textContent = list.classList.contains('visible-topics')
             ? 'Hide topics⇡'

@@ -4,35 +4,6 @@
    pro.css — "modern professional" theme for ianallan.nz
    =============================================================================
 
-   This is a COMPLETE, STANDALONE stylesheet. It is a drop-in replacement for
-   custom.css, not an override layer — swap the href, don't load both:
-
-       <link id="site-style" rel="stylesheet" href="/css/custom.css">   (OG)
-       <link id="site-style" rel="stylesheet" href="/css/pro.css">      (Pro)
-
-   Nothing else in the site was changed to make this work. Every selector below
-   targets markup that already exists, including the classes custom.js toggles
-   at runtime (.open, .visible-bg, .visible-topics, .animate-in, [aria-hidden],
-   and the inline styles written onto .scattered-img / .how-textbox).
-
-   Design direction
-   ----------------
-   Restrained, high-contrast editorial layout: one accent (a dialled-back
-   descendant of the OG #1100FF), fluid type, generous whitespace, hairline
-   rules instead of decorative artwork, soft-cornered surfaces, a fixed
-   translucent nav, and a full dark-mode pass. The decorative diagonal SVGs,
-   background photographs, marquee, yellow flicker, and rotated headings are
-   all retired here — they live on in custom.css.
-
-   Heading markers
-   ---------------
-   The "#" / "##" that front the headings in the OG design are no longer in the
-   markup — custom.css generates them with ::before, and this stylesheet simply
-   doesn't. Template-authored headings are still set as small monospace labels
-   here, because they read as section labels rather than display type; the
-   markdown-authored headings inside a post get the real display treatment.
-   ========================================================================== */
-
 
 /* -----------------------------------------------------------------------------
    1. Tokens
@@ -55,8 +26,6 @@
     --line: #e6e5e1;
     --line-2: #d6d4ce;
 
-    /* Accent — the OG electric blue, dialled back to something that can sit
-       behind a proposal without shouting. */
     --accent: #2545e6;
     --accent-hover: #1b34bd;
     --accent-ink: #1b34bd;
@@ -2685,7 +2654,18 @@ nav .style-switch[data-tooltip-pro]::before {
     transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
 }
 
-nav .style-switch[data-tooltip-pro]:hover::before,
+/* Hover reveal is gated to devices with a real hovering pointer. On touch, a
+   tap puts the button into a sticky :hover that only clears on a tap somewhere
+   else — so the tooltip hung around after every style switch. :focus-visible is
+   deliberately outside the query: it doesn't match on tap, but it keeps the
+   tooltip for keyboard users on any device. custom.css does the same. */
+@media (hover: hover) {
+    nav .style-switch[data-tooltip-pro]:hover::before {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 nav .style-switch[data-tooltip-pro]:focus-visible::before {
     opacity: 1;
     transform: translateY(0);

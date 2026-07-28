@@ -1,8 +1,6 @@
 {# _includes/navbar.njk #}
 {% set latestPost = collections.pinnedPost %}
 <nav>
-    {# Brand mark for the Pro design, which carries the identity in the nav bar.
-       The OG design keeps profile.njk in the header instead and hides this. #}
     <a class="nav-brand" href="/">
         <span class="nav-brand-name">Ian Allan</span>
         <span class="nav-brand-role">Venture designer</span>
@@ -32,11 +30,6 @@
     {% include "navlinks.njk" %}
 </nav>
 
-{# Featured post, Pro design. The OG design runs this as the marquee inside the
-   nav (.nav-left above), on every page bar the blog index and the post itself;
-   that behaviour is unchanged. This strip sits outside the nav so it scrolls
-   away with the page instead of pinning under it, and it only appears on the
-   home page. Each stylesheet hides the other's version. #}
 {% if page.url == '/' %}
 <a class="featured-strip" href="{{ latestPost.url }}">
     <span class="featured-strip-mark" aria-hidden="true">★</span>
