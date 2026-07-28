@@ -2101,6 +2101,22 @@ main section.dataroom-dt {
     animation: none;
 }
 
+/* Connectors from each question to the middle of the work it's asking about.
+   custom.js builds the <svg> and its lines; it sits between the images (z-index
+   1) and the questions (z-index 10). */
+.how-line-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.how-line {
+    stroke: var(--ink-3);
+    stroke-width: 1;
+}
+
 .work-tooltip {
     cursor: pointer;
 }

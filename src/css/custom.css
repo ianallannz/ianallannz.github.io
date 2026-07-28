@@ -1113,6 +1113,23 @@ main section.dataroom-dt {
   animation: flicker-bg 0.6s ease-in-out 1;
 }
 
+/* Connectors from each question to the middle of the work it's asking about.
+   custom.js builds the <svg> and its lines; it sits between the images (z-index
+   1) and the questions (z-index 10). */
+.how-line-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.how-line {
+  stroke: #000000;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
 
 a.popout::after {
     content: "↗";
@@ -1981,12 +1998,17 @@ footer ul li a {
     }
 
 
+    /* min-height, not height: `flex: 1` resolves to `flex-basis: 0%`, which
+       beats the base rule's `height: 350vh` on the main axis and used to
+       collapse the canvas to one viewport. The floor keeps the scatter spread
+       over several screens, as it is on mobile and in the Pro design. */
     main section.dataroom-dt {
         background: none;
         padding: 0;
         margin-top: 4rem;
-        flex: 1; 
+        flex: 1;
         width: 100%;
+        min-height: 350vh;
         position: relative;
         overflow: hidden;
     }
