@@ -1,0 +1,24 @@
+{# _includes/style-switch.njk #}
+{#
+  Toggles the stylesheet in #site-style between custom.css (Ian) and pro.css
+  (Pro Ian). The initial state is applied by the inline script in the layout
+  <head>; custom.js wires up the click handling and keeps aria-checked in sync.
+  Both stylesheets style this control, keyed off the [data-site-style] attribute
+  on <html>.
+#}
+{#
+  The two tooltip strings are named for the design they're shown *in*, not the
+  one they switch to: custom.css reads data-tooltip-og, pro.css reads
+  data-tooltip-pro. Each stylesheet is only ever active in its own mode, so no
+  script is needed to keep them in step.
+#}
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>

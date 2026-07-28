@@ -1,5 +1,9 @@
 {# _includes/blog-topics-list.njk #}
-<h2 class="toggle-topics">## <a href="#" class="toggle-link">[Show topics⇣]</a></h2>
+{# The label sits in its own span so custom.js can swap it without destroying
+   the bracket spans either side — pro.css hides those, the OG design keeps
+   them. #}
+<h2 class="toggle-topics"><a href="#" class="toggle-link"><span class="bracket">[</span><span
+            class="toggle-label">Show topics⇣</span><span class="bracket">]</span></a></h2>
 <ul class="topics-list">
     {% for tag in collections.tagList %}
     <li>

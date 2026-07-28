@@ -12,11 +12,11 @@ permalink: /blog/topics/{{ tag | slug }}/index.html
 <header>
     {% include "navbar.njk" %}
     <div class="page-name blog-name">
-        <h1># <a href="/blog">Blog</a></h1>
+        <h1><a href="/blog">Blog</a></h1>
     </div>
     {% include "profile.njk" %}
     <div class="cta blog topic">
-        <h1>## Topic</h1>
+        <h1>Topic</h1>
         <p class="featured-post">{{ tag }}</p>
     </div>
 </header>
@@ -24,7 +24,7 @@ permalink: /blog/topics/{{ tag | slug }}/index.html
 
     <section id="posts" class="posts">
         <div class="posts-list topic">
-            <h2>## {{ tag }}</h2>
+            <h2>{{ tag }}</h2>
 
             {% for post in collections[tag] | reverse %}
             <article class="post-preview">

@@ -8,8 +8,29 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link id="style-og" rel="stylesheet" href="/css/custom.css">
+    <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <!-- Stays last: pro.css is written to override carson.css. -->
     <link rel="stylesheet" href="/css/carson.css">
+    <script>
+        // Apply the saved design before first paint. Default is custom.css.
+        //
+        // Both stylesheets are linked up front and the unwanted one is switched
+        // off here. Swapping a single link's href instead disowns the current
+        // stylesheet the moment it is set, leaving the document with NO styles
+        // until the replacement downloads — which is what caused the flash of
+        // raw markup (modals, diagonal rules) when moving between pages.
+        // Parser-inserted stylesheets block rendering, and a script waits for
+        // them, so by the time this runs both are loaded and first paint is
+        // already correct. It also makes switching instant: no refetch.
+        (function () {
+            var pro = false;
+            try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+            document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
+            document.getElementById('style-og').disabled = pro;
+            document.getElementById('style-pro').disabled = !pro;
+        })();
+    </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
     <meta name="description" content="Digesting the resonant takeaways from Tim Berners-Lee&#39;s book This is for Everyone, while looking for hope when bigtech is investing $trillions into devaluing the middle class.">
@@ -48,18 +69,41 @@
         
 
 <nav>
+    
+    <a class="nav-brand" href="/">
+        <span class="nav-brand-name">Ian Allan</span>
+        <span class="nav-brand-role">Venture designer</span>
+        <span class="nav-brand-role">Ethical technologist</span>
+        <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
+    </a>
+
     <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text">Hot or not: </span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
                     
                 
             </li>
         </ul>
     </div>
+    
+
+
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>
+
+
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
@@ -67,22 +111,25 @@
 
     
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>
     <li>#<a href="#modal-contact" class="popup">contact</a></li>
 </ul>
 </nav>
+
+
+
         <div class="page-name blog-post-name">
-            <h1># <a href="/blog">Blog</a> post</h1>
+            <h1><a href="/blog">Blog</a> post</h1>
         </div>
         
 <ul class="profile">
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
     </header>
     <main>
@@ -91,8 +138,8 @@
                 <p class="post-date">29 November 2025</p>
                 <h2 id="where-are-we-going%3F" tabindex="-1">Where are we going? <a class="direct-link" href="#where-are-we-going%3F">#</a></h2>
 <h3 id="it's-right-to-be-worried" tabindex="-1">It's right to be worried <a class="direct-link" href="#it's-right-to-be-worried">#</a></h3>
-<p><a title="Gage Skidmore from Surprise, AZ, United States of America, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Peter_Thiel_(51875328132).jpg"><img width="512" alt="Peter Thiel (51875328132)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Peter_Thiel_%2851875328132%29.jpg/512px-Peter_Thiel_%2851875328132%29.jpg?20220212051622" class="float-lg"></a>When Peter Thiel — one of the most quietly powerful people on the planet — thinks <strong>technological progress should reduce reliance on human labour</strong>, we should listen.</p>
-<p><a title="Tyler Cowen, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Tyler_Cowen_1.jpg"><img width="256" alt="Tyler Cowen 1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tyler_Cowen_1.jpg/256px-Tyler_Cowen_1.jpg?20070814221349" class="float-lg"></a>When Tyler Cowen — a favourite economist among the techbro elite — thinks <strong>labour is a tax on productivity</strong>, we should listen.</p>
+<p>When Peter Thiel — one of the most quietly powerful people on the planet — thinks <strong>technological progress should reduce reliance on human labour</strong>, we should listen.</p>
+<p>When Tyler Cowen — a favourite economist among the techbro elite — thinks <strong>labour is a tax on productivity</strong>, we should listen.</p>
 <p>These aren't visions of human flourishing, <strong>these are visions of humans as high cost, low-value data sources</strong>.</p>
 <p>Maybe as capitalists it's always been the case that we've viewed human labour not as an asset, but as a liability. Now that sentiment is super-charged and looking right at the <a href="https://www.mediaite.com/media/tv/we-risk-revolution-scott-galloway-goes-on-epic-tirade-over-ceo-murder-and-out-of-control-wealth-inequality/" target="_blank" data-tooltip="This entire system is rigged, and it is rigged against [workers] and rigged for billionaires." class="popout tooltip">middle class, the greatest invention of the 20th century</a>, as Scott Galloway puts it.</p>
 <h3 id="workers-on-computers-look-very-expensive" tabindex="-1">Workers on computers look very expensive <a class="direct-link" href="#workers-on-computers-look-very-expensive">#</a></h3>
@@ -149,7 +196,7 @@ What was good about that time? The fact that anyone could not only make a websit
             
             
             <div class="related-posts">
-                <h2>## Related Posts</h2>
+                <h2>Related Posts</h2>
                 <ul>
                     
                     <li><a href="/blog/it-can-be-saved-we-can-be-saved/">Believing IT can be saved, and WE can be saved</a></li>
@@ -173,7 +220,7 @@ What was good about that time? The fact that anyone could not only make a websit
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Contact</h1>
+        <h1>Contact</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail contact">
             
@@ -181,9 +228,9 @@ What was good about that time? The fact that anyone could not only make a websit
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-            <h2>## Let's meet</h2>
+            <h2>Let's meet</h2>
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
@@ -194,7 +241,7 @@ What was good about that time? The fact that anyone could not only make a websit
 <!-- Modal: Saved -->
 <article id="modal-saved" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Ready now 🟢</h1>
+        <h1>Ready now 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work saved">
             <img src="../images/modal-img-saved-logo.png" class="logo">
@@ -214,7 +261,7 @@ What was good about that time? The fact that anyone could not only make a websit
 <!-- Modal: Pockit -->
 <article id="modal-pockit" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Piloting 🟡</h1>
+        <h1>Piloting 🟡</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work pockit">
             <img src="../images/modal-img-pockit-logo.png" class="logo">
@@ -246,7 +293,7 @@ What was good about that time? The fact that anyone could not only make a websit
             <div class="col right">
                 
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>

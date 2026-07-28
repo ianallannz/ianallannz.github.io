@@ -8,8 +8,29 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link id="style-og" rel="stylesheet" href="/css/custom.css">
+    <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <!-- Stays last: pro.css is written to override carson.css. -->
     <link rel="stylesheet" href="/css/carson.css">
+    <script>
+        // Apply the saved design before first paint. Default is custom.css.
+        //
+        // Both stylesheets are linked up front and the unwanted one is switched
+        // off here. Swapping a single link's href instead disowns the current
+        // stylesheet the moment it is set, leaving the document with NO styles
+        // until the replacement downloads — which is what caused the flash of
+        // raw markup (modals, diagonal rules) when moving between pages.
+        // Parser-inserted stylesheets block rendering, and a script waits for
+        // them, so by the time this runs both are loaded and first paint is
+        // already correct. It also makes switching instant: no refetch.
+        (function () {
+            var pro = false;
+            try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+            document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
+            document.getElementById('style-og').disabled = pro;
+            document.getElementById('style-pro').disabled = !pro;
+        })();
+    </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
     <meta name="description" content="I&#39;m here — very locally — to help, but also to do my little bit to bring the Web back to the way its inventor imagined.">
@@ -48,18 +69,41 @@
         
 
 <nav>
+    
+    <a class="nav-brand" href="/">
+        <span class="nav-brand-name">Ian Allan</span>
+        <span class="nav-brand-role">Venture designer</span>
+        <span class="nav-brand-role">Ethical technologist</span>
+        <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
+    </a>
+
     <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text">Hot or not: </span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
                     
                 
             </li>
         </ul>
     </div>
+    
+
+
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>
+
+
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
@@ -67,22 +111,25 @@
 
     
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>
     <li>#<a href="#modal-contact" class="popup">contact</a></li>
 </ul>
 </nav>
+
+
+
         <div class="page-name blog-post-name">
-            <h1># <a href="/blog">Blog</a> post</h1>
+            <h1><a href="/blog">Blog</a> post</h1>
         </div>
         
 <ul class="profile">
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
     </header>
     <main>
@@ -91,7 +138,8 @@
                 <p class="post-date">23 November 2025</p>
                 <h2 id="come-for-the-help%2C-stay-for-the-rewilding" tabindex="-1">Come for the help, stay for the rewilding <a class="direct-link" href="#come-for-the-help%2C-stay-for-the-rewilding">#</a></h2>
 <h3 id="wait%2C-stop-right-there!" tabindex="-1">Wait, stop right there! <a class="direct-link" href="#wait%2C-stop-right-there!">#</a></h3>
-<p>Before we go any further, this is <strong>so 90's.</strong> I've been re-reading an old <a href="https://www.davidcarsondesign.com/" target="_blank" data-tooltip="The most influential designer of the 90's and by my reckoning soon to be again as we react allergically to AI." class="popout tooltip">David Carson</a> book of mine recently. <strong>Carson says some important things about professional intuition</strong> that I will explore in future posts.</p>
+<p>Before we go any further, for this post to make sense you need to be in the uniquely &quot;Ian&quot; site style, not the &quot;Pro Ian&quot; style; you can switch in the navbar.</p>
+<p>So, this is <strong>so 90's.</strong> I've been re-reading an old <a href="https://www.davidcarsondesign.com/" target="_blank" data-tooltip="The most influential designer of the 90's and by my reckoning soon to be again as we react allergically to AI." class="popout tooltip">David Carson</a> book of mine recently. <strong>Carson says some important things about professional intuition</strong> that I will explore in future posts.</p>
 <p><img src="../../images/blog-carson-book-image.jpg" alt="Photo from David Carson's book Second Sight"></p>
 <p>Experiencing that book and Carson's work again inspired me to try <strong>algorithmically creating Carson-like layouts</strong>. So that's what you're seeing here with <em>&quot;So 90's&quot;</em>; it's early days.</p>
 <p>It can be wild so you can turn off &quot;So 90's&quot; or play with it up ^ there 🙂. It's different every time.</p>
@@ -116,7 +164,7 @@
             
             
             <div class="related-posts">
-                <h2>## Related Posts</h2>
+                <h2>Related Posts</h2>
                 <ul>
                     
                     <li><a href="/blog/back-to-the-future/">Where are we going?</a></li>
@@ -138,7 +186,7 @@
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Contact</h1>
+        <h1>Contact</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail contact">
             
@@ -146,9 +194,9 @@
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-            <h2>## Let's meet</h2>
+            <h2>Let's meet</h2>
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
@@ -159,7 +207,7 @@
 <!-- Modal: Saved -->
 <article id="modal-saved" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Ready now 🟢</h1>
+        <h1>Ready now 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work saved">
             <img src="../images/modal-img-saved-logo.png" class="logo">
@@ -179,7 +227,7 @@
 <!-- Modal: Pockit -->
 <article id="modal-pockit" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Piloting 🟡</h1>
+        <h1>Piloting 🟡</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work pockit">
             <img src="../images/modal-img-pockit-logo.png" class="logo">
@@ -211,7 +259,7 @@
             <div class="col right">
                 
 <ul class="menu">
-    <li>/<a href="/" >home&services</a></li>
+    <li>/<a href="/" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" class="active">blog</a></li>
     <li>/<a href="/work/" >work</a></li>

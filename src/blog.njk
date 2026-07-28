@@ -6,17 +6,17 @@ excerpt: "The blog of Ian Allan, an ongoing reflection on rewilding the internet
 <header>
     {% include "navbar.njk" %}
     <div class="page-name blog-name">
-        <h1># Blog</h1>
+        <h1>Blog</h1>
     </div>
     {% include "profile.njk" %}
     <div class="cta blog">
-        <h1>## Hot-or-not</h1>
+        <h1>Featured</h1>
         {% set pinnedPost = collections.pinnedPost %}
 
         <p class="featured-post"><a href="{{ pinnedPost.url }}">{{ pinnedPost.data.title }}</a></p>
         <p class="featured-post-blurb">{{ pinnedPost.data.excerpt }}</p>
         <p class="featured-post-date">&mdash; {{ pinnedPost.date | date("d MMMM yyyy") }}</p>
-        <p class="button"><a class="button-inline-outline" href="{{ pinnedPost.url }}">[Read it]</a><span
+        <p class="button"><a class="button-inline-outline" href="{{ pinnedPost.url }}"><span class="bracket">[</span>Read<span class="bracket">]</span></a><span
                 class="button-tag">
                 ({{ pinnedPost.url }})</span></p>
     </div>
@@ -25,7 +25,7 @@ excerpt: "The blog of Ian Allan, an ongoing reflection on rewilding the internet
 
     <section id="posts" class="posts">
         <div class="posts-list">
-            <h2 class="rss"><span>## All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
+            <h2 class="rss"><span>All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
             {% for post in collections.blogWithNumbers | reverse %}
             <article class="post-preview">
                 <h2>{{ post.data.postNumber }}. <a href="{{ post.url }}">{{ post.data.title }}</a></h2>

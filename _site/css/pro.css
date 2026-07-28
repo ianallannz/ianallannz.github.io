@@ -1,0 +1,2889 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap');
+
+/* =============================================================================
+   pro.css — "modern professional" theme for ianallan.nz
+   =============================================================================
+
+   This is a COMPLETE, STANDALONE stylesheet. It is a drop-in replacement for
+   custom.css, not an override layer — swap the href, don't load both:
+
+       <link id="site-style" rel="stylesheet" href="/css/custom.css">   (OG)
+       <link id="site-style" rel="stylesheet" href="/css/pro.css">      (Pro)
+
+   Nothing else in the site was changed to make this work. Every selector below
+   targets markup that already exists, including the classes custom.js toggles
+   at runtime (.open, .visible-bg, .visible-topics, .animate-in, [aria-hidden],
+   and the inline styles written onto .scattered-img / .how-textbox).
+
+   Design direction
+   ----------------
+   Restrained, high-contrast editorial layout: one accent (a dialled-back
+   descendant of the OG #1100FF), fluid type, generous whitespace, hairline
+   rules instead of decorative artwork, soft-cornered surfaces, a fixed
+   translucent nav, and a full dark-mode pass. The decorative diagonal SVGs,
+   background photographs, marquee, yellow flicker, and rotated headings are
+   all retired here — they live on in custom.css.
+
+   Heading markers
+   ---------------
+   The "#" / "##" that front the headings in the OG design are no longer in the
+   markup — custom.css generates them with ::before, and this stylesheet simply
+   doesn't. Template-authored headings are still set as small monospace labels
+   here, because they read as section labels rather than display type; the
+   markdown-authored headings inside a post get the real display treatment.
+   ========================================================================== */
+
+
+/* -----------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    /* Surfaces & ink */
+    --bg: #fbfbfa;
+    --bg-sunk: #f4f4f2;
+    --surface: #ffffff;
+    --surface-2: #f7f7f5;
+    --photo-bg: #eeede9;
+    --ink: #14161a;
+    --ink-2: #40454f;
+    --ink-3: #6d7280;
+    --line: #e6e5e1;
+    --line-2: #d6d4ce;
+
+    /* Accent — the OG electric blue, dialled back to something that can sit
+       behind a proposal without shouting. */
+    --accent: #2545e6;
+    --accent-hover: #1b34bd;
+    --accent-ink: #1b34bd;
+    --accent-soft: rgba(37, 69, 230, 0.07);
+    --accent-line: rgba(37, 69, 230, 0.22);
+    --marker: rgba(37, 69, 230, 0.15);
+    --on-accent: #ffffff;
+
+    --shadow-sm: 0 1px 2px rgba(16, 18, 24, 0.05), 0 1px 3px rgba(16, 18, 24, 0.04);
+    --shadow-md: 0 4px 10px rgba(16, 18, 24, 0.06), 0 12px 28px rgba(16, 18, 24, 0.07);
+    --shadow-lg: 0 8px 24px rgba(16, 18, 24, 0.10), 0 32px 64px rgba(16, 18, 24, 0.12);
+
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+
+    /* Fluid type scale */
+    --step--2: clamp(0.70rem, 0.68rem + 0.10vw, 0.76rem);
+    --step--1: clamp(0.83rem, 0.80rem + 0.16vw, 0.92rem);
+    --step-0: clamp(1.00rem, 0.97rem + 0.18vw, 1.08rem);
+    --step-1: clamp(1.16rem, 1.09rem + 0.36vw, 1.34rem);
+    --step-2: clamp(1.38rem, 1.24rem + 0.70vw, 1.80rem);
+    --step-3: clamp(1.70rem, 1.42rem + 1.35vw, 2.55rem);
+    --step-4: clamp(2.10rem, 1.60rem + 2.40vw, 3.50rem);
+
+    /* Rhythm & measure */
+    --gutter: clamp(1.25rem, 4vw, 3rem);
+    --shell: 82rem;
+    --measure: 66ch;
+    /* Inline padding for full-bleed elements (the fixed nav, the footer) that
+       lands their content on exactly the same edge as the max-width blocks
+       between them. It is the algebraic equivalent of the block idiom used by
+       <header> and each <main> section:
+           max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter)
+       Miss the trailing "+ var(--gutter)" and full-bleed content sits one
+       gutter further out than everything else. */
+    --shell-pad: max(var(--gutter), (100% - var(--shell)) / 2 + var(--gutter));
+    /* Tall enough for the two-line brand lockup in the nav. */
+    --nav-h: 4rem;
+    /* How far the floating nav island sits below the top of the viewport. This
+       one is constant — the body's top padding is reckoned from it, so it must
+       NOT change when the nav docks or the page would jump on scroll. */
+    --nav-float: 0.375rem;
+
+    /* Nav shape, by state. At the top of the page the nav is a floating island;
+       once custom.js flags [data-scrolled] it docks into a full-width bar.
+       The island's inset is derived from its padding so that inset + padding
+       always equals --shell-pad: the nav's *content* therefore sits on the same
+       edge as the page in both states — only the chrome moves, and nothing
+       shifts sideways as it docks. Tightening --nav-pad pulls the pill's ends
+       in rather than dragging the content out with them. */
+    --nav-top: var(--nav-float);
+    /* Island geometry. Outside: how far the island's ends sit in from the
+       viewport edge — kept tight on small screens so there's room to spare
+       inside. Inside: whatever is left over, so inset + pad always equals
+       --shell-pad; tightening the inset fattens the padding instead of dragging
+       the content out with the pill's ends.
+       These two are deliberately state-independent: the featured strip is sized
+       from them to match the island, and it scrolls with the page, so it must
+       not resize when the nav docks. */
+    --island-inset: calc(var(--gutter) / 4);
+    --island-pad: calc(var(--shell-pad) - var(--island-inset));
+
+    /* What the nav actually uses — the island values until it docks. */
+    --nav-inset: var(--island-inset);
+    --nav-pad: var(--island-pad);
+    --nav-radius: 1.25rem;
+    --nav-shadow: var(--shadow-md);
+    --nav-border-x: var(--line);
+    /* Width of the home-page portrait. The Activities column on the home page
+       is set from this too, so the two stay aligned if you change it. */
+    --hero-w: 24rem;
+
+    --ease: cubic-bezier(0.22, 0.72, 0.30, 1);
+}
+
+@media (min-width: 820px) {
+    :root {
+        --nav-h: 4.5rem;
+        /* The island sits further off the top edge where there's room for it.
+           Everything that clears the nav is derived from this, so the body's
+           top padding and the anchor offsets follow automatically. */
+        --nav-float: 1.5rem;
+        /* And further in from the sides: on wide screens its ends land half a
+           gutter inside the shell edge. */
+        --island-inset: max(var(--gutter) / 2, (100% - var(--shell)) / 2 + var(--gutter) / 2);
+    }
+}
+
+/* Docked: flush to the top edge, full width, square, no lift. Padding takes
+   over the full --shell-pad now the inset is gone, keeping the content edge
+   where it was. */
+:root[data-scrolled] {
+    --nav-top: 0rem;
+    --nav-pad: var(--shell-pad);
+    --nav-inset: 0px;
+    --nav-radius: 0px;
+    --nav-shadow: none;
+    --nav-border-x: transparent;
+}
+
+
+/* -----------------------------------------------------------------------------
+   2. Reset & base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + var(--nav-float) + 1.5rem);
+    /* `clip`, not `hidden`: hidden makes html a scroll container, which silently
+       breaks position:sticky for the sidebar rails below. */
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.006em;
+    color: var(--ink);
+    background-color: var(--bg);
+    overflow-x: clip;
+    /* Clears the fixed nav. Reckoned from the constant --nav-float, not
+       --nav-top, so docking the nav doesn't shift the page vertically. */
+    padding-top: calc(var(--nav-h) + var(--nav-float));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--accent-line);
+    transition: color 0.15s var(--ease), text-decoration-color 0.15s var(--ease);
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: currentColor;
+}
+
+:where(a, button, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+::selection {
+    background: var(--marker);
+    color: var(--ink);
+}
+
+/* Anchor targets clear the fixed nav */
+[id] {
+    scroll-margin-top: calc(var(--nav-h) + var(--nav-float) + 1.5rem);
+}
+
+/* Retire the OG decorative diagonals and their breakpoint switches. */
+.diagonal-line-down,
+.diagonal-line-up,
+.small-screen-down,
+.small-screen-up,
+.large-screen-down,
+.large-screen-up {
+    display: none;
+}
+
+/* custom.js toggles .visible-bg on every section as it scrolls into view.
+   In this theme the page background is uniform, so it is a deliberate no-op. */
+main section.visible-bg {
+    background-color: transparent;
+}
+
+
+/* -----------------------------------------------------------------------------
+   3. Shared label treatment
+   -------------------------------------------------------------------------- */
+
+/* Headings authored in a .njk template (rather than in markdown) are section
+   labels, not display type — set as small mono labels. custom.css generates a
+   "#" / "##" in front of these; this theme deliberately doesn't. */
+header .page-name h1,
+header .cta h1,
+main section h1,
+main section h2,
+main section.blog-post .related-posts h2,
+.modal-content h1,
+.modal-content h2 {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+/* h1 labels sit a step darker than the h2 labels (--ink-3) to carry the
+   hierarchy. Deliberately not the accent: the accent is the link colour, and
+   a blue heading reads as clickable when it isn't. */
+header .page-name h1,
+main section h1,
+.modal-content h1 {
+    color: var(--ink-2);
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. Navigation (fixed, translucent)
+   -------------------------------------------------------------------------- */
+
+nav {
+    position: fixed;
+    top: var(--nav-top);
+    left: 0;
+    right: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: var(--nav-h);
+    margin-inline: var(--nav-inset);
+    /* --nav-inset + --nav-pad == --shell-pad in both states, so the nav's
+       content lines up with the max-width content below it whether the nav is
+       an island or docked. See the token definitions. */
+    padding-inline: var(--nav-pad);
+    border: 1px solid var(--nav-border-x);
+    border-bottom-color: var(--line);
+    border-radius: var(--nav-radius);
+    box-shadow: var(--nav-shadow);
+    transition: top 0.25s var(--ease), margin-inline 0.25s var(--ease),
+        padding-inline 0.25s var(--ease), border-radius 0.25s var(--ease),
+        box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+/* The translucent fill and blur live on a pseudo-element rather than on the nav
+   itself. An element with a backdrop-filter becomes the containing block for
+   its position:fixed descendants — with it on the nav, the mobile full-screen
+   menu below was trapped inside the bar (measured: 1487x70 instead of the
+   viewport) and could not cover the page. */
+nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+}
+
+/* Docked, --nav-border-x goes transparent so only the bottom hairline is left.
+   A transparent border still occupies its 1px though, and ::before is inset
+   from the *padding* box — so that ring was unpainted and the page showed
+   through it as a sliver above the bar. Push the fill out over the border on
+   those three sides; --nav-radius is 0 here, so there's no corner to mismatch,
+   and the bottom stays put so its hairline still reads. */
+:root[data-scrolled] nav::before {
+    inset: -1px -1px 0;
+}
+
+
+/* --- Brand mark ------------------------------------------------------------
+   This design carries the identity here rather than in the header, so the nav
+   reads like a normal site nav: mark on the left, links on the right. The
+   header's profile.njk block is hidden further down. */
+
+/* A two-line lockup: name over roles. Same wrap trick as ul.profile — the name
+   takes a full row, so the roles fall onto a second line without needing a
+   wrapper element around them. The nav is sized to suit (--nav-h below). */
+nav .nav-brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: center;
+    flex: 0 1 auto;
+    min-width: 0;
+    /* Column gap is the space to the LEFT of the "·" between the roles — the
+       name is a full-width row, so it never falls anywhere else. Keep it
+       matched to the separator's margin-right below. */
+    gap: 0.12rem 0.22rem;
+    text-decoration: none;
+}
+
+nav .nav-brand-name {
+    flex: 0 0 100%;
+    font-size: var(--step-0);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: var(--ink);
+    transition: color 0.15s var(--ease);
+}
+
+nav .nav-brand-role {
+    font-size: var(--step--2);
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--ink-3);
+}
+
+/* Same separator treatment as the profile block it replaces. */
+nav .nav-brand-role + .nav-brand-role::before {
+    content: "·";
+    margin-right: 0.22rem;
+    color: color-mix(in srgb, var(--ink-3) 60%, transparent);
+}
+
+nav .nav-brand:hover .nav-brand-name {
+    color: var(--accent);
+}
+
+/* The lockup sheds detail as the bar tightens. The location goes first: below
+   ~900px the roles line no longer fits on one line and wraps, which grows the
+   lockup a third line with a stray leading separator. (It's still in the footer
+   and the contact modal.) */
+@media (max-width: 899px) {
+    nav .nav-brand-place {
+        display: none;
+    }
+}
+
+/* Narrow phones: the bar can't carry the roles as well as the switch and the
+   menu button, so the lockup falls back to the name alone. */
+@media (max-width: 559px) {
+    nav .nav-brand-role {
+        display: none;
+    }
+}
+
+/* --- Featured post ---------------------------------------------------------
+   The OG marquee lives inside the nav, which is fixed here — so anything in it
+   is pinned to the viewport whether it wants to be or not. This design uses the
+   .featured-strip in navbar.njk instead, which sits outside the nav in normal
+   flow and scrolls away with the page. Styled below, under the header. */
+
+nav .nav-left {
+    display: none;
+}
+
+/* --- Hamburger ------------------------------------------------------------ */
+
+nav .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color 0.15s var(--ease);
+}
+
+nav .hamburger:hover {
+    color: var(--accent);
+}
+
+/* --- Menu: mobile drawer -------------------------------------------------- */
+
+/* Small screens: the menu is a full-screen panel rather than a dropdown. It can
+   only escape the bar because the nav's backdrop-filter moved to nav::before —
+   see the note there. The bar's own contents are lifted above it so the brand
+   and the close button stay visible over the panel. */
+nav .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.15rem;
+    list-style: none;
+    padding: calc(var(--nav-float) + var(--nav-h) + 1.75rem) var(--shell-pad) 2rem;
+    background: var(--bg);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.22s var(--ease), visibility 0.22s var(--ease);
+}
+
+nav .nav-brand,
+nav .style-switch,
+nav .hamburger {
+    position: relative;
+    z-index: 2;
+}
+
+nav .menu.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Hold the page still behind the panel. Scoped to the widths where the menu is
+   actually full-screen: above this the hamburger is hidden, so the flag can't
+   be set — and applying it there would put an overflow on <html>, which is what
+   breaks position:sticky (see the note on `overflow-x: clip` above). */
+@media (max-width: 819px) {
+    :root[data-nav-open],
+    :root[data-nav-open] body {
+        overflow: hidden;
+    }
+}
+
+/* ☰ becomes ✕ while the panel is open. The glyph is a text node in the markup,
+   so it's swapped rather than replaced. */
+nav .hamburger {
+    font-size: 0;
+}
+
+nav .hamburger::before {
+    content: "\2630";
+    font-size: 1rem;
+}
+
+nav .hamburger[aria-expanded="true"]::before {
+    content: "\2715";
+}
+
+/* The "/" and "#" before each link are bare text nodes in the markup; zeroing
+   the li font-size and restoring it on the anchor removes them cleanly. */
+nav .menu li,
+footer ul.menu li {
+    font-size: 0;
+    list-style: none;
+}
+
+nav .menu li a {
+    display: block;
+    font-size: var(--step--1);
+    font-weight: 450;
+    color: var(--ink-2);
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 0.5rem 0.7rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+nav .menu li a:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+}
+
+nav .menu li a.active {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Small screens: the panel's links are the page's main navigation, so they get
+   display-sized type and a hairline between them. Must sit after the base link
+   rules above — same specificity, so source order decides. */
+nav .menu li a {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    padding: 0.85rem 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+}
+
+nav .menu li:last-child a {
+    border-bottom: 0;
+}
+
+nav .menu li a:hover,
+nav .menu li a.active {
+    background: none;
+    color: var(--accent);
+}
+
+/* The modal-trigger glyph is noise in a nav bar. */
+nav .menu li a.popup::after,
+footer ul.menu li a.popup::after {
+    display: none;
+}
+
+/* --- Menu: desktop bar ---------------------------------------------------- */
+
+@media (min-width: 820px) {
+    nav .hamburger {
+        display: none;
+    }
+
+    /* Back to an inline row. Note `visibility` has to be reset explicitly —
+       the small-screen panel is hidden that way, and position:static alone
+       would leave the desktop menu invisible. */
+    nav .menu {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.15rem;
+        min-width: 0;
+        padding: 0;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+        overscroll-behavior: auto;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    nav .menu li a {
+        font-size: var(--step--1);
+        font-weight: 450;
+        letter-spacing: -0.005em;
+        padding: 0.4rem 0.7rem;
+        border-bottom: 0;
+        border-radius: var(--radius-sm);
+    }
+
+    nav .menu li a:hover {
+        color: var(--ink);
+        background: var(--surface-2);
+    }
+
+    nav .menu li a.active {
+        color: var(--accent);
+        background: var(--accent-soft);
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   5. Header / hero
+   -------------------------------------------------------------------------- */
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 5vw, 4rem);
+    /* On /work/ the header is a flex item of .dataroom-wrapper, and an auto
+       inline margin on a flex item suppresses stretch — without an explicit
+       width it shrinks to fit its content and centres, breaking alignment with
+       every other page. */
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding: clamp(2.5rem, 7vw, 6rem) var(--gutter) clamp(2rem, 5vw, 4rem);
+}
+
+/* --- Featured post strip ---------------------------------------------------
+   A "latest / featured" callout at the top of the header, in normal flow, so it
+   scrolls away rather than pinning under the nav. navbar.njk omits it entirely
+   on the blog index and on the pinned post's own page, so there's no empty-state
+   to style around. */
+
+header > .featured-strip {
+    /* Sized to match the nav island above it. The header's content box is
+       narrower than the island by --island-pad on each side, so the strip is
+       pulled out by that much and its basis widened to suit — a negative margin
+       alone would extend it to the left only, since the basis fixes its width. */
+    flex: 0 0 calc(100% + 2 * var(--island-pad));
+    margin-inline: calc(-1 * var(--island-pad));
+    /* The strip is itself a flex item of <header>. Without this its automatic
+       minimum size is its min-content width — which the nowrap title makes wider
+       than the screen — and it runs off the edge instead of letting the title
+       truncate. */
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.95rem;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    text-decoration: none;
+    background-color: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius);
+    transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease),
+        color 0.15s var(--ease);
+}
+
+header > .featured-strip:hover {
+    color: var(--ink);
+    background-color: color-mix(in srgb, var(--accent) 11%, transparent);
+    border-color: var(--accent);
+}
+
+/* Sit the strip up near the nav rather than below the header's full top
+   padding — it reads as page chrome, not as hero content. */
+header:has(> .featured-strip) {
+    padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.featured-strip-mark {
+    flex: 0 0 auto;
+    font-size: 0.85em;
+    color: var(--accent);
+}
+
+.featured-strip-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.featured-strip-go {
+    flex: 0 0 auto;
+    color: var(--accent);
+    transition: transform 0.15s var(--ease);
+}
+
+header > .featured-strip:hover .featured-strip-go {
+    transform: translateX(3px);
+}
+
+
+/* Page label ("About", "Blog", "Work", "Blog post"). It takes a full row of the
+   header's flex layout so it sits above the content that follows rather than
+   beside it — without this it's an auto-width flex item and shares a line with
+   the CTA on blog, work and topic pages. */
+header .page-name {
+    flex: 0 0 100%;
+}
+
+header .page-name h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header .page-name h1 a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* Identity block */
+header ul.profile {
+    flex: 0 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    /* The column gap is the space to the LEFT of the "·" separator below —
+       .name and .location are full-width rows, so it only ever falls between
+       the two .what items. Keep it matched to the separator's margin-right. */
+    gap: 0.15rem 0.57rem;
+    list-style: none;
+}
+
+header ul.profile li {
+    list-style: none;
+    font-size: var(--step--1);
+    color: var(--ink-3);
+}
+
+header ul.profile li.name {
+    flex: 0 0 100%;
+    font-size: var(--step-1);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.1rem;
+}
+
+header ul.profile li.name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header ul.profile li.name a:hover {
+    color: var(--accent);
+}
+
+header ul.profile li.what + li.what::before {
+    content: "·";
+    margin-right: 0.57rem;
+    color: color-mix(in srgb, var(--ink-3) 60%, transparent);
+}
+
+/* The location's two halves are separate spans in profile.njk. They stay inline
+   here, so it reads as one line; custom.css stacks them instead. Set on its own
+   row as a small mono locator. */
+header ul.profile li.location {
+    flex: 0 0 100%;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    line-height: 1.35;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+/* ...but the nav's brand mark carries the identity in this design, so the
+   header copy is redundant and comes out. The rules above are kept so bringing
+   it back is a one-line change. The same markup inside the contact modal is
+   scoped separately and is unaffected. */
+header ul.profile {
+    display: none;
+}
+
+/* --- Call to action ------------------------------------------------------- */
+
+header .cta {
+    flex: 1 1 32rem;
+    max-width: 46rem;
+    min-width: 0;
+}
+
+header .cta h1 {
+    margin-bottom: 0.9rem;
+}
+
+header .cta p.copy {
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    color: var(--ink);
+}
+
+header .cta p {
+    padding-bottom: 0;
+}
+
+header .cta p + p {
+    margin-top: 1rem;
+}
+
+header .cta p.quote,
+header .cta p.featured-post {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 350;
+    font-style: italic;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+    color: var(--ink);
+    max-width: 24ch;
+}
+
+/* The headline and the blurb beneath it share one column width. Both were
+   previously capped in `ch`, which resolves against each element's OWN
+   font-size — so 20ch of 2.55rem display type came out at 466px while 66ch of
+   body copy came out at 715px, and the headline sat in a visibly tighter
+   column than the blurb below it. A shared rem value keeps them aligned
+   whatever the type sizes do. */
+header .cta p.featured-post,
+header .cta p.featured-post-blurb {
+    max-width: 44rem;
+}
+
+header .cta p.featured-post a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header .cta p.featured-post a:hover {
+    color: var(--accent);
+}
+
+header .topic p.featured-post {
+    text-transform: capitalize;
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+}
+
+/* Width is set with the headline above — see the shared rule further up. */
+header .cta p.featured-post-blurb {
+    font-size: var(--step-0);
+    color: var(--ink-2);
+}
+
+header .cta p.quote-author,
+header .cta p.featured-post-date {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+}
+
+header .cta.work p {
+    font-size: var(--step-2);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    max-width: 28ch;
+}
+
+/* The "(#services)" tag beside each button is dev-flavour from the OG design. */
+header .cta p.button .button-tag {
+    display: none;
+}
+
+header .cta p.button {
+    margin-top: 1.75rem;
+}
+
+/* --- Portrait ------------------------------------------------------------- */
+
+header .hero {
+    flex: 0 1 var(--hero-w);
+    min-width: 0;
+}
+
+header .hero .me-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 15%;
+    background-color: var(--photo-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* About page wraps the CTA + portrait in .about-wrapper.
+   row-reverse puts the portrait on the left and the CTA on the right without
+   touching the markup. It's used in preference to swapping the two `order`
+   values below because it only reverses items *within* a flex line: once the
+   wrapper wraps to a single column the lines still stack in source order, so
+   the CTA stays above the portrait on narrow screens. Swapping the orders
+   would have flipped that too. */
+header .about-wrapper {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+}
+
+header .about-wrapper .cta {
+    order: 1;
+    flex: 1 1 30rem;
+}
+
+header .about-wrapper .hero {
+    order: 2;
+    flex: 0 1 22rem;
+}
+
+/* Bleed the portrait past the header's gutter to the viewport's left edge.
+   <header> is centred at max-width --shell with --gutter of inline padding, so
+   the run-up from the viewport edge to its content box is the centring margin
+   plus that gutter — hence the max(), which collapses to just the gutter once
+   the viewport is narrower than --shell. 100vw overshoots by half a scrollbar
+   where the scrollbar is classic rather than overlaid; overflow-x: clip on
+   <html>/<body> (§2) absorbs it.
+
+   Gated to the widths where .about-wrapper is genuinely two columns. Below
+   that it wraps, the portrait goes full-width, and the pull would just jam it
+   against the screen edge. The threshold is where the two flex bases plus the
+   gap stop fitting (30rem + 22rem + gap, less the bleed itself, against the
+   viewport minus two gutters) — recheck it if any of those change. */
+@media (min-width: 920px) {
+    header .about-wrapper .hero {
+        margin-left: calc(-1 * (max(0px, (100vw - var(--shell)) / 2) + var(--gutter)));
+    }
+}
+
+/* me-cactus.png is a cut-out, so contain it on a light card rather than crop. */
+header .about-wrapper .hero .me-image {
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    object-position: center bottom;
+    /* Top / sides / bottom: the cut-out stands on the card's bottom edge, with
+       the sides at half the top's inset so it reads as planted rather than
+       floating in a box. */
+    padding: 0.75rem 0 0 0;
+    box-shadow: var(--shadow-sm);
+    transform: none;
+}
+
+
+/* -----------------------------------------------------------------------------
+   6. Buttons
+   -------------------------------------------------------------------------- */
+
+a.button-inline,
+a.button-inline-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 550;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    text-decoration: none;
+    padding: 0.75rem 1.3rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.16s var(--ease), border-color 0.16s var(--ease),
+        color 0.16s var(--ease), transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+
+a.button-inline {
+    color: var(--on-accent);
+    background-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+a.button-inline:hover {
+    color: var(--on-accent);
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+a.button-inline-outline {
+    color: var(--accent);
+    background-color: transparent;
+    border-color: var(--accent-line);
+}
+
+a.button-inline-outline:hover {
+    color: var(--accent-hover);
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+a.button-inline::after,
+a.button-inline-outline::after {
+    color: currentColor;
+    opacity: 0.65;
+    font-size: 0.85em;
+}
+
+/* The "[ ]" around CTA labels belong to the OG design. They're spans rather
+   than generated content because ::after on these buttons is already carrying
+   the ⧉ / ↗ / 🔒 marker — a bracket rule there would lose OG its glyph. */
+.bracket {
+    display: none;
+}
+
+@media (hover: none) {
+    a.button-inline:hover,
+    a.button-inline-outline:hover {
+        transform: none;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   7. Main sections & typography
+   -------------------------------------------------------------------------- */
+
+main section {
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding: clamp(3rem, 6vw, 5.5rem) var(--gutter);
+}
+
+main section.first {
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+main section#activities {
+    border-top: 1px solid var(--line);
+    padding-top: clamp(3rem, 6vw, 5rem);
+    margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+/* --- Home: Services + Activities side by side ------------------------------
+
+   Activities leads, at the same width as the portrait above it, with Services
+   taking the rest. index.njk renders an empty body class, so there's no page
+   hook to select on — but #services and #activities exist only on the home
+   page, so :has() scopes this without touching the markup. Browsers without
+   :has() simply keep the stacked layout.
+
+   The breakpoint is set where the header's portrait is reliably alongside the
+   headline, so the column below lines up with a hero that's actually there. */
+
+@media (min-width: 1100px) {
+    main:has(> section#activities) {
+        display: grid;
+        grid-template-columns: var(--hero-w) minmax(0, 1fr);
+        align-items: start;
+        column-gap: clamp(2rem, 5vw, 4rem);
+        max-width: var(--shell);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+    }
+
+    /* The sections are grid items now — centring and side padding move up to
+       the container so the two columns share one top edge. */
+    main:has(> section#activities) > section {
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: 0;
+        padding-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    main:has(> section#activities) > section#activities {
+        grid-column: 1;
+        grid-row: 1;
+        margin-top: 0;
+        border-top: 0;
+    }
+
+    main:has(> section#activities) > section#services {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+main section h1 {
+    margin-bottom: 1.1rem;
+}
+
+main section h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.6rem;
+}
+
+main section h1 + p,
+main section h2 + p,
+main section h2 + ul,
+main section h2 + table {
+    margin-top: 0;
+}
+
+/* The lead line under each section label carries the display weight. */
+main section > p.l1 {
+    font-size: var(--step-3);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    max-width: 22ch;
+    padding-bottom: 0;
+    margin-bottom: 2.5rem;
+    color: var(--ink);
+}
+
+main section > p.l1 .highlight {
+    background: none;
+    padding: 0;
+}
+
+main section p {
+    max-width: var(--measure);
+    padding-bottom: 1.1rem;
+}
+
+main section p.l2 {
+    color: var(--ink-2);
+}
+
+main section p .bit-bold,
+main section strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+main section p.quote,
+.modal-content p.quote {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-weight: 350;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--accent-line);
+    padding-bottom: 0.6rem;
+}
+
+main section p.quote-author {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.03em;
+    color: var(--ink-3);
+    padding-left: 1.1rem;
+}
+
+/* --- Lists ---------------------------------------------------------------- */
+
+main section ul {
+    padding-bottom: 1.2rem;
+    max-width: var(--measure);
+}
+
+main section ul li {
+    list-style: none;
+    position: relative;
+    padding-left: 1.15rem;
+    margin-bottom: 0.55rem;
+    line-height: 1.5;
+}
+
+main section ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    opacity: 0.55;
+}
+
+/* --- Service cards ---------------------------------------------------------
+   Each service is a heading plus its skill list, wrapped in .service so the two
+   can sit in one surface. Cards use the same vocabulary as the sidebar rails
+   elsewhere in this theme — white surface, hairline border, soft corner — and
+   are numbered with a CSS counter, so the markup carries no presentation. The
+   OG design leaves the wrapper unstyled and reads straight through it. */
+
+main section#services {
+    counter-reset: service;
+}
+
+main section#services .service {
+    counter-increment: service;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.25rem, 2.2vw, 1.75rem);
+    margin-bottom: 0.85rem;
+}
+
+/* The heading sits flush with the top of the card, not on the section rhythm. */
+main section#services .service h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+}
+
+main section#services .service h2::before {
+    content: counter(service, decimal-leading-zero);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+main section#services .service ul.skills {
+    padding-bottom: 0;
+}
+
+/* Clear the run of cards before the copy that follows. */
+main section#services .service:last-of-type {
+    margin-bottom: 2rem;
+}
+
+/* --- "But why use me specifically?" ----------------------------------------
+   A tinted panel rather than another white card, so the pitch reads as a
+   different kind of thing from the capability cards above it. */
+
+main section#services .why {
+    padding: clamp(1.25rem, 2.2vw, 1.75rem);
+    background-color: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-lg);
+}
+
+/* The question carries the panel. */
+main section#services .why > p:first-child {
+    max-width: none;
+    padding-bottom: 0.4rem;
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+/* The panel is the emphasis here — the marker underneath it just muddies. */
+main section#services .why > p:first-child .highlight {
+    background: none;
+    padding: 0;
+}
+
+/* "Because you'd love:" as a label, matching the section labels. */
+main section#services .why > p.l2 {
+    padding-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+main section#services .why ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 0.5rem 2rem;
+    max-width: none;
+    padding-bottom: 0;
+}
+
+main section#services .why ul li {
+    margin-bottom: 0;
+    padding-left: 1.4rem;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+}
+
+/* A tick rather than the section's dot — these are benefits, not just items. */
+main section#services .why ul li::before {
+    content: "✓";
+    top: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    opacity: 1;
+    color: var(--accent);
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+/* Services skill lists. Real lists in index.njk, so they can be a scannable
+   grid here rather than a run-on sentence (which is what custom.css turns them
+   back into). Two columns wherever there's room, one when there isn't. */
+main section ul.skills {
+    display: grid;
+    /* Wide enough that the longer phrases don't wrap raggedly — this lands on
+       two columns in the services column, one on a phone. */
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 0.45rem 2rem;
+    max-width: none;
+    padding-bottom: 1.75rem;
+}
+
+main section ul.skills li {
+    margin-bottom: 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+}
+
+/* They're authored in sentence case so they read as a sentence in the OG
+   design; as list items they want a capital each. */
+main section ul.skills li::first-letter {
+    text-transform: uppercase;
+}
+
+
+/* Activity lists. Real lists in index.njk (custom.css reads them back as
+   comma-delimited sentences). Set as rows rather than chips — some of these are
+   post titles, which are far too long to sit in a pill — with the ↗ / ⧉ / 🔒
+   affordance pushed out to the right edge of each row. */
+main section ul.activities {
+    max-width: none;
+    padding-bottom: 1.25rem;
+    border-top: 1px solid var(--line);
+}
+
+main section ul.activities li {
+    padding-left: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--line);
+}
+
+/* No bullet — the row itself is the delimiter here. */
+main section ul.activities li::before {
+    display: none;
+}
+
+/* A block, not a flex row: ::first-letter only applies to block containers, and
+   a flex container isn't one. The ↗ / ⧉ / 🔒 marker is pinned to the right with
+   absolute positioning instead, which also keeps it on the first line when a
+   long post title wraps. */
+main section ul.activities li a {
+    display: block;
+    position: relative;
+    padding: 0.5rem 1.6rem 0.5rem 0;
+    font-size: var(--step--1);
+    line-height: 1.35;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s var(--ease), padding-left 0.15s var(--ease);
+}
+
+/* Authored in sentence case so the OG design reads as a sentence; as rows they
+   want a capital each. Same treatment as the skill lists. */
+main section ul.activities li a::first-letter {
+    text-transform: uppercase;
+}
+
+main section ul.activities li a:hover {
+    color: var(--accent);
+    padding-left: 0.3rem;
+}
+
+/* A featured activity. Add class="featured" to any <li> in an activity list to
+   lift it out of the run of rows: accent rule, heavier and darker type, a step
+   up in size. The OG design leaves it as an ordinary item in the sentence. */
+main section ul.activities li.featured {
+    padding-left: 0.7rem;
+    border-left: 2px solid var(--accent);
+}
+
+main section ul.activities li.featured a {
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+main section ul.activities li a::after {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+    margin-left: 0;
+}
+
+
+/* --- Inline marks & link affordances -------------------------------------- */
+
+.highlight,
+.highlight-inline {
+    display: inline;
+    padding: 0 0.05em;
+    background-image: linear-gradient(transparent 62%, var(--marker) 62%);
+}
+
+main section p a,
+main section li a,
+main section td a {
+    display: inline;
+    color: var(--accent);
+    padding: 0;
+}
+
+main section p a:hover,
+main section li a:hover,
+main section td a:hover {
+    color: var(--accent-hover);
+}
+
+a.popout::after {
+    content: "↗";
+    display: inline-block;
+    margin-left: 0.15em;
+    font-size: 0.82em;
+    color: var(--ink-3);
+    text-decoration: none;
+    vertical-align: 0.05em;
+}
+
+a.popup::after {
+    content: "⧉";
+    display: inline-block;
+    margin-left: 0.2em;
+    font-size: 0.8em;
+    color: var(--ink-3);
+    text-decoration: none;
+}
+
+a.locked::after {
+    content: "🔒";
+    display: inline-block;
+    margin-left: 0.2em;
+    font-size: 0.72em;
+    opacity: 0.65;
+    text-decoration: none;
+}
+
+/* --- Tables --------------------------------------------------------------- */
+
+main section table {
+    width: 100%;
+    max-width: 46rem;
+    margin-bottom: 2.5rem;
+    font-size: var(--step--1);
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+main section table col:first-child {
+    width: 55%;
+}
+
+main section table tr th {
+    text-align: left;
+    vertical-align: bottom;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 0 0.75rem 0.65rem 0;
+    border-bottom: 1px solid var(--line-2);
+}
+
+main section table tr td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.7rem 0.75rem 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-2);
+}
+
+main section table tr td:first-child {
+    color: var(--ink);
+}
+
+/* The 🧠 runs read as a bar chart — keep them, just make them behave. */
+main section table tr td:last-child {
+    font-size: 0.72em;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    word-break: break-word;
+}
+
+
+/* -----------------------------------------------------------------------------
+   8. About page — three-up layout
+   -------------------------------------------------------------------------- */
+
+main section.three-up {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+main section.three-up h2 {
+    margin-top: 2rem;
+}
+
+main section.three-up .pro-blurb {
+    max-width: 46rem;
+}
+
+main section.three-up .pro-blurb > h1 {
+    margin-top: 3rem;
+}
+
+main section.three-up .pro-blurb > h1:first-child {
+    margin-top: 0;
+}
+
+main section.three-up .pro-blurb > p:not(.quote):not(.quote-author) {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    letter-spacing: -0.012em;
+}
+
+main section.three-up .bio p,
+main section.three-up .bio ul,
+main section.three-up .shoutouts p,
+main section.three-up .shoutouts ul {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+}
+
+/* Shout-outs read better as a chip cloud than a bulleted column. */
+main section.three-up .shoutouts ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    max-width: none;
+}
+
+main section.three-up .shoutouts ul li {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+main section.three-up .shoutouts ul li::before {
+    display: none;
+}
+
+main section.three-up .shoutouts ul li a {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    font-size: var(--step--2);
+    color: var(--ink-2);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background-color 0.15s var(--ease);
+}
+
+main section.three-up .shoutouts ul li a:hover {
+    color: var(--accent);
+    border-color: var(--accent-line);
+    background: var(--accent-soft);
+}
+
+main section.three-up .shoutouts ul li a.popout::after {
+    opacity: 0.5;
+}
+
+@media (min-width: 1000px) {
+    main section.three-up {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+        align-items: start;
+    }
+
+    main section.three-up .pro-blurb {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+    }
+
+    main section.three-up .bio {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    main section.three-up .shoutouts {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   9. Blog index & topic pages
+   -------------------------------------------------------------------------- */
+
+main section.posts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--line);
+}
+
+main section.posts h2 {
+    margin-top: 0;
+}
+
+main section.posts .topic h2 {
+    text-transform: uppercase;
+}
+
+/* --- Post list ------------------------------------------------------------ */
+
+main section.posts .posts-list h2.rss {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+}
+
+main section.posts .posts-list h2.rss a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--ink-3);
+}
+
+main section.posts .posts-list h2.rss a:hover {
+    color: var(--accent);
+}
+
+main section.posts .posts-list h2.rss .rss-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+    opacity: 0.8;
+}
+
+main section.posts .posts-list h2.rss .rss-text {
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.09em;
+}
+
+main section.posts .posts-list .post-preview {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+    max-width: 46rem;
+}
+
+main section.posts .posts-list .post-preview:last-child {
+    border-bottom: 0;
+}
+
+main section.posts .posts-list .post-preview h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.28;
+    text-transform: none;
+    color: var(--ink-3);
+    /* the leading "1." numeral */
+    margin: 0 0 0.35rem;
+    padding: 0;
+}
+
+main section.posts .posts-list .post-preview h2 a {
+    color: var(--ink);
+    background: none;
+    padding: 0;
+    text-decoration: none;
+}
+
+main section.posts .posts-list .post-preview h2 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+}
+
+main section.posts .posts-list .post-preview p.post-date {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    padding-bottom: 0.5rem;
+}
+
+main section.posts .posts-list .post-preview p.post-blurb {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    padding-bottom: 0;
+    max-width: var(--measure);
+}
+
+/* --- Topics sidebar ------------------------------------------------------- */
+
+main section.posts .sidebar p,
+main section.posts .sidebar ul {
+    font-size: var(--step--1);
+}
+
+main section.posts .sidebar h2.toggle-topics {
+    margin-bottom: 0;
+}
+
+main section.posts .sidebar .toggle-topics .toggle-link {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+main section.posts .sidebar .toggle-topics .toggle-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+main section.posts .sidebar .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-left: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s var(--ease), opacity 0.25s var(--ease);
+}
+
+main section.posts .sidebar .topics-list.visible-topics {
+    max-height: 60rem;
+    margin-top: 0.9rem;
+    opacity: 1;
+}
+
+main section.posts .sidebar .topics-list li {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+main section.posts .sidebar .topics-list li::before {
+    display: none;
+}
+
+main section.posts .sidebar .topics-list li a {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    font-size: var(--step--2);
+    color: var(--ink-2);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background-color 0.15s var(--ease);
+}
+
+main section.posts .sidebar .topics-list li a:hover {
+    color: var(--accent);
+    border-color: var(--accent-line);
+    background: var(--accent-soft);
+}
+
+@media (min-width: 900px) {
+    main section.posts {
+        /* Sized to the reading column rather than 1fr, so the sidebar sits
+           beside the list instead of drifting to the far right. */
+        grid-template-columns: minmax(0, 46rem) minmax(0, 17rem);
+        justify-content: start;
+        align-items: start;
+    }
+
+    main section.posts .posts-list {
+        grid-column: 1;
+    }
+
+    main section.posts .sidebar {
+        grid-column: 2;
+        position: sticky;
+        top: calc(var(--nav-h) + 2rem);
+        padding: 1.25rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   10. Blog post
+   -------------------------------------------------------------------------- */
+
+main section.blog-post {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--line);
+    /* carson.css loads after this file on post pages and sets
+       `.blog-post { padding-right: 2rem !important }` — matched here so the
+       column stays centred. */
+    padding-right: var(--gutter) !important;
+}
+
+main section.blog-post article {
+    min-width: 0;
+    max-width: 44rem;
+}
+
+main section.blog-post article p.post-date {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-bottom: 1.5rem;
+}
+
+main section.blog-post article p {
+    font-size: var(--step-1);
+    line-height: 1.62;
+    letter-spacing: -0.011em;
+    color: var(--ink-2);
+    max-width: var(--measure);
+    padding-bottom: 1.4rem;
+}
+
+main section.blog-post article a {
+    display: inline;
+    padding: 0;
+    color: var(--accent);
+}
+
+main section.blog-post article strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* Markdown-authored headings carry no "#" markers — set them as real display
+   type rather than the mono labels used for template headings. */
+main section.blog-post article h2,
+main section.blog-post article h3,
+main section.blog-post article h4 {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+    padding: 0;
+}
+
+main section.blog-post article h2 {
+    font-size: var(--step-3);
+    font-weight: 650;
+    line-height: 1.14;
+    margin: 2.75rem 0 1.1rem;
+}
+
+main section.blog-post article > h2:first-of-type {
+    margin-top: 0;
+}
+
+main section.blog-post article h3 {
+    font-size: var(--step-2);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 2.25rem 0 0.9rem;
+}
+
+main section.blog-post article h4 {
+    font-size: var(--step-1);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 1.9rem 0 0.7rem;
+}
+
+main section.blog-post article ul,
+main section.blog-post article ol {
+    font-size: var(--step-1);
+    color: var(--ink-2);
+    padding-left: 1.1rem;
+    padding-bottom: 1.4rem;
+    max-width: var(--measure);
+}
+
+main section.blog-post article ol li,
+main section.blog-post article ul li {
+    padding-left: 0.35rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.55;
+}
+
+main section.blog-post article ol li {
+    list-style: decimal;
+}
+
+main section.blog-post article ul li {
+    list-style: none;
+    position: relative;
+    padding-left: 1.15rem;
+}
+
+main section.blog-post article ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.66em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    opacity: 0.55;
+}
+
+main section.blog-post article blockquote {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 350;
+    font-style: italic;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    background: none;
+    padding: 0.2rem 0 0.2rem 1.4rem;
+    margin: 2rem 0;
+    border-left: 2px solid var(--accent);
+}
+
+main section.blog-post article blockquote p {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    line-height: inherit;
+    padding-bottom: 0;
+}
+
+main section.blog-post article img {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    margin: 2rem 0;
+    background-color: var(--photo-bg);
+}
+
+main section.blog-post article table {
+    max-width: 100%;
+}
+
+/* markdown-it-anchor permalinks: hidden until you hover the heading. */
+main section.blog-post article .direct-link {
+    color: var(--ink-3);
+    text-decoration: none;
+    margin-left: 0.35em;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.15s var(--ease);
+}
+
+main section.blog-post article :is(h2, h3, h4):hover .direct-link,
+main section.blog-post article .direct-link:focus-visible {
+    opacity: 0.6;
+}
+
+/* --- Related posts rail --------------------------------------------------- */
+
+main section.blog-post .related-posts {
+    min-width: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+}
+
+main section.blog-post .related-posts h2 {
+    margin: 0 0 1rem;
+}
+
+main section.blog-post .related-posts ul {
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+main section.blog-post .related-posts ul li {
+    padding-left: 0;
+    margin-bottom: 0.85rem;
+    font-size: var(--step--1);
+    line-height: 1.4;
+}
+
+main section.blog-post .related-posts ul li::before {
+    display: none;
+}
+
+main section.blog-post .related-posts ul li a {
+    color: var(--ink-2);
+    text-decoration: none;
+}
+
+main section.blog-post .related-posts ul li a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+}
+
+@media (min-width: 980px) {
+    main section.blog-post {
+        grid-template-columns: minmax(0, 44rem) minmax(0, 17rem);
+        justify-content: start;
+        align-items: start;
+    }
+
+    main section.blog-post article {
+        grid-column: 1;
+    }
+
+    main section.blog-post .related-posts {
+        grid-column: 2;
+        position: sticky;
+        top: calc(var(--nav-h) + 2rem);
+        padding: 1.25rem;
+        border-top: 0;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+    }
+
+    main section.blog-post article img.float-lg {
+        float: left;
+        width: 48%;
+        margin: 0.4rem 2rem 1.5rem 0;
+    }
+}
+
+/* --- Carson mode ----------------------------------------------------------
+
+   Posts with a `carsonify` value in their front matter auto-render in Carson
+   mode on load: carson.js shreds the article into fragments with randomised
+   colours, tilts and overlaps, then hides the real <article> with INLINE styles
+   (visibility/position/left/display).
+
+   Carson mode is the OG design taken to its logical end, and it is the one
+   thing that cannot be reconciled with this theme — so pro mode opts out of it
+   entirely: the readable article is forced back (inline styles need
+   !important), the generated layer is hidden, and the preset dropdown is
+   removed rather than left as a dead control. Switch to custom.css to get it
+   back; nothing in carson.js is disabled or modified.                        */
+
+main section.blog-post article {
+    visibility: visible !important;
+    position: static !important;
+    left: auto !important;
+    display: block !important;
+}
+
+main section.blog-post .carson-render,
+.carson-toggle-wrapper {
+    display: none !important;
+}
+
+
+/* -----------------------------------------------------------------------------
+   11. Work page — the scattered data room
+   -------------------------------------------------------------------------- */
+
+/* custom.js measures this container to place items, so the tall canvas stays. */
+.dataroom-wrapper main {
+    height: 340vh;
+}
+
+main section.dataroom-dt {
+    position: relative;
+    max-width: none;
+    width: 100%;
+    height: 340vh;
+    margin-top: 2rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Positions, sizes and rotation are written inline by custom.js; the rotation
+   is the one thing that has to be overridden to read as a considered grid. */
+.scattered-img {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    transform: none !important;
+    transition: opacity 0.5s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.scattered-img:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.how-textbox {
+    z-index: 10;
+    max-width: 90vw;
+    padding: 0.9rem 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    line-height: 1.45;
+    color: var(--ink);
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    filter: none;
+}
+
+/* Retires the OG yellow strobe (custom.js adds this class on reveal). */
+.flicker-text {
+    animation: none;
+}
+
+.work-tooltip {
+    cursor: pointer;
+}
+
+@media (min-width: 820px) {
+    .dataroom-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .dataroom-wrapper main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    main section.dataroom-dt {
+        flex: 1;
+        height: auto;
+        min-height: 240vh;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   12. Tooltips
+   -------------------------------------------------------------------------- */
+
+/* Cursor-following tooltip built by custom.js on the work page */
+.tooltip-popup {
+    position: fixed;
+    z-index: 999;
+    display: inline-block;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 500;
+    color: var(--bg);
+    background-color: var(--ink);
+    border: 0;
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 0.9rem;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: opacity 0.2s var(--ease);
+}
+
+.infotip {
+    position: relative;
+    border-bottom: 1px dashed var(--line-2);
+    cursor: help;
+}
+
+span.infotip::before,
+a.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: 40;
+    width: max-content;
+    max-width: min(28rem, 80vw);
+    padding: 0.6rem 0.8rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: 0;
+    text-transform: none;
+    text-align: left;
+    color: var(--bg);
+    background: var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.35em);
+    transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+span.infotip::before {
+    left: 50%;
+    margin-left: min(0px, calc(50% - 14rem));
+    transform: translate(-25%, -0.35em);
+}
+
+span.infotip:hover::before,
+span.infotip:focus::before {
+    opacity: 1;
+    transform: translate(-25%, -0.7em);
+}
+
+.tap-indicator {
+    display: inline;
+    margin-left: 0.25rem;
+    font-size: 0.85rem;
+    opacity: 0.45;
+}
+
+@media (min-width: 820px) {
+    .tooltip {
+        position: relative;
+    }
+
+    a.tooltip:hover::before {
+        opacity: 1;
+        transform: translateY(-0.7em);
+    }
+
+    main section.posts .posts-list h2.rss a.tooltip::before {
+        left: auto;
+        right: 0;
+    }
+
+    .tap-indicator {
+        display: none;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   13. Modals
+   -------------------------------------------------------------------------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: clamp(0.75rem, 3vw, 2.5rem);
+    overflow: auto;
+    background: rgba(14, 16, 22, 0.45);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
+}
+
+.modal[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: min(100%, 44rem);
+    max-height: min(88svh, 52rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: 0;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.97) translateY(6px);
+    opacity: 0;
+    transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
+    will-change: transform, opacity;
+}
+
+.modal-content.animate-in {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.modal-content h1 {
+    position: static;
+    margin-bottom: 1.5rem;
+    padding-right: 3rem;
+}
+
+.modal-content h2 {
+    margin: 1.75rem 0 0.75rem;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    padding: 0;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--ink-3);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.modal-content .close:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+    border-color: var(--line);
+}
+
+/* The OG used decorative background photographs behind each modal; this theme
+   lets the content carry it, so .detail is just a content column. */
+.modal-content .detail {
+    height: auto;
+    padding: 0;
+    background-image: none;
+}
+
+.modal-content .detail ul.profile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.57rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.modal-content .detail ul.profile li {
+    list-style: none;
+    font-size: var(--step--1);
+    color: var(--ink-3);
+}
+
+.modal-content .detail ul.profile li.name {
+    flex: 0 0 100%;
+    font-size: var(--step-1);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.modal-content .detail ul.profile li.what + li.what::before {
+    content: "·";
+    margin-right: 0.57rem;
+    color: color-mix(in srgb, var(--ink-3) 60%, transparent);
+}
+
+.modal-content .detail ul.profile li.location {
+    flex: 0 0 100%;
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    line-height: 1.35;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.modal-content .detail ul.profile li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.modal-content .detail ul.profile li a:hover {
+    color: var(--accent);
+}
+
+.modal-content .detail p {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink-2);
+    padding-bottom: 0.9rem;
+}
+
+.modal-content .detail p a {
+    color: var(--accent);
+    overflow-wrap: anywhere;
+}
+
+.modal-content .detail .contact-type {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+}
+
+/* --- Work modals ---------------------------------------------------------- */
+
+.modal-content .work img {
+    display: block;
+    float: none;
+    width: auto;
+    max-width: 9rem;
+    max-height: 5rem;
+    object-fit: contain;
+    object-position: left center;
+    margin: 0 0 1.5rem;
+}
+
+.modal-content .work.exec img,
+.modal-content .work.advocacy img {
+    max-width: 11rem;
+    max-height: 8rem;
+    border-radius: var(--radius);
+}
+
+.modal-content .work p {
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.55;
+    color: var(--ink-2);
+}
+
+.modal-content .work p.tagline {
+    font-size: var(--step-1);
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+}
+
+.modal-content .work ul {
+    padding-left: 0;
+    padding-bottom: 1.4rem;
+}
+
+.modal-content .work ul li {
+    position: relative;
+    list-style: none;
+    padding-left: 1.15rem;
+    margin-bottom: 0.5rem;
+    font-size: var(--step--1);
+    line-height: 1.5;
+    color: var(--ink-2);
+}
+
+.modal-content .work ul li::marker {
+    content: "";
+}
+
+.modal-content .work ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    opacity: 0.55;
+}
+
+
+/* -----------------------------------------------------------------------------
+   14. Footer
+   -------------------------------------------------------------------------- */
+
+footer {
+    margin-top: clamp(3rem, 8vw, 7rem);
+    /* Full-bleed surface, content aligned with the sections above it. */
+    padding: clamp(2.5rem, 5vw, 4rem) var(--shell-pad);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    background-color: var(--surface);
+    border-top: 1px solid var(--line);
+}
+
+footer .two-col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+footer .col.left {
+    /* No fixed basis: a 20rem one exceeded the content box on a phone, so the
+       links wrapped below the profile — and kept their right alignment there,
+       which read as ragged. Both columns just shrink to fit instead. */
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+}
+
+footer .col.right {
+    flex: 0 1 auto;
+    text-align: right;
+}
+
+footer .two-col .col ul.profile,
+footer .two-col .col ul.menu {
+    margin-bottom: 0;
+    list-style: none;
+}
+
+footer .two-col .col ul.profile li {
+    list-style: none;
+    color: var(--ink-3);
+}
+
+footer .two-col .col ul.profile li.name {
+    font-size: var(--step-0);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+}
+
+footer .two-col .col ul.profile li.li {
+    margin-top: 0.6rem;
+}
+
+footer ul li a {
+    display: inline-block;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s var(--ease);
+}
+
+footer ul li a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+}
+
+/* Same links, same include (navlinks.njk) — kept in step with the nav. */
+footer .two-col .col ul.menu li a {
+    font-size: var(--step--1);
+    text-transform: capitalize;
+    padding: 0.15rem 0;
+}
+
+footer .two-col .col ul.menu li a.active {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+footer > p {
+    margin: 2.5rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step--2);
+    color: var(--ink-3);
+}
+
+
+/* -----------------------------------------------------------------------------
+   15. Style switcher control
+   -------------------------------------------------------------------------- */
+
+/* Ian / Pro Ian, sitting at the right of the nav. Same markup as custom.css
+   styles, rendered here as a rounded pill instead of a hard-edged square. State
+   comes from [data-site-style] on <html>, which the head script sets before
+   first paint — so the knob is never briefly on the wrong side.
+
+   Both stylesheets define both states deliberately: at the moment of a switch
+   the outgoing stylesheet is still applied, so the knob animates across before
+   the incoming one takes over. */
+
+nav .style-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: 0.35rem 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--ink-3);
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+nav .style-switch .style-switch-track {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 38px;
+    height: 22px;
+    background-color: var(--line-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    transition: background-color 0.2s var(--ease);
+}
+
+nav .style-switch .style-switch-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--surface);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s var(--ease);
+}
+
+:root[data-site-style="pro"] nav .style-switch .style-switch-track {
+    background-color: var(--accent);
+}
+
+:root[data-site-style="pro"] nav .style-switch .style-switch-knob {
+    transform: translateX(16px);
+}
+
+:root[data-site-style="og"] nav .style-switch .style-switch-label[data-for="og"],
+:root[data-site-style="pro"] nav .style-switch .style-switch-label[data-for="pro"] {
+    color: var(--ink);
+    font-weight: 650;
+}
+
+nav .style-switch:hover .style-switch-track {
+    background-color: var(--ink-3);
+}
+
+:root[data-site-style="pro"] nav .style-switch:hover .style-switch-track {
+    background-color: var(--accent-hover);
+}
+
+/* Tooltip. This design is only ever showing when we're in it, so it reads the
+   "-pro" string; custom.css reads the "-og" one. Hangs below the switch —
+   there's no room above it at the top of the page. Absolutely positioned, so it
+   doesn't become a flex item of the button. */
+nav .style-switch[data-tooltip-pro]::before {
+    content: attr(data-tooltip-pro);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 40;
+    width: max-content;
+    max-width: min(20rem, 70vw);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--2);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-align: left;
+    color: var(--bg);
+    background: var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.25rem);
+    transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+nav .style-switch[data-tooltip-pro]:hover::before,
+nav .style-switch[data-tooltip-pro]:focus-visible::before {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+/* -----------------------------------------------------------------------------
+   16. Odds & ends
+   -------------------------------------------------------------------------- */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 2rem 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* /blog/topics/ index renders bare markup with no section wrapper. */
+body > h1 {
+    max-width: var(--shell);
+    margin: clamp(3rem, 7vw, 5rem) auto 1.5rem;
+    padding-inline: var(--gutter);
+    font-size: var(--step-3);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+}
+
+body > ul {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    list-style: none;
+}
+
+body > ul li {
+    margin-bottom: 0.5rem;
+}
+
+body > ul .tag-count {
+    color: var(--ink-3);
+    font-size: var(--step--1);
+}
+
+
+/* -----------------------------------------------------------------------------
+   17. Dark mode
+   -------------------------------------------------------------------------- */
+
+/* Delete this whole block to ship light-only. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0e1014;
+        --bg-sunk: #0a0c0f;
+        --surface: #16191f;
+        --surface-2: #1d2128;
+        --photo-bg: #22262e;
+        --ink: #eef0f3;
+        --ink-2: #b6bcc7;
+        --ink-3: #868d9a;
+        --line: #262a32;
+        --line-2: #363c46;
+
+        --accent: #7d95ff;
+        --accent-hover: #9dafff;
+        --accent-ink: #9dafff;
+        --accent-soft: rgba(125, 149, 255, 0.10);
+        --accent-line: rgba(125, 149, 255, 0.32);
+        --marker: rgba(125, 149, 255, 0.20);
+        --on-accent: #0e1014;
+
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 16px 32px rgba(0, 0, 0, 0.35);
+        --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55), 0 40px 72px rgba(0, 0, 0, 0.45);
+    }
+
+    .modal {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .tooltip-popup,
+    span.infotip::before,
+    a.tooltip::before,
+    nav .style-switch[data-tooltip-pro]::before {
+        color: var(--ink);
+        background: var(--surface-2);
+        border: 1px solid var(--line-2);
+    }
+
+    /* Cut-out logos and line art are drawn for a light ground — keep one. */
+    header .about-wrapper .hero .me-image,
+    .modal-content .work img,
+    main section.blog-post article img {
+        background-color: #f2f1ee;
+    }
+
+    .modal-content .work img {
+        padding: 0.6rem;
+        border-radius: var(--radius-sm);
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+   18. Motion & print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media print {
+    nav,
+    footer,
+    .modal,
+    .style-switch,
+    .carson-toggle-wrapper,
+    .tooltip-popup {
+        display: none !important;
+    }
+
+    body {
+        padding-top: 0;
+        background: #fff;
+        color: #000;
+        font-size: 11pt;
+    }
+
+    main section,
+    header {
+        max-width: none;
+        padding-inline: 0;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}
+
+
+/* =============================================================================
+   How the switcher is wired
+   =============================================================================
+
+   - base.njk / blog-post.njk: BOTH stylesheets are linked —
+     <link id="style-og" href="/css/custom.css"> and
+     <link id="style-pro" href="/css/pro.css"> — followed by an inline script
+     that reads localStorage['site-style'], sets [data-site-style] on <html>,
+     and disables whichever sheet isn't wanted, all before first paint.
+     Both links are parser-inserted and therefore render-blocking, so there is
+     never a frame with no stylesheet applied. (Swapping a single link's href
+     instead disowns the current sheet immediately and flashes raw markup while
+     the replacement downloads.)
+   - _includes/style-switch.njk: the control, included from navbar.njk.
+   - js/custom.js: the click handler (first block in the file), which flips the
+     two `disabled` flags, the root attribute, localStorage, and aria-checked.
+     No refetch, so switching is instant.
+
+   custom.css is the default. Both stylesheets style .style-switch.
+
+   Heading "#" markers live in custom.css now (generated with ::before), not in
+   the templates — so nothing needs doing here to suppress them.
+
+   (Superseded: header .page-name is shown again, so each page keeps its
+   top-level heading. The note below only applies if you hide it once more.)
+
+   One thing to be aware of: hiding header .page-name removes each page's
+   top-level heading in this design. Most pages still have an <h1> further down
+   ("Professional blurb", "Skill-set", "First"), but a blog post does not — its
+   title is a markdown "##", so posts render with no <h1> at all here. It's a
+   best-practice wrinkle rather than a break (the <title> is correct on every
+   page), and the fix, if you want one, is in the post markup: make the title
+   a "#" instead of "##" in the .md files.
+
+   Still literal in the markup, if you want to keep going: the "/" and "#"
+   before each nav link, the "[ ]" around button labels, and the "(#services)"
+   tags beside them. This stylesheet currently hides the first with a
+   font-size: 0 trick on the li, and hides the tags outright.
+   ========================================================================== */

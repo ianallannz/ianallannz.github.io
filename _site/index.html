@@ -8,7 +8,27 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link id="style-og" rel="stylesheet" href="/css/custom.css">
+    <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <script>
+        // Apply the saved design before first paint. Default is custom.css.
+        //
+        // Both stylesheets are linked up front and the unwanted one is switched
+        // off here. Swapping a single link's href instead disowns the current
+        // stylesheet the moment it is set, leaving the document with NO styles
+        // until the replacement downloads — which is what caused the flash of
+        // raw markup (modals, diagonal rules) when moving between pages.
+        // Parser-inserted stylesheets block rendering, and a script waits for
+        // them, so by the time this runs both are loaded and first paint is
+        // already correct. It also makes switching instant: no refetch.
+        (function () {
+            var pro = false;
+            try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+            document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
+            document.getElementById('style-og').disabled = pro;
+            document.getElementById('style-pro').disabled = !pro;
+        })();
+    </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
     <meta name="description" content="The professional profile website of Ian Allan, and an ongoing experiment in rewilding the internet.">
@@ -48,18 +68,41 @@
     
 
 <nav>
+    
+    <a class="nav-brand" href="/">
+        <span class="nav-brand-name">Ian Allan</span>
+        <span class="nav-brand-role">Venture designer</span>
+        <span class="nav-brand-role">Ethical technologist</span>
+        <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
+    </a>
+
     <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text">Hot or not: </span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
                     
                 
             </li>
         </ul>
     </div>
+    
+
+
+<button class="style-switch" type="button" role="switch" aria-checked="false"
+    aria-label="Site design: Ian, or Pro Ian"
+    data-tooltip-og="Switch to a generically Pro style"
+    data-tooltip-pro="Switch to the uniquely Ian style">
+    <span class="style-switch-label" data-for="og">Ian</span>
+    <span class="style-switch-track" aria-hidden="true">
+        <span class="style-switch-knob"></span>
+    </span>
+    <span class="style-switch-label" data-for="pro">Pro Ian</span>
+</button>
+
+
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         ☰
     </button>
@@ -67,25 +110,34 @@
 
     
 <ul class="menu">
-    <li>#<a href="/#services"  class="active" >services</a></li>
+    <li>#<a href="/#services"  class="active" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" >blog</a></li>
     <li>/<a href="/work/" >work</a></li>
     <li>#<a href="#modal-contact" class="popup">contact</a></li>
 </ul>
 </nav>
+
+
+
+<a class="featured-strip" href="/blog/resilient-technologies/">
+    <span class="featured-strip-mark" aria-hidden="true">★</span>
+    <span class="featured-strip-title">Developing the skills to build, own, and operate resilient technologies</span>
+    <span class="featured-strip-go" aria-hidden="true">→</span>
+</a>
+
     
 <ul class="profile">
     <li class="name">Ian Allan</li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
     <div class="cta">
-        <h1># Call-to-action</h1>
+        <h1>Call-to-action</h1>
         <p class="copy">Use all my skills and insights to turn your ideas into valuable hi- and low-tech products and
             ventures.</p>
-        <p class="button"><a class="button-inline" href="#services">[Use me ↓]</a><span class="button-tag">
+        <p class="button"><a class="button-inline" href="#services"><span class="bracket">[</span>Use me ↓<span class="bracket">]</span></a><span class="button-tag">
                 (#services)</span></p>
     </div>
     <div class="hero">
@@ -94,81 +146,112 @@
 </header>
 <main>
     <section id="services" class="first">
-        <h1># Services</h1>
+        <h1>Services</h1>
         <p class="l1"><span class="highlight">Use me when you need:</span></p>
-        <h2>## Venture design</h2>
-        <p class="l2">Go-to-market scenarios; productised ideas; operationalised initiatives; product-market analysis;
-            pricing strategies and modelling; subsequent proposals, pitches, collateral, and websites.</p>
-        <h2>## Technology design</h2>
-        <p class="l2">Solution as product; lean web solutions; prototypes; human-computer interaction; UX/UI design;
-            appropriate
-            technology decisions.</p>
-        <h2>## Learning design</h2>
-        <p class="l2">Programme-market analysis; curriculum design; authentic experiential assessments for learning;
-            workshop design and delivery; online learning design; face-to-face teaching and learning.</p>
-        <p><span class="highlight">But why use me specifically?</span></p>
-        <p class="l2">Because you'd love:</p>
-        <ul>
-            <li><span class="infotip"
-                    data-tooltip="When you only have budget for one human, it pays to get a useful one.">All-in-one
-                    technical, design, and executive skills</span><span class="tap-indicator"
-                    aria-hidden="true">👈</span></li>
-            <li><span class="infotip"
-                    data-tooltip="On the list of very unsatisfying things, someone phoning in AI slop when you needed deep understanding is right up there.">Slop-free
-                    writing and world-class production</span></li>
-            <li><span class="infotip"
-                    data-tooltip="A uniquely broad and deep and fast-paced career requiring mucking in and taking ownership and figuring it out. Often the hard way.">Intuition from decades of experiences</span></li>
-            <li><span class="infotip"
-                    data-tooltip="Astute observer of human behaviour and motivation, widely read, and attuned to long-term trends over short-term wins.">Insightful
-                    market readings</span></li>
-            <li><span class="infotip"
-                    data-tooltip="Don't take my word for it, others hold my contributions in high regard.">A trusted
-                    creative and critical voice</span></li>
-        </ul>
+        
+        <div class="service">
+            <h2>Venture design</h2>
+            <ul class="skills">
+                <li>Go-to-market scenarios</li>
+                <li>productised ideas</li>
+                <li>operationalised initiatives</li>
+                <li>product-market analysis</li>
+                <li>pricing strategies and modelling</li>
+                <li>subsequent proposals, pitches, collateral, and websites</li>
+            </ul>
+        </div>
+        <div class="service">
+            <h2>Technology design</h2>
+            <ul class="skills">
+                <li>Solution as product</li>
+                <li>lean web solutions</li>
+                <li>prototypes</li>
+                <li>human-computer interaction</li>
+                <li>UX/UI design</li>
+                <li>appropriate technology decisions</li>
+            </ul>
+        </div>
+        <div class="service">
+            <h2>Learning design</h2>
+            <ul class="skills">
+                <li>Programme-market analysis</li>
+                <li>curriculum design</li>
+                <li>authentic experiential assessments</li>
+                <li>workshop design and delivery</li>
+                <li>online learning design</li>
+                <li>face-to-face teaching and learning</li>
+            </ul>
+        </div>
+        
+        <div class="why">
+            <p><span class="highlight">But why use me specifically?</span></p>
+            <p class="l2">Because you'd love:</p>
+            <ul>
+                <li><span class="infotip"
+                        data-tooltip="When you only have budget for one human, it pays to get a useful one.">All-in-one
+                        technical, design, and executive skills</span><span class="tap-indicator"
+                        aria-hidden="true">👈</span></li>
+                <li><span class="infotip"
+                        data-tooltip="On the list of very unsatisfying things, someone phoning in AI slop when you needed deep understanding is right up there.">Slop-free
+                        writing and world-class production</span></li>
+                <li><span class="infotip"
+                        data-tooltip="A uniquely broad and deep and fast-paced career requiring mucking in and taking ownership and figuring it out. Often the hard way.">Intuition from decades of experiences</span></li>
+                <li><span class="infotip"
+                        data-tooltip="Astute observer of human behaviour and motivation, widely read, and attuned to long-term trends over short-term wins.">Insightful
+                        market readings</span></li>
+                <li><span class="infotip"
+                        data-tooltip="Don't take my word for it, others hold my contributions in high regard.">A trusted
+                        creative and critical voice</span></li>
+            </ul>
+        </div>
     </section>
     <section id="activities">
-        <h1># Activities</h1>
-        <p class="l1"><span class="highlight">Doing things and having a view:</span></p>
-        <h2>## Currently &amp; previously</h2>
-        <p class="l2"><a href="#modal-saved" class="popup tooltip" rel="noopener"
-                data-tooltip="A multi-phase service and challenger brand to provide ownership of &mdash; and training/certification in &mdash; resilient, sovereign, and price-sensitive tech.">Saved</a>, <a href="https://ianallan.vote" target="_blank" class="popout tooltip" rel="noopener"
-                data-tooltip="I ran for council and, going from a standing start with no previous profile, this website (and my public performances) got me close.">Gisborne
-                District
-                Council candidacy</a>, <a href="#modal-learning" class="popup tooltip" rel="noopener"
-                data-tooltip="I've been advocating and implementing successful experiential assessments for learning.">learning
-                design</a>, <a href="#modal-advocacy" class="popup tooltip" rel="noopener"
-                data-tooltip="AI will make public vocational education the most societally-valuable skill-builder.">vocational education advocacy</a>, <a
-                href="#modal-exec" class="locked" rel="noopener"
-                data-tooltip="I provide intrapreneurial value to organisations: taking initiative to develop new ideas, products, or services">tech-exec services</a>.</p>
-        <h2>## Emerging</h2>
-        <p class="l2"><a href="#modal-pockit" class="locked tooltip" rel="noopener"
-                data-tooltip="A multi-phase lifestyle product suite and brand to help us beat big tech and the smartphone.">Pockit</a>, <a href="#modal-sinkashi"
-                class="locked tooltip"rel="noopener"
-                data-tooltip="A purposefully low-tech, mechanical, integrated, food scrap collector for people who hate collecting food scraps &mdash; most of us then.">Sinkashi</a>.</p>
-        <h2>## Blogging</h2>
-                
-        <p class="l2">
+        <h1>Activities</h1>
+        <p class="l1"><span class="highlight">What's happening:</span></p>
+        
+        <h2>Currently &amp; previously</h2>
+        <ul class="activities">
+            <li class="featured"><a href="https://saved.co.nz" target="_blank" class="popout tooltip" rel="noopener"
+                    data-tooltip="A multi-phase service and challenger brand to provide ownership of &mdash; and training/certification in &mdash; resilient, sovereign, and price-sensitive tech."><strong>Saved</strong></a></li>
+            <li><a href="https://ianallan.vote" target="_blank" class="popout tooltip" rel="noopener"
+                    data-tooltip="I ran for council and, going from a standing start with no previous profile, this website (and my public performances) got me close.">Gisborne
+                    District Council candidacy</a></li>
+            <li><a href="#modal-learning" class="popup tooltip" rel="noopener"
+                    data-tooltip="I've been advocating and implementing successful experiential assessments for learning.">learning
+                    design</a></li>
+            <li><a href="#modal-advocacy" class="popup tooltip" rel="noopener"
+                    data-tooltip="AI will make public vocational education the most societally-valuable skill-builder.">vocational
+                    education advocacy</a></li>
+            <li><a href="#modal-exec" class="locked" rel="noopener"
+                    data-tooltip="I provide intrapreneurial value to organisations: taking initiative to develop new ideas, products, or services">tech-exec
+                    services</a></li>
+        </ul>
+        <h2>Emerging</h2>
+        <ul class="activities">
+            <li><a href="#modal-pockit" class="locked tooltip" rel="noopener"
+                    data-tooltip="A multi-phase lifestyle product suite and brand to help us beat big tech and the smartphone.">Pockit</a>
+            </li>
+            <li><a href="#modal-sinkashi" class="locked tooltip" rel="noopener"
+                    data-tooltip="A purposefully low-tech, mechanical, integrated, food scrap collector for people who hate collecting food scraps &mdash; most of us then.">Sinkashi</a>
+            </li>
+        </ul>
+        <h2>Blogging</h2>
+        
+        <ul class="activities and-last">
             
             
-            <a href="/blog/resilient-technologies/" class="tooltip" data-tooltip="Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.">Developing the skills to build, own, and operate resilient technologies</a>, 
-            
-            
-            
-            <a href="/blog/summer-pause/" class="tooltip" data-tooltip="I should know by now that a summer break doesn&#39;t mean I&#39;ll rip into all those digital projects. But, among other things, there is still a bit of a Saved update in here.">The summer pause</a>, 
-            
-            
-            
-            <a href="/blog/it-can-be-saved-we-can-be-saved/" class="tooltip" data-tooltip="Introducing Saved: a venture I&#39;ve designed that first believes Windows 10 laptops can be saved, and made better. And through doing so, then believes we can be saved...">Believing IT can be saved, and WE can be saved</a>, 
-            
-            
-            
-            
-            
-            
-            
+            <li><a href="/blog/resilient-technologies/" class="tooltip" data-tooltip="Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.">Developing the skills to build, own, and operate resilient technologies</a>
+            </li>
             
             
             
+            <li><a href="/blog/summer-pause/" class="tooltip" data-tooltip="I should know by now that a summer break doesn&#39;t mean I&#39;ll rip into all those digital projects. But, among other things, there is still a bit of a Saved update in here.">The summer pause</a>
+            </li>
+            
+            
+            
+            <li><a href="/blog/it-can-be-saved-we-can-be-saved/" class="tooltip" data-tooltip="Introducing Saved: a venture I&#39;ve designed that first believes Windows 10 laptops can be saved, and made better. And through doing so, then believes we can be saved...">Believing IT can be saved, and WE can be saved</a>
+            </li>
             
             
             
@@ -179,15 +262,25 @@
             
             
             
-            and <a href="/blog">the rest</a>.
-        </p>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="/blog">the rest</a></li>
+        </ul>
     </section>
 </main>
 
 <!-- Modal: Learning design  -->
 <article id="modal-learning" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Current 🟢</h1>
+        <h1>Current 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work learning">
             <p class="tagline"><span class="highlight">But what can the students <em>do</em> at the end of this course?</span></p>
@@ -206,7 +299,7 @@
 <!-- Modal: Vocational Education Advocacy -->
 <article id="modal-advocacy" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Current 🟢</h1>
+        <h1>Current 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work advocacy">
             <img src="../images/work-teu.jpg">
@@ -224,7 +317,7 @@
 <!-- Modal: Exec Services -->
 <article id="modal-exec" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Ready now 🟢</h1>
+        <h1>Ready now 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work exec">
             <img src="../images/modal-img-exec.jpg">
@@ -243,7 +336,7 @@
 <!-- Modal: Pockit -->
 <article id="modal-pockit" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Piloting 🟡</h1>
+        <h1>Piloting 🟡</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work pockit">
             <img src="../images/modal-img-pockit-logo.png" class="logo">
@@ -262,7 +355,7 @@
 <!-- Modal: Saved -->
 <article id="modal-saved" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Ready now 🟢</h1>
+        <h1>Ready now 🟢</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work saved">
             <img src="../images/modal-img-saved-logo.png" class="logo">
@@ -282,7 +375,7 @@
 <!-- Modal: Sinkashi -->
 <article id="modal-sinkashi" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Designing 🔴</h1>
+        <h1>Designing 🔴</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail work sinkashi">
             <img src="../images/modal-img-sinkashi-logo.png" class="logo">
@@ -303,7 +396,7 @@
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
     <div class="modal-content">
-        <h1># Contact</h1>
+        <h1>Contact</h1>
         <button class="close" aria-label="Close modal">&times;</button>
         <div class="detail contact">
             
@@ -311,9 +404,9 @@
     <li class="name">Ian Allan</li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
-    <li class="location">East Coast,<br>New Zealand</li>
+    <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-            <h2>## Let's meet</h2>
+            <h2>Let's meet</h2>
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
@@ -337,7 +430,7 @@
             <div class="col right">
                 
 <ul class="menu">
-    <li>#<a href="/#services"  class="active" >services</a></li>
+    <li>#<a href="/#services"  class="active" >home</a></li>
     <li>/<a href="/about/" >about</a></li>
     <li>/<a href="/blog/" >blog</a></li>
     <li>/<a href="/work/" >work</a></li>
