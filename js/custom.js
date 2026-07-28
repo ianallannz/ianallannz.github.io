@@ -720,7 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderAll();
-    setInterval(renderAll, 15000);
+    // setInterval(renderAll, 15000);
 });
 
 
