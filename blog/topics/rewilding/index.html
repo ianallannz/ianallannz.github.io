@@ -24,6 +24,23 @@
         (function () {
             var pro = false;
             try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+
+            // A shared link can set the design: /blog/whatever/?pro or ?og.
+            // They're bare keys, so this has to be has() — get('pro') returns ''
+            // for a valueless key, which is falsy.
+            //
+            // The choice is saved the same way the style switch saves one, so it
+            // simply becomes the reader's preference from then on and carries
+            // across pages and visits until they change it.
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var forced = params.has('pro') ? 'pro' : (params.has('og') ? 'og' : null);
+                if (forced) {
+                    pro = forced === 'pro';
+                    localStorage.setItem('site-style', forced);
+                }
+            } catch (e) { }
+
             document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
             document.getElementById('style-og').disabled = pro;
             document.getElementById('style-pro').disabled = !pro;
@@ -77,13 +94,13 @@
         <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
     </a>
 
-    <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
+    <div class="nav-left" onclick="location.href='/blog/og-me-vs-pro-me/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/og-me-vs-pro-me/"><span class="latest-text" aria-hidden="true">★</span>Some people don&#39;t like Me</a>
                     
                 
             </li>
@@ -141,6 +158,12 @@
 
             
             <article class="post-preview">
+                <h2>13. <a href="/blog/og-me-vs-pro-me/">Some people don&#39;t like Me</a></h2>
+                <p class="post-date">29 July 2026</p>
+                <p class="post-blurb">It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!</p>
+            </article>
+            
+            <article class="post-preview">
                 <h2>9. <a href="/blog/back-to-the-future/">Where are we going?</a></h2>
                 <p class="post-date">29 November 2025</p>
                 <p class="post-blurb">Digesting the resonant takeaways from Tim Berners-Lee&#39;s book This is for Everyone, while looking for hope when bigtech is investing $trillions into devaluing the middle class.</p>
@@ -173,6 +196,18 @@
     </li>
     
     <li>
+        <a href="/blog/topics/venture-design/">
+            venture design (4)
+        </a>
+    </li>
+    
+    <li>
+        <a href="/blog/topics/rewilding/">
+            rewilding (3)
+        </a>
+    </li>
+    
+    <li>
         <a href="/blog/topics/online-sovereignty/">
             online sovereignty (3)
         </a>
@@ -199,18 +234,6 @@
     <li>
         <a href="/blog/topics/wealth-inequality/">
             wealth inequality (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/rewilding/">
-            rewilding (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/venture-design/">
-            venture design (2)
         </a>
     </li>
     

@@ -24,6 +24,23 @@
         (function () {
             var pro = false;
             try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+
+            // A shared link can set the design: /blog/whatever/?pro or ?og.
+            // They're bare keys, so this has to be has() — get('pro') returns ''
+            // for a valueless key, which is falsy.
+            //
+            // The choice is saved the same way the style switch saves one, so it
+            // simply becomes the reader's preference from then on and carries
+            // across pages and visits until they change it.
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var forced = params.has('pro') ? 'pro' : (params.has('og') ? 'og' : null);
+                if (forced) {
+                    pro = forced === 'pro';
+                    localStorage.setItem('site-style', forced);
+                }
+            } catch (e) { }
+
             document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
             document.getElementById('style-og').disabled = pro;
             document.getElementById('style-pro').disabled = !pro;
@@ -75,7 +92,7 @@
         <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
     </a>
 
-    <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
+    <div class="nav-left" onclick="location.href='/blog/og-me-vs-pro-me/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
@@ -126,12 +143,12 @@
         <h1>Featured</h1>
         
 
-        <p class="featured-post"><a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></p>
-        <p class="featured-post-blurb">Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.</p>
-        <p class="featured-post-date">&mdash; 17 July 2026</p>
-        <p class="button"><a class="button-inline-outline" href="/blog/resilient-technologies/"><span class="bracket">[</span>Read<span class="bracket">]</span></a><span
+        <p class="featured-post"><a href="/blog/og-me-vs-pro-me/">Some people don&#39;t like Me</a></p>
+        <p class="featured-post-blurb">It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!</p>
+        <p class="featured-post-date">&mdash; 29 July 2026</p>
+        <p class="button"><a class="button-inline-outline" href="/blog/og-me-vs-pro-me/"><span class="bracket">[</span>Read<span class="bracket">]</span></a><span
                 class="button-tag">
-                (/blog/resilient-technologies/)</span></p>
+                (/blog/og-me-vs-pro-me/)</span></p>
     </div>
 </header>
 <main>
@@ -139,6 +156,12 @@
     <section id="posts" class="posts">
         <div class="posts-list">
             <h2 class="rss"><span>All</span> <a href="/feed.xml" target="_blank" class="popout tooltip" data-tooltip="You're a righteous stalwart using an RSS reader for your news content; I see you. ✊"><img src="../images/rss-icon.png" class="rss-icon"><span class="rss-text">RSS</span></a></h2>
+            
+            <article class="post-preview">
+                <h2>13. <a href="/blog/og-me-vs-pro-me/">Some people don&#39;t like Me</a></h2>
+                <p class="post-date">29 July 2026</p>
+                <p class="post-blurb">It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!</p>
+            </article>
             
             <article class="post-preview">
                 <h2>12. <a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></h2>
@@ -233,6 +256,18 @@
     </li>
     
     <li>
+        <a href="/blog/topics/venture-design/">
+            venture design (4)
+        </a>
+    </li>
+    
+    <li>
+        <a href="/blog/topics/rewilding/">
+            rewilding (3)
+        </a>
+    </li>
+    
+    <li>
         <a href="/blog/topics/online-sovereignty/">
             online sovereignty (3)
         </a>
@@ -259,18 +294,6 @@
     <li>
         <a href="/blog/topics/wealth-inequality/">
             wealth inequality (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/rewilding/">
-            rewilding (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/venture-design/">
-            venture design (2)
         </a>
     </li>
     
