@@ -2046,9 +2046,13 @@ main section.blog-post .carson-render,
    11. Work page — the scattered data room
    -------------------------------------------------------------------------- */
 
-/* custom.js measures this container to place items, so the tall canvas stays. */
+/* custom.js measures this container to place items, so the tall canvas stays.
+   min-height, not height: the script sizes the scatter to its content and
+   writes the result onto the section below, which can exceed this. A fixed
+   height left the section overflowing a container that stopped short, putting
+   the footer partway up the page. */
 .dataroom-wrapper main {
-    height: 340vh;
+    min-height: 340vh;
 }
 
 main section.dataroom-dt {
@@ -2128,11 +2132,14 @@ main section.dataroom-dt {
         min-height: 100vh;
     }
 
+    /* min-height: 0 releases the base rule's 340vh floor — from here the
+       section's own 240vh does the work, and main just wraps whatever the
+       script ends up needing. */
     .dataroom-wrapper main {
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: auto;
+        min-height: 0;
     }
 
     main section.dataroom-dt {
