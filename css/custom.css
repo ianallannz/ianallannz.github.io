@@ -1064,8 +1064,25 @@ main section.blog-post article img {
 }
 
 
+/* .page-name is absolutely positioned with no positioned ancestor, so it
+   resolves against the initial containing block rather than anything on the
+   page. With overflow-x: hidden on both <html> and <body> — which leaves <body>
+   as a scroll container — that's the arrangement where an absolute box stops
+   tracking the scroll and reads as fixed. It only became visible once the
+   scatter made this page several times taller on mobile. Giving the header its
+   own positioning context anchors the heading to an element that actually
+   scrolls; the header's top and right edges are the document's here, so the
+   offsets in `header .page-name` land in the same place as before. */
+.dataroom-wrapper header {
+    position: relative;
+}
+
+/* min-height, not height: custom.js sizes the scatter to its content and writes
+   the result onto the section below, which can exceed this. A fixed height here
+   left the section overflowing a container that stopped short, putting the
+   footer partway up the page. */
 .dataroom-wrapper main {
-    height: 350vh;
+    min-height: 350vh;
 }
 
 main section.dataroom-dt {
