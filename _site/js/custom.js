@@ -642,16 +642,39 @@ document.addEventListener("DOMContentLoaded", () => {
             dataroomSection.appendChild(box);
 
             if (!cluster.solo) {
-                const centreX = cluster.left + cluster.width / 2;
-                const centreY = cluster.top + cluster.height / 2;
-                const start = edgePoint(question, centreX, centreY);
+                // Aim at the middle of whichever image in the group sits closest
+                // to the question, rather than the middle of the group as a
+                // whole: the group's centre is often empty space, or behind an
+                // image on the far side of it.
+                const questionX = question.left + question.width / 2;
+                const questionY = question.top + question.height / 2;
+
+                let targetX = cluster.left + cluster.width / 2;
+                let targetY = cluster.top + cluster.height / 2;
+                let nearest = Infinity;
+
+                cluster.items.forEach((item) => {
+                    const x = cluster.left + item.left + item.width / 2;
+                    const y = cluster.top + item.top + item.height / 2;
+                    const dx = x - questionX;
+                    const dy = y - questionY;
+                    const distance = dx * dx + dy * dy;
+
+                    if (distance < nearest) {
+                        nearest = distance;
+                        targetX = x;
+                        targetY = y;
+                    }
+                });
+
+                const start = edgePoint(question, targetX, targetY);
 
                 const line = document.createElementNS(svgNS, "line");
                 line.classList.add("how-line");
                 line.setAttribute("x1", start.x);
                 line.setAttribute("y1", start.y);
-                line.setAttribute("x2", centreX);
-                line.setAttribute("y2", centreY);
+                line.setAttribute("x2", targetX);
+                line.setAttribute("y2", targetY);
                 lines.appendChild(line);
             }
 
