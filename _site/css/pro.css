@@ -2220,6 +2220,44 @@ span.infotip:focus::before {
     transform: translate(-25%, -0.7em);
 }
 
+/* On a narrow screen the rule above puts these half off screen: the tooltip is
+   anchored to the inline span at `left: 50%`, sized to max-content, then pulled
+   back by the -25% translate. Below the breakpoint, hand the anchoring to the
+   <li> — position: static on the span sends the pseudo-element up to it — and
+   let the box run the full width of the column, where it can't overflow either
+   edge. */
+@media (max-width: 819px) {
+    /* The anchor. `main section ul li` is already relative for the list
+       markers, so list items need nothing; paragraphs are added so an infotip
+       in running text gets the same treatment rather than escaping to a distant
+       ancestor. (a.tooltip needs no equivalent: `.tooltip { position: relative }`
+       is itself confined to the 820px block, so link tooltips already resolve
+       against the list item down here, and their `left: 0` keeps them on
+       screen.) */
+    main section p,
+    main section li {
+        position: relative;
+    }
+
+    span.infotip {
+        position: static;
+    }
+
+    span.infotip::before {
+        left: 0;
+        right: 0;
+        width: auto;
+        max-width: none;
+        margin-left: 0;
+        transform: translateY(-0.35em);
+    }
+
+    span.infotip:hover::before,
+    span.infotip:focus::before {
+        transform: translateY(-0.7em);
+    }
+}
+
 .tap-indicator {
     display: inline;
     margin-left: 0.25rem;
