@@ -7,6 +7,14 @@
   "items": [
     
     {
+      "id": "https://ianallannz.github.io/blog/og-me-vs-pro-me/",
+      "url": "https://ianallannz.github.io/blog/og-me-vs-pro-me/",
+      "title": &quot;Some people don&#39;t like Me&quot;,
+      "content_html": &quot;It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!&quot;,
+      "date_published": "2026-07-29T12:00:00XXX"
+    },
+    
+    {
       "id": "https://ianallannz.github.io/blog/resilient-technologies/",
       "url": "https://ianallannz.github.io/blog/resilient-technologies/",
       "title": &quot;Developing the skills to build, own, and operate resilient technologies&quot;,

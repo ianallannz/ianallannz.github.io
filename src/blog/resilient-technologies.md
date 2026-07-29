@@ -3,9 +3,9 @@ title: "Developing the skills to build, own, and operate resilient technologies"
 date: 2026-07-17
 excerpt: "Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies." 
 layout: blog-post.njk
-tags: ["blog", "Saved", "resilient technology", "online sovereignty", "linux", "future of work"] 
+tags: ["blog", "Saved", "resilient technology", "online sovereignty", "venture design", "linux", "future of work"] 
 isPost: true
-pinned: true
+pinned: false
 carsonify: off
 ---
 

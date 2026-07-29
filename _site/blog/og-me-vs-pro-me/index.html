@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topics</title>
+    <title>Some people don&#39;t like Me</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-256x256.png">
     <link id="style-og" rel="stylesheet" href="/css/custom.css">
     <link id="style-pro" rel="stylesheet" href="/css/pro.css">
+    <!-- Stays last: pro.css is written to override carson.css. -->
+    <link rel="stylesheet" href="/css/carson.css">
     <script>
         // Apply the saved design before first paint. Default is custom.css.
         //
@@ -24,23 +26,6 @@
         (function () {
             var pro = false;
             try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
-
-            // A shared link can set the design: /blog/whatever/?pro or ?og.
-            // They're bare keys, so this has to be has() — get('pro') returns ''
-            // for a valueless key, which is falsy.
-            //
-            // The choice is saved the same way the style switch saves one, so it
-            // simply becomes the reader's preference from then on and carries
-            // across pages and visits until they change it.
-            try {
-                var params = new URLSearchParams(window.location.search);
-                var forced = params.has('pro') ? 'pro' : (params.has('og') ? 'og' : null);
-                if (forced) {
-                    pro = forced === 'pro';
-                    localStorage.setItem('site-style', forced);
-                }
-            } catch (e) { }
-
             document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
             document.getElementById('style-og').disabled = pro;
             document.getElementById('style-pro').disabled = !pro;
@@ -48,24 +33,23 @@
     </script>
     <meta name="theme-color" content="#F4F4F4">
     <!-- SEO basics -->
-    <meta name="description" content="">
+    <meta name="description" content="It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!">
     <meta name="keywords" content="Ian Allan, ethical technologist, venture designer, product design, UX, UI, pitches, proposals, brand, market analysis, product-market fit, learning design">
     <meta name="author" content="Ian Allan">
     <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Topics">
-    <meta property="og:description" content="">
+    <meta property="og:title" content="Some people don&#39;t like Me">
+    <meta property="og:description" content="It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!">
     <meta property="og:image" content="https://ianallannz.github.io/images/ianallan-social-share.jpg">
-    <meta property="og:url" content="https://ianallannz.github.io/blog/topics/venture-design/">
+    <meta property="og:url" content="https://ianallannz.github.io/blog/og-me-vs-pro-me/">
     <meta property="og:type" content="website">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Topics">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="Some people don&#39;t like Me">
+    <meta name="twitter:description" content="It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!">
     <meta name="twitter:image" content="https://ianallannz.github.io/images/ianallan-social-share.jpg">
-
 </head>
 
-<body class="topics">
+<body class="og-me-vs-pro-me">
     
 <svg class="diagonal-line-down small-screen-down" viewBox="0 0 100 100" preserveAspectRatio="none">
     <line x1="0" y1="0" x2="70" y2="100" stroke="black" stroke-width="0.1" />
@@ -81,10 +65,8 @@
 </svg>
 
 
-    
-
-<header>
-    
+    <header>
+        
 
 <nav>
     <a class="nav-brand" href="/">
@@ -99,8 +81,6 @@
 
             <li class="latest-post">
                 
-                    
-                <a class="scroll-text" href="/blog/og-me-vs-pro-me/"><span class="latest-text" aria-hidden="true">★</span>Some people don&#39;t like Me</a>
                     
                 
             </li>
@@ -135,200 +115,56 @@
 </nav>
 
 
-    <div class="page-name blog-name">
-        <h1><a href="/blog">Blog</a></h1>
-    </div>
-    
+        <div class="page-name blog-post-name">
+            <h1><a href="/blog">Blog</a> post</h1>
+        </div>
+        
 <ul class="profile">
     <li class="name"><a href="/">Ian Allan</a></li>
     <li class="what">Venture designer</li>
     <li class="what">Ethical technologist</li>
     <li class="location"><span>East Coast,</span> <span>New Zealand</span></li>
 </ul>
-    <div class="cta blog topic">
-        <h1>Topic</h1>
-        <p class="featured-post">venture design</p>
-    </div>
-</header>
-<main>
-
-    <section id="posts" class="posts">
-        <div class="posts-list topic">
-            <h2>venture design</h2>
-
-            
-            <article class="post-preview">
-                <h2>13. <a href="/blog/og-me-vs-pro-me/">Some people don&#39;t like Me</a></h2>
+    </header>
+    <main>
+        <section id="blog-post" class="blog-post carsonify-mild">
+            <article>
                 <p class="post-date">29 July 2026</p>
-                <p class="post-blurb">It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!</p>
+                <h2 id="some-people-don't-like-me" tabindex="-1">Some people don't like Me <a class="direct-link" href="#some-people-don't-like-me">#</a></h2>
+<p>That's understandable*</p>
+<p>Fortunately now you can also have an inoffensive Pro version of Me!</p>
+<p>There's a switch right there in the navigation bar. So if you don't like Me, you can choose a <strong>generically professional version of Ian</strong>, or back to the <strong>uniquely me version of Ian</strong>.</p>
+<p>Appropriately, I used AI to get me started with a <em>&quot;typically modern professional&quot;</em> design style. Because that's we all want eh? To churn out derivative works that look fine, like the other derivative works flooding the zone.</p>
+<p>Whatever it is you need — the professionally ordinary me, or the more extraordinary, the more challenging me — I can surely help.</p>
+<p>* Yes, I can be aloof, contrarian, opinionated.</p>
+
             </article>
+
             
-            <article class="post-preview">
-                <h2>12. <a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></h2>
-                <p class="post-date">17 July 2026</p>
-                <p class="post-blurb">Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.</p>
-            </article>
             
-            <article class="post-preview">
-                <h2>11. <a href="/blog/summer-pause/">The summer pause</a></h2>
-                <p class="post-date">2 February 2026</p>
-                <p class="post-blurb">I should know by now that a summer break doesn&#39;t mean I&#39;ll rip into all those digital projects. But, among other things, there is still a bit of a Saved update in here.</p>
-            </article>
-            
-            <article class="post-preview">
-                <h2>10. <a href="/blog/it-can-be-saved-we-can-be-saved/">Believing IT can be saved, and WE can be saved</a></h2>
-                <p class="post-date">18 December 2025</p>
-                <p class="post-blurb">Introducing Saved: a venture I&#39;ve designed that first believes Windows 10 laptops can be saved, and made better. And through doing so, then believes we can be saved...</p>
-            </article>
-            
-        </div>
-        <div class="sidebar">
+            <div class="related-posts">
+                <h2>Related Posts</h2>
+                <ul>
+                    
+                    <li><a href="/blog/come-for-the-help-stay/">Come for the help, stay for the rewilding</a></li>
+                    
+                    <li><a href="/blog/back-to-the-future/">Where are we going?</a></li>
+                    
+                    <li><a href="/blog/it-can-be-saved-we-can-be-saved/">Believing IT can be saved, and WE can be saved</a></li>
+                    
+                    <li><a href="/blog/summer-pause/">The summer pause</a></li>
+                    
+                    <li><a href="/blog/resilient-technologies/">Developing the skills to build, own, and operate resilient technologies</a></li>
+                    
+                </ul>
+            </div>
             
 
-<h2 class="toggle-topics"><a href="#" class="toggle-link"><span class="bracket">[</span><span
-            class="toggle-label">Show topics⇣</span><span class="bracket">]</span></a></h2>
-<ul class="topics-list">
-    
-    <li>
-        <a href="/blog/topics/from-local-election-campaign/">
-            from local election campaign (6)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/social-media/">
-            social media (4)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/venture-design/">
-            venture design (4)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/rewilding/">
-            rewilding (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/online-sovereignty/">
-            online sovereignty (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/future-of-work/">
-            future of work (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/saved/">
-            Saved (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/linux/">
-            linux (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/wealth-inequality/">
-            wealth inequality (3)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/resilient-technology/">
-            resilient technology (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/political-economy/">
-            political economy (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/system-failure/">
-            system failure (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/gisborne-economy/">
-            gisborne economy (2)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/professional-services/">
-            professional services (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/graphic-design/">
-            graphic design (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/windows-10/">
-            windows 10 (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/gisborne-council/">
-            Gisborne council (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/spending/">
-            spending (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/active-transport/">
-            active transport (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/pockit/">
-            Pockit (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/product-design/">
-            product design (1)
-        </a>
-    </li>
-    
-    <li>
-        <a href="/blog/topics/family/">
-            family (1)
-        </a>
-    </li>
-    
-</ul>
-        </div>
 
-    </section>
+        </section>
 
 
-</main>
-
+    </main>
     
 <!-- Modal: Contact -->
 <article id="modal-contact" class="modal" role="dialog" aria-modal="true" inert>
@@ -347,6 +183,45 @@
             <p><a href="#" id="mp-link" class="popout">Mob</a><span class="contact-type"> (tel:)</span></p>
             <p><a href="#" id="e-link" class="popout">Email</a><span class="contact-type"> (mailto:)</span></p>
             <p>Gisborne<span class="contact-type"> (loc=nz)</span></p>
+        </div>
+    </div>
+</article>
+    
+<!-- Modal: Saved -->
+<article id="modal-saved" class="modal" role="dialog" aria-modal="true" inert>
+    <div class="modal-content">
+        <h1>Ready now 🟢</h1>
+        <button class="close" aria-label="Close modal">&times;</button>
+        <div class="detail work saved">
+            <img src="../images/modal-img-saved-logo.png" class="logo">
+            <p class="tagline"><span class="highlight">400 million Windows 10 devices are heading for e-waste.</span></p>
+            <p class="tagline">I'm founding this venture on the belief that ① <strong>it can be saved</strong>, and ② <strong>we can be saved</strong> with&nbsp;a:</p>
+            <ul>
+                <li>Long-term diversified roadmap</li>
+                <li>Zeitgeist brand</li>
+                <li>Visible community presence</li>
+                <li>Franchise strategy</li>
+            </ul>
+            <p><a href="https://saved.co.nz" target="_blank" class="button-inline-outline popout">saved.co.nz</a></p>
+        </div>    
+    </div>
+</article>
+    
+<!-- Modal: Pockit -->
+<article id="modal-pockit" class="modal" role="dialog" aria-modal="true" inert>
+    <div class="modal-content">
+        <h1>Piloting 🟡</h1>
+        <button class="close" aria-label="Close modal">&times;</button>
+        <div class="detail work pockit">
+            <img src="../images/modal-img-pockit-logo.png" class="logo">
+            <p class="tagline"><span class="highlight">Our future creative leaders will be those who don't see the world through this screen.</span></p>
+            <p class="tagline">With this venture I'm attacking screen addiction with a:</p>
+            <ul>
+                <li>Tactile, long-term product roadmap</li>
+                <li>Resonant brand</li>
+                <li>Connection to purpose</li>
+            </ul>
+            <p><a href="#modal-contact" class="button-inline-outline popup">Enquire</a></p>
         </div>
     </div>
 </article>
@@ -382,6 +257,7 @@
 
 
     <script src="/js/custom.js" defer></script>
+    <script src="/js/carson.js" defer></script>
 </body>
 
 </html>

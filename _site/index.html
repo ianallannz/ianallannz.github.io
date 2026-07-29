@@ -24,6 +24,23 @@
         (function () {
             var pro = false;
             try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+
+            // A shared link can set the design: /blog/whatever/?pro or ?og.
+            // They're bare keys, so this has to be has() — get('pro') returns ''
+            // for a valueless key, which is falsy.
+            //
+            // The choice is saved the same way the style switch saves one, so it
+            // simply becomes the reader's preference from then on and carries
+            // across pages and visits until they change it.
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var forced = params.has('pro') ? 'pro' : (params.has('og') ? 'og' : null);
+                if (forced) {
+                    pro = forced === 'pro';
+                    localStorage.setItem('site-style', forced);
+                }
+            } catch (e) { }
+
             document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
             document.getElementById('style-og').disabled = pro;
             document.getElementById('style-pro').disabled = !pro;
@@ -75,13 +92,13 @@
         <span class="nav-brand-role nav-brand-place">East Coast, New Zealand</span>
     </a>
 
-    <div class="nav-left" onclick="location.href='/blog/resilient-technologies/'" style="cursor:pointer;">
+    <div class="nav-left" onclick="location.href='/blog/og-me-vs-pro-me/'" style="cursor:pointer;">
         <ul class="menu-left">
 
             <li class="latest-post">
                 
                     
-                <a class="scroll-text" href="/blog/resilient-technologies/"><span class="latest-text" aria-hidden="true">★</span>Developing the skills to build, own, and operate resilient technologies</a>
+                <a class="scroll-text" href="/blog/og-me-vs-pro-me/"><span class="latest-text" aria-hidden="true">★</span>Some people don&#39;t like Me</a>
                     
                 
             </li>
@@ -116,9 +133,9 @@
 </nav>
 
 
-<a class="featured-strip" href="/blog/resilient-technologies/">
+<a class="featured-strip" href="/blog/og-me-vs-pro-me/">
     <span class="featured-strip-mark" aria-hidden="true">★</span>
-    <span class="featured-strip-title">Developing the skills to build, own, and operate resilient technologies</span>
+    <span class="featured-strip-title">Some people don&#39;t like Me</span>
     <span class="featured-strip-go" aria-hidden="true">→</span>
 </a>
 
@@ -236,6 +253,11 @@
         <ul class="activities and-last">
             
             
+            <li><a href="/blog/og-me-vs-pro-me/" class="tooltip" data-tooltip="It&#39;s hard to change me, but for people who don&#39;t like Me, there&#39;s Pro Me!">Some people don&#39;t like Me</a>
+            </li>
+            
+            
+            
             <li><a href="/blog/resilient-technologies/" class="tooltip" data-tooltip="Technology education and the fight for the East Coast: imaginging a new Diploma in Resilient Technologies.">Developing the skills to build, own, and operate resilient technologies</a>
             </li>
             
@@ -245,9 +267,6 @@
             </li>
             
             
-            
-            <li><a href="/blog/it-can-be-saved-we-can-be-saved/" class="tooltip" data-tooltip="Introducing Saved: a venture I&#39;ve designed that first believes Windows 10 laptops can be saved, and made better. And through doing so, then believes we can be saved...">Believing IT can be saved, and WE can be saved</a>
-            </li>
             
             
             
