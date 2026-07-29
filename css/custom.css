@@ -1251,6 +1251,41 @@ span.infotip:focus::before {
     transform: translateY(-0.8em);
 }
 
+/* On a narrow screen the rule above puts these half off screen: the tooltip is
+   anchored to the inline span, sized to max-content, then pulled further left
+   again by `left: -3.5rem` and the -25% translate. Below the breakpoint, hand
+   the anchoring to the <li> — position: static on the span sends the
+   pseudo-element up to it — and let the box run the full width of the column,
+   where it can't overflow either edge. */
+@media (max-width: 767px) {
+    /* The anchor. `main section ul li` is already relative for the › markers,
+       so list items need nothing; paragraphs are added so an infotip in running
+       text gets the same treatment rather than escaping to a distant ancestor.
+       (a.tooltip needs no equivalent here — its ::before is only defined from
+       768px up, so OG shows no link tooltips on mobile at all.) */
+    main section p,
+    main section li {
+        position: relative;
+    }
+
+    span.infotip {
+        position: static;
+    }
+
+    span.infotip::before {
+        left: 0;
+        right: 0;
+        width: auto;
+        max-width: none;
+        transform: translateY(-0.5em);
+    }
+
+    span.infotip:hover::before,
+    span.infotip:focus::before {
+        transform: translateY(-0.8em);
+    }
+}
+
 .tap-indicator {
     display: inline;
     margin-left: 0.2rem;
