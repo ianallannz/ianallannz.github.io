@@ -2194,11 +2194,9 @@ footer ul li a {
         color: #000000;
         text-decoration: none;
     }
-    main section.blog-post article ol {
-        padding-left: 1.4rem;
 
 
-}
+
 }
 
 
