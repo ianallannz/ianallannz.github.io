@@ -2014,9 +2014,8 @@ main section.blog-post .related-posts ul li a:hover {
         margin: 0.4rem 2rem 1.5rem 0;
     }
 }
-    main section.blog-post article ol {
-        padding-left: 1.4rem;
-    }
+
+/* --- Carson mode ----------------------------------------------------------
 
    Posts with a `carsonify` value in their front matter auto-render in Carson
    mode on load: carson.js shreds the article into fragments with randomised

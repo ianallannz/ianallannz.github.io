@@ -7,6 +7,14 @@
   "items": [
     
     {
+      "id": "https://ianallannz.github.io/blog/off-platform-knowledge-base/",
+      "url": "https://ianallannz.github.io/blog/off-platform-knowledge-base/",
+      "title": &quot;Keep your own personal knowledge base across your devices without the cloud&quot;,
+      "content_html": &quot;I&#39;ve finally cracked it. All my notes with all the functionality, stored locally across my devices, without needing a paid service, and without cloud hosting. Free and open source, no lock-in, resilient.&quot;,
+      "date_published": "2026-07-31T12:00:00XXX"
+    },
+    
+    {
       "id": "https://ianallannz.github.io/blog/og-me-vs-pro-me/",
       "url": "https://ianallannz.github.io/blog/og-me-vs-pro-me/",
       "title": &quot;Some people don&#39;t like Me&quot;,
