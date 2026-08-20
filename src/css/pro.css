@@ -2018,7 +2018,7 @@ main section.blog-post .related-posts ul li a:hover {
         padding-left: 1.4rem;
     }
 
-   Posts with a `carsonify` value in their front matter auto-render in Carson
+/* Posts with a `carsonify` value in their front matter auto-render in Carson
    mode on load: carson.js shreds the article into fragments with randomised
    colours, tilts and overlaps, then hides the real <article> with INLINE styles
    (visibility/position/left/display).
