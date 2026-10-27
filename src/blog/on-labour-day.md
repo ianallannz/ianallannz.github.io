@@ -87,7 +87,7 @@ While Labour will
 
 > guarantee a job of at least 0.8 FTE to every eligible New Zealand-trained graduate nurse, about 2,400 a year
 
-So it is a cause worth advocating strongly for, to hold these parties to their promises and to **support our polytechnics in their plea for my funding**.
+So it is a cause worth advocating strongly for, to hold these parties to their promises and to **support our polytechnics in their plea for more funding**.
 
 ### Advocating from the bottom up 
 
