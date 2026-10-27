@@ -1,7 +1,7 @@
 ---
 title: "On Labour Day, and simultaneously supporting your region and the conditions of your workers in it"
 date: 2026-10-27
-excerpt: "A weekend when protest, worker rights, Jesus, Gen Z fears, and challenging your employer comes together." 
+excerpt: "A weekend when protest, worker rights, Jesus, Gen Z fears, elections, and challenging your employer comes together." 
 layout: blog-post.njk
 tags: ["blog", "gisborne economy", "future of work", "political economy", "workers", "union"] 
 isPost: true
@@ -83,7 +83,7 @@ And
 
 > would offer every 16- to 24-year-old who has been out of work for six months a pathway into a job in their local community
 
-While Labour will
+While **Labour** will
 
 > guarantee a job of at least 0.8 FTE to every eligible New Zealand-trained graduate nurse, about 2,400 a year
 
