@@ -59,7 +59,7 @@ Strong public vocational education is going to be central to future-focused regi
 
 ![Is university still the obvious choice for Gen Z? Source: RNZ](../../images/blog-gen-z-jobs.jpg)
 
-Gen-Z school leavers are telling us loud and clear, thinking aloud about ["student debt, the difficulty of finding work and the rise of AI"](https://www.rnz.co.nz/life/lifestyle/is-university-still-the-obvious-choice-for-gen-z). And landing on trades. A pathway that offers "the chance to earn while gaining qualifications". Students can see what is happening out there for music, for creative arts, "that AI is starting to take jobs that normally graphic designers might have taken or music production would have".
+Gen-Z school leavers are thinking aloud about ["student debt, the difficulty of finding work and the rise of AI"](https://www.rnz.co.nz/life/lifestyle/is-university-still-the-obvious-choice-for-gen-z). And landing on trades. A pathway that offers "the chance to earn while gaining qualifications". Students can see what is happening out there for music, for creative arts, "that AI is starting to take jobs that normally graphic designers might have taken or music production would have".
 
 Parties across the political spectrum are listening and recognising the need to elevate the status and funding of polytechnics.
 
