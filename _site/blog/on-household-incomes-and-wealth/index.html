@@ -26,6 +26,16 @@
         (function () {
             var pro = false;
             try { pro = localStorage.getItem('site-style') === 'pro'; } catch (e) { }
+
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var forced = params.has('pro') ? 'pro' : (params.has('og') ? 'og' : null);
+                if (forced) {
+                    pro = forced === 'pro';
+                    localStorage.setItem('site-style', forced);
+                }
+            } catch (e) { }
+
             document.documentElement.setAttribute('data-site-style', pro ? 'pro' : 'og');
             document.getElementById('style-og').disabled = pro;
             document.getElementById('style-pro').disabled = !pro;
