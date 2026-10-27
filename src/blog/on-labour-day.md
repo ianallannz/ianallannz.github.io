@@ -17,7 +17,7 @@ Labour Day is a big one for me, not for the long weekend and a hopeful summer te
 
 And last week was a big one. 
 
-### That thing where you're compelled to embarrass your employer, awkward
+### That thing where you're compelled to embarrass your employer; awkward
 
 I had to lead our union members at EIT on a walkout strike on Wednesday.
 
