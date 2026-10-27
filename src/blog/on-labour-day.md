@@ -11,7 +11,7 @@ carsonify: expressive
 
 ## Feelings come together over Labour Weekends
 
-Labour Day is a big one for me, not for the long weekend and a hopeful summer teaser, but for reflecting on the ordinary worker, and the ongoing struggle to hold onto the["8 hours that we work here, 8 hours for to sleep, 8 hours with the family and the company you keep"](https://wellingtonseashantysociety.bandcamp.com/track/we-re-not-in-london-now-sam-parnell-s-law).
+Labour Day is a big one for me, not for the long weekend and a hopeful summer teaser, but for reflecting on the ordinary worker, and the ongoing struggle to hold onto the ["8 hours that we work here, 8 hours for to sleep, 8 hours with the family and the company you keep"](https://wellingtonseashantysociety.bandcamp.com/track/we-re-not-in-london-now-sam-parnell-s-law).
 
 ![Marshies in the back yard](../../images/blog-labour-weekend-marshmallows.jpg)
 
