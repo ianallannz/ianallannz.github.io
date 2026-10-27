@@ -5,7 +5,7 @@ excerpt: "It's hard to change me, but for people who don't like Me, there's Pro 
 layout: blog-post.njk
 tags: ["blog", "rewilding", "venture design"] 
 isPost: true
-pinned: true
+pinned: false
 carsonify: mild
 ---
 
