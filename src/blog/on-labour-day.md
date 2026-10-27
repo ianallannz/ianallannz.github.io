@@ -1,7 +1,7 @@
 ---
 title: "On Labour Day, and simultaneously supporting your region and the conditions of your workers in it"
 date: 2026-10-27
-excerpt: "A few actions and thoughts have come together over the last week." 
+excerpt: "A weekend when protest, worker rights, Jesus, Gen Z fears, and challenging your employer comes together." 
 layout: blog-post.njk
 tags: ["blog", "gisborne economy", "future of work", "political economy", "workers", "union"] 
 isPost: true
